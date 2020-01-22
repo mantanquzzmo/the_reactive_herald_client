@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getCurrentArticle } from "../modules/getArticlesData";
+import StripeForm from './StripeForm'
+import { Elements } from 'react-stripe-elements'
+import { Button } from 'semantic-ui-react'
+
 
 const DisplayCurrentArticle = props => {
   const getArticleShowData = async id => {
@@ -25,17 +29,17 @@ const DisplayCurrentArticle = props => {
       }
       case (props.authenticated && !showSubscriptionForm): {
         return (
-          <button
+          <Button
             onClick={() => { setShowSubscriptionForm(true) }}
           >Subscribe!
-          </button>
+          </Button>
         )
       }
       case (showSubscriptionForm): {
         return (
-          <>
-            <p>Form will go here</p>
-          </>
+          <Elements>
+            <StripeForm />
+          </Elements>
         )
       }
 
@@ -78,7 +82,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(DisplayCurrentArticle);
+  mapDispatchToProps)
+  (DisplayCurrentArticle);

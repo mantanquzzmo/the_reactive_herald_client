@@ -22,6 +22,13 @@ describe('Registered User Can Purchase A SSubscription', () => {
       url: "http://localhost:3000/api/v1/auth/**",
       response: "fixture:login.json"
     });
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/api/subscription",
+      response: {message: "paid"},
+      status: 200
+    });
+
   });
 
   it('', () => {
@@ -39,6 +46,25 @@ describe('Registered User Can Purchase A SSubscription', () => {
     cy.get("button")
       .contains("Subscribe!")
       .click();
-    cy.get('#main-article-div').should('contain', 'Form will go here')
+    cy.wait(1000);
+    cy.get('iframe[name^="__privateStripeFrame5"]').then($iframe => {
+      const $body = $iframe.contents().find("body");
+      cy.wrap($body)
+        .find('input[name="cardnumber"]')
+        .type("4242424242424242", { delay: 10 });
+    });
+    cy.get('iframe[name^="__privateStripeFrame6"]').then($iframe => {
+      const $body = $iframe.contents().find("body");
+      cy.wrap($body)
+        .find('input[name="exp-date"]')
+        .type("1222");
+    });
+    cy.get('iframe[name^="__privateStripeFrame7"]').then($iframe => {
+      const $body = $iframe.contents().find("body");
+      cy.wrap($body)
+        .find('input[name="cvc"]')
+        .type("223");
+    });
+    cy.get('#payment > button').contains('Submit').click()
   });
 });
