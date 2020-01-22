@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { createArticle } from "../modules/article";
 
 const CreateArticle = () => {
-  let responseMessage;
+  const [submitArticleMessage, setSubmitArticleMessage] = useState("");
 
   const submitArticleHandler = async e => {
     e.preventDefault();
@@ -12,13 +12,12 @@ const CreateArticle = () => {
     );
 
     if (response.status === 200) {
-      responseMessage = (
-        <p>Your article was successfully submitted for review.</p>
-      );
+      setSubmitArticleMessage ('Your article was successfully submitted for review.')
     } else if (response.status === 422) {
-      responseMessage = <p>Your article must have a title and content.</p>;
+      setSubmitArticleMessage('Your article must have a title and content.')
     } else {
-      responseMessage = <p>Something went wrong...</p>;
+      debugger
+      setSubmitArticleMessage('Something went horribly wrong...')
     }
   };
 
@@ -33,7 +32,7 @@ const CreateArticle = () => {
 
         <button id="submit">Submit</button>
       </form>
-      {responseMessage}
+      {submitArticleMessage}
     </div>
   );
 };
