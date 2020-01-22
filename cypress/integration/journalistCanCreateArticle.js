@@ -30,9 +30,7 @@ describe("Journalist attempts to create an article", () => {
       method: "POST",
       url: "http://localhost:3000/api/admin/articles",
       response: {},
-      headers: {
-        uid: "user@mail.com"
-      }
+      status: 200
     });
     //cy.get("#create-article").click();
     cy.get("#article-form").within(() => {
@@ -45,7 +43,7 @@ describe("Journalist attempts to create an article", () => {
         .contains("Submit")
         .click();
     });
-    cy.get("#create-article").should("contain", "Your article was successfully submitted for review by your publisher.");
+    cy.get("#create-article").should("contain", "Your article was successfully submitted for review.");
   });
 
   it("unsuccessfully without title", () => {

@@ -1,5 +1,19 @@
 import axios from "axios";
 
+const getCurrentArticle = async (id) => {
+  try {
+    const response = await axios.get(`v1/articles/${id}`);
+    return response.data.article;
+  } catch (error) {
+    return error.response.data
+  }
+};
+
+const getArticles = async () => {
+  const response = await axios.get("v1/articles");
+  return response.data;
+};
+
 const createArticle= async (title,body) => {
   let headers = sessionStorage.getItem("credentials");
   headers = JSON.parse(headers);
@@ -23,4 +37,4 @@ const createArticle= async (title,body) => {
   }
 };
 
-export { createArticle };
+export { getCurrentArticle, getArticles, createArticle };
