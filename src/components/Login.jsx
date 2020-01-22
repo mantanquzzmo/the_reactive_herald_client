@@ -4,18 +4,19 @@ import auth from "../modules/auth";
 
 const Login = props => {
   const [displayLoginButton, setDisplayLoginButton] = useState(true);
-  const [loginMessage, setLoginMessage] = useState("");
 
   const onLogin = event => {
     event.preventDefault();
     auth
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
+        debugger
         props.changeAuth(true);
-        setLoginMessage(`Logged in as: ${userDatas.data.email}`);
+        props.changeAuthMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
-        setLoginMessage(`Invalid login credentials. Try again.`)
+        debugger
+        props.changeAuthMessage(`Invalid login credentials. Try again.`)
       });
   };
 
@@ -27,7 +28,7 @@ const Login = props => {
         setDisplayLoginButton(true);
       })
       .catch(error => {
-        setLoginMessage(error);
+        props.changeAuthMessage(error);
       });
   };
 
@@ -53,14 +54,14 @@ const Login = props => {
 
           <button id="submit">Submit</button>
         </form>
-        {loginMessage}
+        {props.authMessage}
         </>
       );
       break;
     case props.authenticated:
       loginFunction = (
         <>
-          {loginMessage}
+        {props.authMessage}
           <button id="logoutButton" onClick={onLogout}>
             Logout
           </button>
@@ -73,13 +74,17 @@ const Login = props => {
 };
 
 const mapStateToProps = state => ({
-  authenticated: state.authenticated
+  authenticated: state.authenticated,
+  authMessage: state.authMessage
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     changeAuth: auth => {
       dispatch({ type: "CHANGE_AUTHENTICATED", payload: auth });
+    },
+    changeAuthMessage: message => {
+      dispatch({ type: "CHANGE_AUTHMESSAGE", payload: message });
     }
   };
 };

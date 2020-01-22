@@ -32,6 +32,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         authenticated: action.payload
       };
+    case "CHANGE_AUTHMESSAGE":
+      debugger
+      return {
+        ...state,
+        authMessage: action.payload
+      };
     default:
       return {
         state
