@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getCurrentArticle } from "../modules/getArticlesData";
 
@@ -12,9 +12,35 @@ const DisplayCurrentArticle = props => {
     }
   };
 
+  const [showSubscriptionForm, setShowSubscriptionForm] = useState(false)
+
   useEffect(() => {
     getArticleShowData(props.currentArticleId);
   }, [props.currentArticleId]);
+
+  const limitedDisplayUI = () => {
+    switch (true) {
+      case (!props.authenticated): {
+        return null
+      }
+      case (props.authenticated && !showSubscriptionForm): {
+        return (
+          <button
+            onClick={() => { setShowSubscriptionForm(true) }}
+          >Subscribe!
+          </button>
+        )
+      }
+      case (showSubscriptionForm): {
+        return (
+          <>
+            <p>Form will go here</p>
+          </>
+        )
+      }
+
+    }
+  }
 
   return (
     <>
@@ -22,19 +48,22 @@ const DisplayCurrentArticle = props => {
         <div id="main-article-div" key={props.currentArticle.id}>
           <h2 id="article-title">{props.currentArticle.title}</h2>
           <p id="article-body">{props.currentArticle.body}</p>
+          {limitedDisplayUI()}
         </div>
       ) : (
-        <p id="message">{props.message}</p>
-      )}
+          <p id="message">{props.message}</p>
+        )}
     </>
   );
 };
+
 
 const mapStateToProps = state => {
   return {
     currentArticle: state.currentArticle,
     currentArticleId: state.currentArticleId,
-    message: state.message
+    message: state.message,
+    authenticated: state.authenticated
   };
 };
 
