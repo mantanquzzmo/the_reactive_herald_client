@@ -32,7 +32,8 @@ const CreateArticle = () => {
 
         <button id="submit">Submit</button>
       </form>
-      {submitArticleMessage}
+      <p id="create-article-message">{submitArticleMessage}</p>
+      
     </div>
   );
 };
