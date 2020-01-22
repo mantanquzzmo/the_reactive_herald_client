@@ -12,7 +12,6 @@ const App = () => {
     <Container>
       <Login />
       <Header id="main-header">The Reactive Herald</Header>
-
       <BrowserRouter>
         <Navbar />
         <Grid celled="internally">
@@ -30,7 +29,5 @@ const App = () => {
     </Container>
   );
 };
-
-
 
 export default App;
