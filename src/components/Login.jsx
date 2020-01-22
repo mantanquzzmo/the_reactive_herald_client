@@ -53,14 +53,14 @@ const Login = props => {
 
           <button id="submit">Submit</button>
         </form>
-        {loginMessage}
+        <p>{loginMessage}</p>
         </>
       );
       break;
     case props.authenticated:
       loginFunction = (
         <>
-          {loginMessage}
+          <p>{loginMessage}</p>
           <button id="logoutButton" onClick={onLogout}>
             Logout
           </button>
