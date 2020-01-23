@@ -26,7 +26,7 @@ describe("Login component", () => {
     it("A login button at pageload", () => {
       expect(
         describedComponent.findWhere(
-          n => n.type() === "button" && n.contains("Login")
+          tag => tag.type() === "button" && tag.contains("Login")
         )
       );
     });
@@ -51,7 +51,7 @@ describe("Login component", () => {
     it("A login button at pageload", () => {
       expect(
         describedComponent.findWhere(
-          n => n.type() === "p" && n.contains("Logged in as:")
+          tag => tag.type() === "p" && tag.contains("Logged in as:")
         )
       );
     });

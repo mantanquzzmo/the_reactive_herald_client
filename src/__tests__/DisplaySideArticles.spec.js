@@ -28,7 +28,7 @@ describe("DisplaySideArticles component", () => {
     it("Error message when no articles found", () => {
       expect(
         describedComponent.findWhere(
-          n => n.type() === "p" && n.contains("No articles found")
+          tag => tag.type() === "p" && tag.contains("No articles found")
         )
       );
     });
@@ -83,9 +83,12 @@ describe("DisplaySideArticles component", () => {
     });
 
     it("When four articles are present", () => {
-      expect(describedComponent.findWhere(n => n.type() === "a" && n.contains("Test2")));
-      expect(describedComponent.findWhere(n => n.type() === "a" && n.contains("Test3")));
-      expect(describedComponent.findWhere(n => n.type() === "a" && n.contains("Test4")));
+      expect(
+        describedComponent
+          .findWhere(tag => tag.type() === "a" && tag.contains("Test2"))
+          .findWhere(tag => tag.type() === "a" && tag.contains("Test3"))
+          .findWhere(tag => tag.type() === "a" && tag.contains("Test4"))
+      );
     });
   });
 });
