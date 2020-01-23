@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createArticle } from "../modules/article";
+import { createArticle } from "../../modules/article";
 import { Header, Input, Button, TextArea, Form } from "semantic-ui-react"
 
 const CreateArticle = () => {

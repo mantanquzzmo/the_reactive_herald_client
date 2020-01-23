@@ -1,38 +1,28 @@
 import React from "react";
-import DisplayCurrentArticle from "./components/DisplayCurrentArticle";
-import DisplaySideArticles from "./components/DisplaySideArticles";
-import Navbar from "./components/Navbar";
-import { Header, Container, Grid } from "semantic-ui-react";
+import { Header, Container } from "semantic-ui-react";
 import Login from "./components/Login";
-import CreateArticle from "./components/CreateArticle";
+import CreateArticle from "./components/admin/CreateArticle";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import AdminDashboard from "./components/AdminDashboard";
+import DisplayNews from "./components/DisplayNews"
+import AdminDashboard from "./components/admin/AdminDashboard";
 
 const App = props => {
   return (
     <Container>
+      <Login />
+      <Header id="main-header">The Reactive Herald</Header>
+        
       <BrowserRouter>
-        <Login />
-        <Header id="main-header">The Reactive Herald</Header>
         <Switch>
-          <Route exact path="/">
-          <Navbar />
-          <Grid celled="internally">
-            <Grid.Column width={12}>
-              <DisplayCurrentArticle />
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <DisplaySideArticles />
-            </Grid.Column>
-          </Grid>
-          </Route>
+          <Route exact path="/" component={DisplayNews} />
           <Route exact path="/admin" component={AdminDashboard} />,
           {props.userAttrs && props.userAttrs.role === "journalist" &&
             <Route exact path="/admin/create-article" component={CreateArticle} />
           }
         </Switch>
       </BrowserRouter>
+
     </Container>
   );
 };
