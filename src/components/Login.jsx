@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import auth from "../modules/auth";
+import { Link } from "react-router-dom"
 
 const Login = props => {
   const [displayLoginButton, setDisplayLoginButton] = useState(true);
@@ -65,6 +66,7 @@ const Login = props => {
           <button id="logoutButton" onClick={onLogout}>
             Logout
           </button>
+          <Link to="/profile">Profile</Link>
         </>
       );
       break;
@@ -74,7 +76,8 @@ const Login = props => {
 };
 
 const mapStateToProps = state => ({
-  authenticated: state.authenticated
+  authenticated: state.authenticated,
+  userAttrs: state.userAttrs
 });
 
 const mapDispatchToProps = dispatch => {

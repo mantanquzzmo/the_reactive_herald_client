@@ -1,21 +1,21 @@
 import React from "react";
+import { getUserData } from "../modules/getUserData";
 import { connect } from "react-redux";
-import { getUserData } from "../modules/getUserData"
 
-const DisplayProfile = () => {
-  const userData = getUserData()
+const DisplayProfile = props => {
+  debugger
+  const userData = getUserData(props.userAttrs.id);
+  let profile;
+
   return (
     <>
-      {userData ? (
-        <>
-          <h1>Your profile:</h1>
-          <p>ID: {userData.id}</p>
-          <p>Email: {userData.email}</p>
-          <p>Role: {userData.role}</p>
-        </>
-      ) : ("Loading...")}
+    <p>hej</p>
     </>
   );
 };
 
-export default connect(mapStateToProps)(DisplayProfile);
+const mapStateToProps = state => ({
+  userAttrs: state.userAttrs
+});
+
+export default connect(mapStateToProps)(DisplayProfile)
