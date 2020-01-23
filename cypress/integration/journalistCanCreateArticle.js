@@ -38,7 +38,7 @@ describe("Journalist attempts to create an article", () => {
   it("successfully with title and body", () => {
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/api/admin/articles",
+      url: "http://localhost:3000/api/v1/admin/articles",
       response: {},
       status: 200
     });
@@ -56,7 +56,7 @@ describe("Journalist attempts to create an article", () => {
   it("unsuccessfully without title", () => {
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/api/admin/articles",
+      url: "http://localhost:3000/api/v1/admin/articles",
       status: "422",
       response: {
         errors: ["Your article must have a title and content."],
@@ -75,7 +75,7 @@ describe("Journalist attempts to create an article", () => {
   it("unsuccessfully without body", () => {
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/api/admin/articles",
+      url: "http://localhost:3000/api/v1/admin/articles",
       status: "422",
       response: {
         errors: ["Your article must have a title and content."],
