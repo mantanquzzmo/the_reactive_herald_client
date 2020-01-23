@@ -12,6 +12,7 @@ const Login = props => {
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
         props.changeAuth(true);
+        props.setUserAttrs(userDatas.data)
         setLoginMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
@@ -80,6 +81,9 @@ const mapDispatchToProps = dispatch => {
   return {
     changeAuth: auth => {
       dispatch({ type: "CHANGE_AUTHENTICATED", payload: auth });
+    },
+    setUserAttrs: userAttrs => {
+      dispatch({ type: "CHANGE_USER_ATTRIBUTES", payload: userAttrs });
     }
   };
 };
