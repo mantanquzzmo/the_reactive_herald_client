@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getArticles } from "../modules/getArticlesData";
+import { getArticles } from "../modules/article";
 
 const DisplaySideArticles = props => {
   const getArticleShowData = async () => {

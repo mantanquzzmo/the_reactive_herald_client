@@ -12,7 +12,7 @@ const Login = props => {
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
         props.changeAuth(true);
-        props.setUserId(userDatas.data.id)
+        props.setUserAttrs(userDatas.data)
         setLoginMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
@@ -54,14 +54,14 @@ const Login = props => {
 
           <button id="submit">Submit</button>
         </form>
-        {loginMessage}
+        <p>{loginMessage}</p>
         </>
       );
       break;
     case props.authenticated:
       loginFunction = (
         <>
-          {loginMessage}
+          <p>{loginMessage}</p>
           <button id="logoutButton" onClick={onLogout}>
             Logout
           </button>
@@ -82,8 +82,8 @@ const mapDispatchToProps = dispatch => {
     changeAuth: auth => {
       dispatch({ type: "CHANGE_AUTHENTICATED", payload: auth });
     },
-    setUserId: id => {
-      dispatch({ type: "SET_USERID", payload: id });
+    setUserAttrs: userAttrs => {
+      dispatch({ type: "CHANGE_USER_ATTRIBUTES", payload: userAttrs });
     }
   };
 };

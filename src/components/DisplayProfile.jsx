@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getUserData } from "../modules/getUserData"
 
-const UserProfile = () => {
+const DisplayProfile = () => {
   const userData = getUserData()
   return (
     <>
@@ -18,8 +18,4 @@ const UserProfile = () => {
   );
 };
 
-const mapStateToProps = state => ({
-  userId: state.userId,
-});
-
-export default connect(mapStateToProps)(UserProfile);
+export default connect(mapStateToProps)(DisplayProfile);
