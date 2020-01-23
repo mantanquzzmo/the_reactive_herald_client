@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getCurrentArticle } from "../modules/getArticlesData";
+import { getCurrentArticle } from "../modules/article";
 
 const DisplayCurrentArticle = props => {
   const getArticleShowData = async id => {
