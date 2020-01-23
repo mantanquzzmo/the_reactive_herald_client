@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createArticle } from "../modules/article";
-import { Input, Button, TextArea, Form } from "semantic-ui-react"
+import { Header, Input, Button, TextArea, Form } from "semantic-ui-react"
 
 const CreateArticle = () => {
   const [submitArticleMessage, setSubmitArticleMessage] = useState("");
@@ -20,7 +20,8 @@ const CreateArticle = () => {
   };
 
   return (
-    <div>
+    <>
+      <Header>Create a new article</Header>
       <Form id='article-form' onSubmit={submitArticleHandler}>
         <Form.Field
           control={Input}
@@ -40,8 +41,7 @@ const CreateArticle = () => {
           </Form.Field>
       </Form>
       <p id='create-article-message'>{submitArticleMessage}</p>
-      
-    </div>
+    </>
   );
 };
 

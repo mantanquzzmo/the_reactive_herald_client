@@ -5,9 +5,10 @@ import Navbar from "./components/Navbar";
 import { Header, Container, Grid } from "semantic-ui-react";
 import Login from "./components/Login";
 import CreateArticle from "./components/CreateArticle";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux"
 
-const App = () => {
+const App = props => {
   return (
     <Container>
       <Login />
@@ -18,7 +19,9 @@ const App = () => {
           <Grid.Column width={12}>
               <Switch>
                 <Route exact path="/" component={DisplayCurrentArticle} />
+                {props.userAttrs && props.userAttrs.role === 'journalist' ? (
                 <Route exact path="/create-article" component={CreateArticle} />
+                ) : <Redirect to="/" /> };
               </Switch>
           </Grid.Column>
           <Grid.Column width={4}>
@@ -30,4 +33,10 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    userAttrs: state.userAttrs
+  };
+};
+
+export default connect(mapStateToProps)(App);
