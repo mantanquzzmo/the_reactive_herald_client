@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getUserData } from "../modules/getUserData";
 import { connect } from "react-redux";
 
 const DisplayProfile = props => {
-  debugger
-  const userData = getUserData(props.userAttrs.id);
-  let profile;
+  let userData
+  const userDataGrab = async () => {
+    userData = await getUserData(props.userAttrs.id);
+    debugger
+    props.changeUserShowData(userData);
+  };
+
+  useEffect(() => {
+
+    userDataGrab();
+  }, [props.userShowData]);
 
   return (
-    <>
-    <p>hej</p>
-    </>
-  );
+  <>
+  {props.userShowData && <p>{props.userShowData}</p>}
+  </>
+  )
 };
 
 const mapStateToProps = state => ({
-  userAttrs: state.userAttrs
+  userAttrs: state.userAttrs,
+  userShowData: state.userShowData
 });
 
-export default connect(mapStateToProps)(DisplayProfile)
+const mapDispatchToProps = dispatch => {
+  return {
+    changeUserShowData: data => {
+      dispatch({ type: "SET_SHOWDATA", payload: data });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayProfile);
