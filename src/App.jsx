@@ -4,17 +4,17 @@ import DisplaySideArticles from "./components/DisplaySideArticles";
 import Navbar from "./components/Navbar";
 import { Header, Container, Grid } from "semantic-ui-react";
 import Login from "./components/Login"
-import userProfile from "./components/UserProfilePage"
+import UserProfile from "./components/UserProfilePage"
 
 const App = () => {
   return (
     <Container>
       <Login />
-      <userProfile />
       <Header id="main-header">
         The Reactive Herald
       </Header>
       <Navbar />
+      {/* <UserProfile /> */}
       <Grid celled='internally'>
         <Grid.Column width={12}>
           <DisplayCurrentArticle />

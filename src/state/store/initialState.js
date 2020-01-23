@@ -4,6 +4,7 @@ const initialState = {
   sideArticles: null,
   currentPage: null,
   message: "Loading...",
-  authenticated: false
+  authenticated: false,
+  userId: null
 }
 export default initialState

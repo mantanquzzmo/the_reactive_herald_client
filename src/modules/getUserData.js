@@ -1,12 +1,14 @@
 import axios from "axios";
+import { connect } from "react-redux";
 
-const getUserData = async (id) => {
-  try {
-    const response = await axios.get(`/api/admin/users/${id}`);
+const getUserData = async props => {
+    const response = await axios.get(`/api/admin/users/${props.userId}`);
     return response.data.user;
-  } catch (error) {
-    return error.response.data
-  }
 };
 
-export { getUserData };
+const mapStateToProps = state => ({
+  userId: state.userId,
+});
+
+export { getUserData }
+connect(mapStateToProps)(getUserData);
