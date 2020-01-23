@@ -22,7 +22,8 @@ const Login = props => {
       .signOut()
       .then(() => {
         props.changeAuth(false);
-        props.changeLoginButton(true);
+        props.changeLoginButton(true)
+        props.changeSignupButton(true);
       })
       .catch(error => {
         props.changeAuthMessage(error);
@@ -32,7 +33,7 @@ const Login = props => {
   let loginFunction;
 
   switch (true) {
-    case props.displayLoginButton && !props.authenticated:
+    case props.displayLoginButton && !props.authenticated && props.displaySignupButton:
       loginFunction = (
         <button id="loginButton" onClick={() => props.changeLoginButton(false)}>
           Login
@@ -42,6 +43,7 @@ const Login = props => {
     case !props.displayLoginButton && !props.authenticated:
       loginFunction = (
         <>
+        <p>Login:</p>
         <form id="login-form" onSubmit={onLogin}>
           <label>Email:</label>
           <input name="email" type="email" id="email"></input>
@@ -51,6 +53,9 @@ const Login = props => {
 
           <button id="submit">Submit</button>
         </form>
+        <button id="back-button" onClick={() => props.changeLoginButton(true)}>
+          Cancel
+        </button>
         {props.authMessage}
         </>
       );
@@ -87,6 +92,9 @@ const mapDispatchToProps = dispatch => {
     },
     changeLoginButton: value => {
       dispatch({ type: "CHANGE_LOGINBUTTON", payload: value });
+    },
+    changeSignupButton: value => {
+      dispatch({ type: "CHANGE_SIGNUPBUTTON", payload: value });
     }
   };
 };

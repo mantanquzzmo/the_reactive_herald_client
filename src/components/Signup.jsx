@@ -13,19 +13,23 @@ const Signup = props => {
       }, "http://localhost:3000")
       .then(userDatas => {
         props.changeAuth(true);
-        props.changeAuthMessage(`Welcome! ${userDatas.data.email}`);
+        props.changeAuthMessage(`Welcome! ${userDatas.data.data.email}`);
       })
       .catch(error => {
+        if (error.message == "Request failed with status code 422") {
+          props.changeAuthMessage(`Unable to Sign Up. User already exists.`)
+        } else {
         props.changeAuthMessage(`Something went wrong. Try again.`)
+      }
       });
   };
 
   let signupFunction;
-  debugger
+
   switch (true) {
-    case props.displaySignupButton && !props.authenticated:
+    case props.displaySignupButton && !props.authenticated && props.displayLoginButton:
       signupFunction = (
-        <button id="signupButton" onClick={() => props.setDisplaySignupButton(false)}>
+        <button id="signupButton" onClick={() => props.changeSignupButton(false)}>
           Sign Up
         </button>
       );
@@ -33,6 +37,7 @@ const Signup = props => {
     case !props.displaySignupButton && !props.authenticated:
       signupFunction = (
         <>
+        <p>Sign Up</p>
         <form id="signup-form" onSubmit={onSignup}>
           <label>Email:</label>
           <input name="email" type="email" id="email"></input>
@@ -42,6 +47,9 @@ const Signup = props => {
 
           <button id="submit">Sign Up</button>
         </form>
+        <button id="back-button" onClick={() => props.changeSignupButton(true)}>
+          Cancel
+        </button>
         {props.authMessage}
         </>
       );
@@ -68,6 +76,9 @@ const mapDispatchToProps = dispatch => {
     },
     changeSignupButton: value => {
       dispatch({ type: "CHANGE_SIGNUPBUTTON", payload: value });
+    },
+    changeLoginButton: value => {
+      dispatch({ type: "CHANGE_LOGINBUTTON", payload: value });
     }
   };
 };

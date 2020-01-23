@@ -1,0 +1,21 @@
+{
+  "status": "error",
+  "data": {
+      "id": null,
+      "provider": "email",
+      "uid": "",
+      "allow_password_change": false,
+      "email": "user@mail.com",
+      "role": null,
+      "created_at": null,
+      "updated_at": null
+  },
+  "errors": {
+      "email": [
+          "has already been taken"
+      ],
+      "full_messages": [
+          "Email has already been taken"
+      ]
+  }
+}

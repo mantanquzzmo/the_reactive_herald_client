@@ -16,8 +16,13 @@ describe("Visitor can register", () => {
   it("successfully with valid credentials", () => {
     cy.route({
       method: "POST",
-      url: "localhost:3000/api/v1/auth?email=user@mail.com&password=password",
-      response: "fixture:register.json"
+      url: "http://localhost:3000/api/v1/auth?confirm_success_url=http://localhost:3000",
+      response: "fixture:signup.json"
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000//api/v1/auth?confirm_success_url=http://localhost:3000",
+      response: "fixture:signup.json"
     });
 
     cy.visit("/");
@@ -26,9 +31,28 @@ describe("Visitor can register", () => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
       cy.get("button")
-        .contains("Submit")
+        .contains("Sign Up")
         .click();
     });
-    cy.get("#login").should("contain", "Logged in as: user@mail.com");
+    cy.get("#login").should("contain", "Welcome! user@mail.com");
+  });
+
+  it("unsuccessfully with already taken credentials", () => {
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/api/v1/auth",
+      response: "fixture:user_already_exists.json"
+    });
+
+    cy.visit("/");
+    cy.get("#signupButton").click();
+    cy.get("#signup").within(() => {
+      cy.get("#email").type("user@mail.com");
+      cy.get("#password").type("password");
+      cy.get("button")
+        .contains("Sign Up")
+        .click();
+    })
+    cy.get("#signup").should("contain", "User already exists");
   });
 })

@@ -38,7 +38,6 @@ const rootReducer = (state = initialState, action) => {
         authMessage: action.payload
       };
     case "CHANGE_LOGINBUTTON":
-      debugger
       return {
         ...state,
         displayLoginButton: action.payload
@@ -50,8 +49,8 @@ const rootReducer = (state = initialState, action) => {
       };
     default:
       return {
-        state
-      };
+        ...state
+      }
   }
 };
 
