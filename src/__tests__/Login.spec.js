@@ -48,7 +48,7 @@ describe("Login component", () => {
       ).dive();
     });
 
-    it("A login button at pageload", () => {
+    it("a login message", () => {
       expect(
         describedComponent.findWhere(
           tag => tag.type() === "p" && tag.contains("Logged in as:")
