@@ -1,7 +1,6 @@
 import React from "react";
 import { Header, Container } from "semantic-ui-react";
 import Login from "./components/Login";
-import CreateArticle from "./components/admin/CreateArticle";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import DisplayNews from "./components/DisplayNews"
@@ -16,10 +15,7 @@ const App = props => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={DisplayNews} />
-          <Route exact path="/admin" component={AdminDashboard} />,
-          {props.userAttrs && props.userAttrs.role === "journalist" &&
-            <Route exact path="/admin/create-article" component={CreateArticle} />
-          }
+          <Route exact path="/admin" component={AdminDashboard} />
         </Switch>
       </BrowserRouter>
 
