@@ -28,7 +28,7 @@ describe("DisplayCurrentArticle component", () => {
     it("Loading... when no article is present", () => {
       expect(
         describedComponent.findWhere(
-          object => object.type() === "p" && object.contains("Loading...")
+          tag => tag.type() === "p" && tag.contains("Loading...")
         )
       );
     });
