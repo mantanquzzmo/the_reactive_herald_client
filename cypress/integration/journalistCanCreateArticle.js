@@ -24,7 +24,7 @@ describe("Journalist attempts to create an article", () => {
       response: "fixture:login.json"
     });
 
-    cy.visit("/");
+    cy.visit("/admin");
     cy.get("#loginButton").click();
     cy.get("#login").within(() => {
       cy.get("#email").type("user@mail.com");
@@ -42,7 +42,6 @@ describe("Journalist attempts to create an article", () => {
       response: {},
       status: 200
     });
-    cy.get("#create-article").click();
     cy.get("#article-form").within(() => {
       cy.get("#title").type("This is a news article");
       cy.get("#body").type("Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
@@ -63,7 +62,6 @@ describe("Journalist attempts to create an article", () => {
         errors: ["Your article must have a title and content."],
       }
     });
-    cy.get("#create-article").click();
     cy.get("#article-form").within(() => {
       cy.get("#body").type("Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
                             "gangway swing the lead bilged on her anchor.");
@@ -83,7 +81,6 @@ describe("Journalist attempts to create an article", () => {
         errors: ["Your article must have a title and content."],
       }
     });
-   cy.get("#create-article").click();
     cy.get("#article-form").within(() => {
       cy.get("#title").type("This is a news article");
       cy.get("button")
