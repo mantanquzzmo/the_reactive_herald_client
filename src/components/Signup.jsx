@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import auth from "../modules/auth";
 
 const Signup = props => {
-  const [displaySignupButton, setDisplaySignupButton] = useState(true);
 
   const onSignup = event => {
     event.preventDefault();
@@ -13,27 +12,25 @@ const Signup = props => {
         password: event.target.password.value
       }, "http://localhost:3000")
       .then(userDatas => {
-        debugger
         props.changeAuth(true);
         props.changeAuthMessage(`Welcome! ${userDatas.data.email}`);
       })
       .catch(error => {
-        debugger
         props.changeAuthMessage(`Something went wrong. Try again.`)
       });
   };
 
   let signupFunction;
-
+  debugger
   switch (true) {
-    case displaySignupButton && !props.authenticated:
+    case props.displaySignupButton && !props.authenticated:
       signupFunction = (
-        <button id="signupButton" onClick={() => setDisplaySignupButton(false)}>
+        <button id="signupButton" onClick={() => props.setDisplaySignupButton(false)}>
           Sign Up
         </button>
       );
       break;
-    case !displaySignupButton && !props.authenticated:
+    case !props.displaySignupButton && !props.authenticated:
       signupFunction = (
         <>
         <form id="signup-form" onSubmit={onSignup}>
@@ -56,7 +53,9 @@ const Signup = props => {
 
 const mapStateToProps = state => ({
   authenticated: state.authenticated,
-  authMessage: state.authMessage
+  authMessage: state.authMessage,
+  displaySignupButton: state.displaySignupButton,
+  displayLoginButton: state.displayLoginButton
 });
 
 const mapDispatchToProps = dispatch => {
@@ -66,6 +65,9 @@ const mapDispatchToProps = dispatch => {
     },
     changeAuthMessage: message => {
       dispatch({ type: "CHANGE_AUTHMESSAGE", payload: message });
+    },
+    changeSignupButton: value => {
+      dispatch({ type: "CHANGE_SIGNUPBUTTON", payload: value });
     }
   };
 };

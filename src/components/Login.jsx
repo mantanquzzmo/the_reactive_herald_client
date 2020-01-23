@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import auth from "../modules/auth";
 
 const Login = props => {
-  const [displayLoginButton, setDisplayLoginButton] = useState(true);
 
   const onLogin = event => {
     event.preventDefault();
     auth
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
-        debugger
         props.changeAuth(true);
         props.changeAuthMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
-        debugger
         props.changeAuthMessage(`Invalid login credentials. Try again.`)
       });
   };
@@ -25,7 +22,7 @@ const Login = props => {
       .signOut()
       .then(() => {
         props.changeAuth(false);
-        setDisplayLoginButton(true);
+        props.changeLoginButton(true);
       })
       .catch(error => {
         props.changeAuthMessage(error);
@@ -35,14 +32,14 @@ const Login = props => {
   let loginFunction;
 
   switch (true) {
-    case displayLoginButton && !props.authenticated:
+    case props.displayLoginButton && !props.authenticated:
       loginFunction = (
-        <button id="loginButton" onClick={() => setDisplayLoginButton(false)}>
+        <button id="loginButton" onClick={() => props.changeLoginButton(false)}>
           Login
         </button>
       );
       break;
-    case !displayLoginButton && !props.authenticated:
+    case !props.displayLoginButton && !props.authenticated:
       loginFunction = (
         <>
         <form id="login-form" onSubmit={onLogin}>
@@ -75,7 +72,9 @@ const Login = props => {
 
 const mapStateToProps = state => ({
   authenticated: state.authenticated,
-  authMessage: state.authMessage
+  authMessage: state.authMessage,
+  displaySignupButton: state.displaySignupButton,
+  displayLoginButton: state.displayLoginButton
 });
 
 const mapDispatchToProps = dispatch => {
@@ -85,6 +84,9 @@ const mapDispatchToProps = dispatch => {
     },
     changeAuthMessage: message => {
       dispatch({ type: "CHANGE_AUTHMESSAGE", payload: message });
+    },
+    changeLoginButton: value => {
+      dispatch({ type: "CHANGE_LOGINBUTTON", payload: value });
     }
   };
 };

@@ -33,10 +33,20 @@ const rootReducer = (state = initialState, action) => {
         authenticated: action.payload
       };
     case "CHANGE_AUTHMESSAGE":
-      debugger
       return {
         ...state,
         authMessage: action.payload
+      };
+    case "CHANGE_LOGINBUTTON":
+      debugger
+      return {
+        ...state,
+        displayLoginButton: action.payload
+      };
+    case "CHANGE_SIGNUPBUTTON":
+      return {
+        ...state,
+        displaySignupButton: action.payload
       };
     default:
       return {
