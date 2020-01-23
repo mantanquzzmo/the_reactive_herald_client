@@ -40,10 +40,10 @@ describe("Visitor can register", () => {
   it("unsuccessfully with already taken credentials", () => {
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/api/v1/auth?confirm_success_url=http://localhost:3000",
-      response: "fixture:user_already_exists.json"
+      url: "/api/v1/**",
+      response: "fixture:user_already_exists.json",
+      status : 422
     });
-    debugger
 
     cy.visit("/");
     cy.get("#signupButton").click();
