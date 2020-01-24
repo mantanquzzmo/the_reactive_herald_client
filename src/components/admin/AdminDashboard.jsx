@@ -16,6 +16,7 @@ const AdminDashboard = props => {
         <CreateArticle />
       )
       break;
+    default: renderDashboard = null
   }
 
   return (

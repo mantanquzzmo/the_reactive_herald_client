@@ -13,9 +13,6 @@ describe("Journalist can log in", () => {
       url: "http://localhost:3000/api/v1/articles/**",
       response: "fixture:article_show.json"
     });
-  });
-
-  it("successfully with valid credentials", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/auth/sign_in",
@@ -26,15 +23,18 @@ describe("Journalist can log in", () => {
       url: "http://localhost:3000/api/v1/auth/**",
       response: "fixture:login.json"
     });
+  });
+
+  it("successfully with valid credentials", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/admin/users/**",
-      response: "fixture:login.json"
+      response: "fixture:profile_show.json"
     });
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/v1/admin/users/**",
-      response: "fixture:login.json"
+      response: "fixture:profile_show.json"
     });
     cy.visit("/");
     cy.get("#loginButton").click();
@@ -50,5 +50,6 @@ describe("Journalist can log in", () => {
         .contains("Profile")
         .click();
     })
+    cy.get("#profile").should("contain", "user@mail.com");
   });
 });

@@ -72,6 +72,7 @@ const Login = props => {
         </>
       );
       break;
+    default: loginFunction = null
   }
 
   return <div id="login">{loginFunction}</div>;

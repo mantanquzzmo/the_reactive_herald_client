@@ -8,6 +8,7 @@ const initialState = {
   authMessage: null,
   displayLoginButton: true,
   displaySignupButton: true,
-  userAttrs: null
+  userAttrs: null,
+  userShowData: null
 }
 export default initialState
