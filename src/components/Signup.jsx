@@ -10,7 +10,7 @@ const Signup = props => {
       .signUp({
         email: event.target.email.value, 
         password: event.target.password.value
-      }, "http://localhost:3000")
+      })
       .then(userDatas => {
         props.changeAuth(true);
         props.changeAuthMessage(`Welcome! ${userDatas.data.data.email}`);
