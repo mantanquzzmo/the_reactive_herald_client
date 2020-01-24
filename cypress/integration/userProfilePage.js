@@ -26,6 +26,16 @@ describe("Journalist can log in", () => {
       url: "http://localhost:3000/api/v1/auth/**",
       response: "fixture:login.json"
     });
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/api/v1/admin/users/**",
+      response: "fixture:login.json"
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/v1/admin/users/**",
+      response: "fixture:login.json"
+    });
     cy.visit("/");
     cy.get("#loginButton").click();
     cy.get("#login").within(() => {
@@ -36,7 +46,7 @@ describe("Journalist can log in", () => {
         .click();
     });
     cy.get("#login").within(() => {
-      cy.get("button")
+      cy.get("a")
         .contains("Profile")
         .click();
     })

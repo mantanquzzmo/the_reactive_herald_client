@@ -62,11 +62,10 @@ const Login = props => {
     case props.authenticated:
       loginFunction = (
         <>
-          <p>{loginMessage}</p>
+          <p>{loginMessage}</p><Link to="/profile">Profile</Link>
           <button id="logoutButton" onClick={onLogout}>
             Logout
           </button>
-          <Link to="/profile">Profile</Link>
         </>
       );
       break;
