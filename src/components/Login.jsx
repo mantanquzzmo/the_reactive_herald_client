@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import auth from "../modules/auth";
+import { Link } from "react-router-dom"
 
 const Login = props => {
 
@@ -14,7 +15,8 @@ const Login = props => {
         props.changeAuthMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
-        props.changeAuthMessage(`Invalid login credentials. Try again.`)
+        debugger
+        props.changeAuthMessage(error.response.data.errors)
       });
   };
 
@@ -64,13 +66,14 @@ const Login = props => {
     case props.authenticated:
       loginFunction = (
         <>
-        {props.authMessage}
+        {props.authMessage}<Link id="profile-link" to="/profile">Profile</Link>
           <button id="logoutButton" onClick={onLogout}>
             Logout
           </button>
         </>
       );
       break;
+    default: loginFunction = null
   }
 
   return <div id="login">{loginFunction}</div>;
@@ -78,6 +81,7 @@ const Login = props => {
 
 const mapStateToProps = state => ({
   authenticated: state.authenticated,
+  userAttrs: state.userAttrs,
   authMessage: state.authMessage,
   displaySignupButton: state.displaySignupButton,
   displayLoginButton: state.displayLoginButton

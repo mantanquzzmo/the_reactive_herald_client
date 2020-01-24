@@ -16,11 +16,7 @@ const Signup = props => {
         props.changeAuthMessage(`Welcome! ${userDatas.data.data.email}`);
       })
       .catch(error => {
-        if (error.message == "Request failed with status code 422") {
-          props.changeAuthMessage(`Unable to Sign Up. User already exists.`)
-        } else {
-        props.changeAuthMessage(`Something went wrong. Try again.`)
-      }
+        props.changeAuthMessage(error.response.data.errors.full_messages)
       });
   };
 
@@ -54,6 +50,7 @@ const Signup = props => {
         </>
       );
       break;
+    default: signupFunction = null
   }
 
   return <div id="signup">{signupFunction}</div>;

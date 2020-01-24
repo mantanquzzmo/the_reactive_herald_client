@@ -34,7 +34,7 @@ describe("Journalist can log in", () => {
         .contains("Submit")
         .click();
     });
-    cy.get("#login").should("contain", "Invalid login credentials. Try again.");
+    cy.get("#login").should("contain", "Invalid login credentials. Please try again.");
   });
 
   it("successfully with valid credentials", () => {

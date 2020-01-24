@@ -52,6 +52,11 @@ const rootReducer = (state = initialState, action) => {
       ...state,
       userAttrs: action.payload
     };
+    case "SET_SHOWDATA":
+      return {
+        ...state,
+        userShowData: action.payload
+      };
     default:
       return {
         ...state
