@@ -16,11 +16,12 @@ const Signup = props => {
         props.changeAuthMessage(`Welcome! ${userDatas.data.data.email}`);
       })
       .catch(error => {
-        if (error.message === "Request failed with status code 422") {
-          props.changeAuthMessage(`Unable to Sign Up. User already exists.`)
-        } else {
-        props.changeAuthMessage(`Something went wrong. Try again.`)
-      }
+        debugger
+        // if (error.message === "Request failed with status code 422") {
+        //   props.changeAuthMessage(`Unable to Sign Up. User already exists.`)
+        // } else {
+        props.changeAuthMessage(error.response.data.errors.full_messages)
+      // }
       });
   };
 

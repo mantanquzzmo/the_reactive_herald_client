@@ -46,7 +46,7 @@ describe("Journalist can log in", () => {
         .click();
     });
     cy.get("#login").within(() => {
-      cy.get("a")
+      cy.get("#profile-link")
         .contains("Profile")
         .click();
     })

@@ -54,6 +54,6 @@ describe("Visitor can register", () => {
         .contains("Sign Up")
         .click();
     })
-    cy.get("#signup").should("contain", "User already exists");
+    cy.get("#signup").should("contain", "Email has already been taken");
   });
 })

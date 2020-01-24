@@ -15,7 +15,8 @@ const Login = props => {
         props.changeAuthMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
-        props.changeAuthMessage(`Invalid login credentials. Try again.`)
+        debugger
+        props.changeAuthMessage(error.response.data.errors)
       });
   };
 
@@ -65,7 +66,7 @@ const Login = props => {
     case props.authenticated:
       loginFunction = (
         <>
-        {props.authMessage}<Link to="/profile">Profile</Link>
+        {props.authMessage}<Link id="profile-link" to="/profile">Profile</Link>
           <button id="logoutButton" onClick={onLogout}>
             Logout
           </button>
