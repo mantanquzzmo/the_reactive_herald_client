@@ -5,6 +5,9 @@ const initialState = {
   currentPage: null,
   message: "Loading...",
   authenticated: false,
-  userAttrs: null,
+  authMessage: null,
+  displayLoginButton: true,
+  displaySignupButton: true,
+  userAttrs: null
 }
 export default initialState

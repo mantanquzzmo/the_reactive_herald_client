@@ -32,6 +32,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         authenticated: action.payload
       };
+    case "CHANGE_AUTHMESSAGE":
+      return {
+        ...state,
+        authMessage: action.payload
+      };
+    case "CHANGE_LOGINBUTTON":
+      return {
+        ...state,
+        displayLoginButton: action.payload
+      };
+    case "CHANGE_SIGNUPBUTTON":
+      return {
+        ...state,
+        displaySignupButton: action.payload
+      };
     case "CHANGE_USER_ATTRIBUTES":
     return {
       ...state,
@@ -39,8 +54,8 @@ const rootReducer = (state = initialState, action) => {
     };
     default:
       return {
-        state
-      };
+        ...state
+      }
   }
 };
 
