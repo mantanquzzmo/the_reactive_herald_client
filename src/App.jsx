@@ -15,7 +15,7 @@ const App = () => {
       <BrowserRouter>
         <Login />
         <Signup />
-        <Header id="main-header">The Reactive Herald</Header>
+        <Header id="main-header" href="/">The Reactive Herald</Header>
           <Switch>
             <Route exact path="/" component={DisplayNews} />
             <Route exact path="/admin" component={AdminDashboard} />
