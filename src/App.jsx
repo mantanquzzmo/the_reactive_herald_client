@@ -2,18 +2,19 @@ import React from "react";
 import { Header, Container } from "semantic-ui-react";
 import Login from "./components/Login";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
 import DisplayNews from "./components/DisplayNews"
 import DisplayProfile from "./components/DisplayProfile"
 import AdminDashboard from "./components/admin/AdminDashboard";
+import Signup from "./components/Signup"
 
 
-const App = props => {
+const App = () => {
   return (
     <Container>
- 
+
       <BrowserRouter>
         <Login />
+        <Signup />
         <Header id="main-header">The Reactive Herald</Header>
           <Switch>
             <Route exact path="/" component={DisplayNews} />
@@ -26,10 +27,4 @@ const App = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    userAttrs: state.userAttrs
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;
