@@ -16,12 +16,12 @@ describe("Visitor can register", () => {
   it("successfully with valid credentials", () => {
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/api/v1/auth?confirm_success_url=http://localhost:3000",
+      url: "http://localhost:3000/api/v1/auth",
       response: "fixture:signup.json"
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/auth?confirm_success_url=http://localhost:3000",
+      url: "http://localhost:3000/api/v1/auth",
       response: "fixture:signup.json"
     });
 
