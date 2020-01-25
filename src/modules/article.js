@@ -5,8 +5,8 @@ const getCurrentArticle = async id => {
     const response = await axios.get(`/articles/${id}`);
     return response.data.article;
   } catch (error) {
-    if (error === 'Network Error') {
-      return { error: error.message }
+    if (error === "Network Error") {
+      return { error: error.message };
     } else {
       return error.response.data;
     }
@@ -24,8 +24,7 @@ const createArticle = async (title, body) => {
     const response = await axios.post(
       "/admin/articles",
       {
-        article: 
-        {
+        article: {
           title: title,
           body: body
         }
@@ -33,10 +32,10 @@ const createArticle = async (title, body) => {
       {
         headers: headers
       }
-      );
+    );
     return response;
   } catch (error) {
-    return error.response
+    return error.response;
   }
 };
 
@@ -46,12 +45,33 @@ const getUnpublishedArticles = async () => {
     let response = await axios.get(`/admin/articles`, {
       headers: headers
     });
-    debugger
-    return response
+    return response.data.articles;
   } catch (error) {
-    debugger
     return error.message;
   }
 };
 
-export { getCurrentArticle, getArticles, createArticle, getUnpublishedArticles };
+const publishArticle = async article => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  debugger
+  try {
+    let response = await axios.patch(
+      `/admin/articles/${article}`,
+      {
+        headers: headers,
+      }
+    );
+    return response;
+  } catch (error) {
+    debugger;
+    return error;
+  }
+};
+
+export {
+  getCurrentArticle,
+  getArticles,
+  createArticle,
+  getUnpublishedArticles,
+  publishArticle
+};
