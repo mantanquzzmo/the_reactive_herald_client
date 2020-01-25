@@ -25,4 +25,16 @@ const getOnThisDay = async () => {
   }
 };
 
-export { getOnThisDay };
+const getForexData = async () => {
+  try {
+    let token = "x50DVsx9yOqZCBXGZGrqMbBUlJeITZM2pY2vxhyqubikgYB4Db2UNZ0BxAnq";
+    let response = await axios.get(
+      `https://api.worldtradingdata.com/api/v1/forex?base=USD&api_token=${token}`
+    );
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getOnThisDay, getForexData };

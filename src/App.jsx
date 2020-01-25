@@ -22,10 +22,9 @@ const App = () => {
             <Route exact path="/admin" component={AdminDashboard} />
             <Route exact path="/profile" component={DisplayProfile} />
           </Switch>
+          <Footer />
         </BrowserRouter>
         
-        <Footer />
-
     </Container>
   );
 };
