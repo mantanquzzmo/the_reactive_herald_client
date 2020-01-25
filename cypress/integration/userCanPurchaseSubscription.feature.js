@@ -15,12 +15,12 @@ describe('Registered user can purchase a subscription', () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/auth/sign_in",
-      response: "fixture:login.json"
+      response: "fixture:login_user.json"
     });
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/v1/auth/**",
-      response: "fixture:login.json"
+      response: "fixture:login_user.json"
     });
     cy.visit('/')
     cy.get('#main-article-div').should('not.contain', 'Subscribe!')
