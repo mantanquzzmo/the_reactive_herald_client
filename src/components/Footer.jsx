@@ -19,10 +19,10 @@ const Footer = () => {
     <div id="footer">
       <Grid celled="internally">
         <Grid.Column width={8}>
-          <div id="footer 1">
+          <div id="footer-onthisday">
             {thisDayEvent ? (
               <>
-                <div>{thisDayEvent.year}</div>
+                <h5>On this day in {thisDayEvent.year}:</h5>
                 <div> {thisDayEvent.description}</div>
               </>
             ) : (

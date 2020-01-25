@@ -16,13 +16,16 @@ describe("Footer displays", () => {
 
   });
 
-  it("successfully with valid credentials", () => {
+  it("an event from the past", () => {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(1);
+    cy.route({
+      method: "GET",
+      url: `https://byabbe.se/on-this-day/${mm}/${dd}/events.json`,
+      response: "fixture:on_this_day.json"
+    });
     cy.visit("/");
-    cy.get("#footer").within(() => {
-      cy.get("#profile-link")
-        .contains("Profile")
-        .click();
-    })
-    cy.get("#profile").should("contain", "user@mail.com");
+    cy.get("#footer-onthisday").should("contain", "Sri Lanka's Temple of the Tooth");
   });
 });

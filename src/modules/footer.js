@@ -9,7 +9,17 @@ const getOnThisDay = async () => {
     let response = await axios.get(
       `https://byabbe.se/on-this-day/${mm}/${dd}/events.json`
     );
-    return response.data.events;
+    let events = response.data.events;
+    for (let i = events.length - 1; i >= 0; --i) {
+      if (events[i].description.length < 115) {
+        events.splice(i, 1);
+      } else {
+        if (events[i].description.length > 139) {
+          events.splice(i, 1);
+        }
+      }
+    }
+    return events;
   } catch (error) {
     return error;
   }
