@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getCurrentArticle } from "../modules/article";
-import StripeForm from './StripeForm'
-import { Elements } from 'react-stripe-elements'
-import { Button } from 'semantic-ui-react'
-
+import StripeForm from "./StripeForm";
+import { Elements } from "react-stripe-elements";
+import { Button } from "semantic-ui-react";
 
 const DisplayCurrentArticle = props => {
   const getArticleShowData = async id => {
@@ -16,7 +15,7 @@ const DisplayCurrentArticle = props => {
     }
   };
 
-  const [showSubscriptionForm, setShowSubscriptionForm] = useState(false)
+  const [showSubscriptionForm, setShowSubscriptionForm] = useState(false);
 
   useEffect(() => {
     getArticleShowData(props.currentArticleId);
@@ -24,27 +23,29 @@ const DisplayCurrentArticle = props => {
 
   const limitedDisplayUI = () => {
     switch (true) {
-      case (!props.authenticated): {
-        return null
+      case !props.authenticated: {
+        return null;
       }
-      case (props.authenticated && !showSubscriptionForm): {
+      case props.userAttrs && props.userAttrs.role === null && !showSubscriptionForm: {
         return (
           <Button
-            onClick={() => { setShowSubscriptionForm(true) }}
-          >Subscribe!
+            onClick={() => {
+              setShowSubscriptionForm(true);
+            }}
+          >
+            Subscribe!
           </Button>
-        )
+        );
       }
-      case (showSubscriptionForm): {
+      case showSubscriptionForm: {
         return (
           <Elements>
             <StripeForm />
           </Elements>
-        )
+        );
       }
-
     }
-  }
+  };
 
   return (
     <>
@@ -55,19 +56,19 @@ const DisplayCurrentArticle = props => {
           {limitedDisplayUI()}
         </div>
       ) : (
-          <p id="message">{props.message}</p>
-        )}
+        <p id="message">{props.message}</p>
+      )}
     </>
   );
 };
-
 
 const mapStateToProps = state => {
   return {
     currentArticle: state.currentArticle,
     currentArticleId: state.currentArticleId,
     message: state.message,
-    authenticated: state.authenticated
+    authenticated: state.authenticated,
+    userAttrs: state.userAttrs
   };
 };
 
@@ -82,8 +83,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps)
-  (DisplayCurrentArticle);
+  mapDispatchToProps
+)(DisplayCurrentArticle);
