@@ -15,7 +15,6 @@ const Login = props => {
         props.changeAuthMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
-        debugger
         props.changeAuthMessage(error.response.data.errors)
       });
   };

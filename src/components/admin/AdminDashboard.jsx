@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import CreateArticle from './CreateArticle'
+import ReviewArticles from './ReviewArticles'
 
 const AdminDashboard = props => {
   let renderDashboard
@@ -14,6 +15,11 @@ const AdminDashboard = props => {
     case props.authenticated && props.userAttrs && props.userAttrs.role === 'journalist':
       renderDashboard = (
         <CreateArticle />
+      )
+      break;
+    case props.authenticated && props.userAttrs && props.userAttrs.role === 'publisher':
+      renderDashboard = (
+        <ReviewArticles />
       )
       break;
     default: renderDashboard = null

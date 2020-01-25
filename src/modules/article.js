@@ -40,4 +40,18 @@ const createArticle = async (title, body) => {
   }
 };
 
-export { getCurrentArticle, getArticles, createArticle };
+const getUnpublishedArticles = async () => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  try {
+    let response = await axios.get(`/admin/articles`, {
+      headers: headers
+    });
+    debugger
+    return response
+  } catch (error) {
+    debugger
+    return error.message;
+  }
+};
+
+export { getCurrentArticle, getArticles, createArticle, getUnpublishedArticles };
