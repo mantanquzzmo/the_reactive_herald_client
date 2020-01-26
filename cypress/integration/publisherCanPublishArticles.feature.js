@@ -53,4 +53,23 @@ describe("Editor can", () => {
     })
     cy.get("#publish-header").should("contain", "You published article 1:");
   });
+
+  it("can undo publishing article", () => {
+    cy.route({
+      method: "patch",
+      url: "http://localhost:3000/api/v1/admin/articles/1?published=false",
+      response: "fixture:published_response.json"
+    });
+    cy.get("#review-article-1").within(() => {
+      cy.get("button")
+      .contains("Publish")
+      .click();
+    })
+    cy.get("#publish-header").within(() => {
+      cy.get("button")
+      .contains("Undo")
+      .click();
+    })
+    cy.get("#publish-header").should("contain", "Undid publishing of article 1:");
+  });
 });

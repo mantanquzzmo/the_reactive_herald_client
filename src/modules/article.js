@@ -62,7 +62,6 @@ const publishArticle = async id => {
           published: true
       }
     });
-    debugger
     return response.data
   } catch (error) {
     return error.response.data.errors;
