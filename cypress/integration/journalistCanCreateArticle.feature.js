@@ -57,6 +57,7 @@ describe("Journalist attempts to create an article", () => {
         .click();
     });
     cy.get("#create-article-message").should("contain", "Your article was successfully submitted for review.");
+    cy.get("#image-preview").find("img").should("have.attr", "src").should("include", "VBORw0KGgoAAAANSUhE")
   });
 
   it("unsuccessfully without title", () => {
