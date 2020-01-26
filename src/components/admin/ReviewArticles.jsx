@@ -4,21 +4,27 @@ import { Header, Input, Button, TextArea, Form } from "semantic-ui-react";
 
 const ReviewArticles = () => {
   let [articles, setArticles] = useState([]);
+  let [publishMessage, setPublishMessage] = useState("")
   let articlesList
 
   const loadArticles = async () => {
     let response = await getUnpublishedArticles();
-    debugger
     setArticles(response);
   };
 
   const onClickHandler = async (id) => {
     let response = await publishArticle(id)
+    let message = `Published article: ${response.title}`
+    setPublishMessage(message)
   }
 
   useEffect(() => {
     loadArticles();
   }, []);
+
+  useEffect(() => {
+    debugger
+  }, [publishMessage]);
 
   if (articles.length > 0) {
     articlesList = articles.map(article => {
@@ -35,6 +41,8 @@ const ReviewArticles = () => {
   return (
     <>
       <Header>Review articles</Header>
+
+      {publishMessage}
       <div id="#unpublished-articles">
       {articlesList && articlesList}
       </div>

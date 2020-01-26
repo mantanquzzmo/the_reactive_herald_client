@@ -51,20 +51,21 @@ const getUnpublishedArticles = async () => {
   }
 };
 
-const publishArticle = async article => {
+const publishArticle = async id => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-  debugger
   try {
-    let response = await axios.patch(
-      `/admin/articles/${article}`,
-      {
-        headers: headers,
+    let response = await axios({
+      url: `/admin/articles/${id}`,
+      headers: headers,
+      method: "patch",
+      params: {
+          published: true
       }
-    );
-    return response;
+    });
+    return response.data
   } catch (error) {
-    debugger;
-    return error;
+    debugger
+    return error.response.data.errors;
   }
 };
 
