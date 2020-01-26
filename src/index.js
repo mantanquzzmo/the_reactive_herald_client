@@ -9,6 +9,7 @@ import configureStore from './state/store/configureStore'
 import 'semantic-ui-css/semantic.min.css'
 
 axios.defaults.baseURL = process.env.REACT_APP_BASEURL
+axios.defaults.headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"))
 
 const store = configureStore()
 

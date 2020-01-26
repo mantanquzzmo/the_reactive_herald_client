@@ -19,7 +19,6 @@ const getArticles = async () => {
 };
 
 const createArticle = async (title, body) => {
-  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   try {
     const response = await axios.post(
       "/admin/articles",
@@ -28,9 +27,6 @@ const createArticle = async (title, body) => {
           title: title,
           body: body
         }
-      },
-      {
-        headers: headers
       }
     );
     return response;
@@ -40,30 +36,34 @@ const createArticle = async (title, body) => {
 };
 
 const getUnpublishedArticles = async () => {
-  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   try {
-    let response = await axios.get(`/admin/articles`, {
-      headers: headers
-    });
+    let response = await axios.get(`/admin/articles`);
     return response.data.articles;
   } catch (error) {
     return error.message;
   }
 };
 
-const publishArticle = async article => {
+const publishArticle = async id => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-  debugger
+  debugger;
   try {
-    let response = await axios.patch(
-      `/admin/articles/${article}`,
-      {
-        headers: headers,
-      }
-    );
+
+    let response = await axios({
+      url: `/admin/articles/${id}`,
+      method: "patch",
+      headers: headers,
+      params: {
+        article: {
+          published: true
+        }
+
+      },
+    });
+
     return response;
   } catch (error) {
-    debugger;
+
     return error;
   }
 };
