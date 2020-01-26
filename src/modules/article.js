@@ -62,9 +62,26 @@ const publishArticle = async id => {
           published: true
       }
     });
+    debugger
     return response.data
   } catch (error) {
-    debugger
+    return error.response.data.errors;
+  }
+};
+
+const undoPublishArticle = async id => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  try {
+    let response = await axios({
+      url: `/admin/articles/${id}`,
+      headers: headers,
+      method: "patch",
+      params: {
+          published: false
+      }
+    });
+    return response.data
+  } catch (error) {
     return error.response.data.errors;
   }
 };
@@ -74,5 +91,6 @@ export {
   getArticles,
   createArticle,
   getUnpublishedArticles,
-  publishArticle
+  publishArticle,
+  undoPublishArticle
 };

@@ -26,7 +26,11 @@ describe("Editor can", () => {
       url: "http://localhost:3000/api/v1/admin/articles",
       response: "fixture:publisher_articles.json"
     });
-
+    cy.route({
+      method: "patch",
+      url: "http://localhost:3000/api/v1/admin/articles/1?published=true",
+      response: "fixture:published_response.json"
+    });
     cy.visit("/admin");
     cy.get("#loginButton").click();
     cy.get("#login").within(() => {
@@ -37,7 +41,16 @@ describe("Editor can", () => {
         .click();
     });
   });
-  it("successfully with title and body", () => {
+  it("see a list of unpublished articles", () => {
     cy.get("#review-article-1").should("contain", "TestBody1");
+  });
+
+  it("can publish article", () => {
+    cy.get("#review-article-1").within(() => {
+      cy.get("button")
+      .contains("Publish")
+      .click();
+    })
+    cy.get("#publish-header").should("contain", "You published article 1:");
   });
 });
