@@ -9,7 +9,6 @@ const CreateArticle = () => {
 
   const submitArticleHandler = async e => {
     e.preventDefault();
-    debugger
     const response = await createArticle(
       e.target.title.value,
       e.target.body.value,
