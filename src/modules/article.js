@@ -57,7 +57,7 @@ const publishArticle = async id => {
     let response = await axios({
       url: `/admin/articles/${id}`,
       headers: headers,
-      method: "patch",
+      method: "put",
       params: {
           published: true
       }
@@ -74,7 +74,7 @@ const undoPublishArticle = async id => {
     let response = await axios({
       url: `/admin/articles/${id}`,
       headers: headers,
-      method: "patch",
+      method: "put",
       params: {
           published: false
       }

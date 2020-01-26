@@ -27,7 +27,7 @@ describe("Editor can", () => {
       response: "fixture:publisher_articles.json"
     });
     cy.route({
-      method: "patch",
+      method: "put",
       url: "http://localhost:3000/api/v1/admin/articles/1?published=true",
       response: "fixture:published_response.json"
     });
@@ -46,17 +46,23 @@ describe("Editor can", () => {
   });
 
   it("can publish article", () => {
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/v1/admin/articles",
+      response: "fixture:publisher_articles_after_publish.json"
+    });
     cy.get("#review-article-1").within(() => {
       cy.get("button")
       .contains("Publish")
       .click();
     })
     cy.get("#publish-header").should("contain", "You published article 1:");
+    cy.get("#unpublished-articles").not("contain", "Article 1");
   });
 
   it("can undo publishing article", () => {
     cy.route({
-      method: "patch",
+      method: "put",
       url: "http://localhost:3000/api/v1/admin/articles/1?published=false",
       response: "fixture:published_response.json"
     });

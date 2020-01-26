@@ -68,7 +68,7 @@ const ReviewArticles = () => {
           )}
         </div>
       </Header>
-      <div id="#unpublished-articles">
+      <div id="unpublished-articles">
         <Grid container columns={2}>
           {articlesList && articlesList}
         </Grid>
