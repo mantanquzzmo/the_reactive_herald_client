@@ -3,12 +3,11 @@ import { connect } from "react-redux";
 import auth from "../modules/auth";
 
 const Signup = props => {
-
   const onSignup = event => {
     event.preventDefault();
     auth
       .signUp({
-        email: event.target.email.value, 
+        email: event.target.email.value,
         password: event.target.password.value
       })
       .then(userDatas => {
@@ -16,16 +15,21 @@ const Signup = props => {
         props.changeAuthMessage(`Welcome! ${userDatas.data.data.email}`);
       })
       .catch(error => {
-        props.changeAuthMessage(error.response.data.errors.full_messages)
+        props.changeAuthMessage(error.response.data.errors.full_messages);
       });
   };
 
   let signupFunction;
 
   switch (true) {
-    case props.displaySignupButton && !props.authenticated && props.displayLoginButton:
+    case props.displaySignupButton &&
+      !props.authenticated &&
+      props.displayLoginButton:
       signupFunction = (
-        <button id="signupButton" onClick={() => props.changeSignupButton(false)}>
+        <button
+          id="signupButton"
+          onClick={() => props.changeSignupButton(false)}
+        >
           Sign Up
         </button>
       );
@@ -33,24 +37,28 @@ const Signup = props => {
     case !props.displaySignupButton && !props.authenticated:
       signupFunction = (
         <>
-        <p>Sign Up</p>
-        <form id="signup-form" onSubmit={onSignup}>
-          <label>Email:</label>
-          <input name="email" type="email" id="email"></input>
+          <p>Sign Up</p>
+          <label id="signup-form" onSubmit={onSignup}>
+            <label>Email:</label>
+            <input name="email" type="email" id="email"></input>
 
-          <label>Password:</label>
-          <input name="password" type="password" id="password"></input>
+            <label>Password:</label>
+            <input name="password" type="password" id="password"></input>
 
-          <button id="submit">Sign Up</button>
-        </form>
-        <button id="back-button" onClick={() => props.changeSignupButton(true)}>
-          Cancel
-        </button>
-        {props.authMessage}
+            <button id="submit">Sign Up</button>
+          </label>
+          <button
+            id="back-button"
+            onClick={() => props.changeSignupButton(true)}
+          >
+            Cancel
+          </button>
+          {props.authMessage}
         </>
       );
       break;
-    default: signupFunction = null
+    default:
+      signupFunction = null;
   }
 
   return <div id="signup">{signupFunction}</div>;

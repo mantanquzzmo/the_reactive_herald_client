@@ -62,7 +62,7 @@ const publishArticle = async id => {
         "[article][published]": true
       }
     });
-    return response.statusText
+    return response.statusText;
   } catch (error) {
     return error.message;
   }
@@ -76,10 +76,10 @@ const undoPublishArticle = async id => {
       headers: headers,
       method: "PUT",
       params: {
-          "[article][published]": false,
+        "[article][published]": false
       }
     });
-    return response.statusText
+    return response.statusText;
   } catch (error) {
     return error.message;
   }
