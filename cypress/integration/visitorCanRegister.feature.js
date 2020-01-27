@@ -26,7 +26,7 @@ describe("Visitor can register", () => {
     });
 
     cy.visit("/");
-    cy.get("#signupButton").click();
+    cy.get("#signup-button").click();
     cy.get("#signup").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
@@ -46,7 +46,7 @@ describe("Visitor can register", () => {
     });
 
     cy.visit("/");
-    cy.get("#signupButton").click();
+    cy.get("#signup-button").click();
     cy.get("#signup").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");

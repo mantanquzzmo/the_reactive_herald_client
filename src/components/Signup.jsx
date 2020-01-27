@@ -27,7 +27,7 @@ const Signup = props => {
       props.displayLoginButton:
       signupFunction = (
         <button
-          id="signupButton"
+          id="signup-button"
           onClick={() => props.changeSignupButton(false)}
         >
           Sign Up
@@ -38,7 +38,7 @@ const Signup = props => {
       signupFunction = (
         <>
           <p>Sign Up</p>
-          <label id="signup-form" onSubmit={onSignup}>
+          <form id="signup-form" onSubmit={onSignup}>
             <label>Email:</label>
             <input name="email" type="email" id="email"></input>
 
@@ -46,7 +46,7 @@ const Signup = props => {
             <input name="password" type="password" id="password"></input>
 
             <button id="submit">Sign Up</button>
-          </label>
+          </form>
           <button
             id="back-button"
             onClick={() => props.changeSignupButton(true)}
