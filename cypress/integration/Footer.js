@@ -34,7 +34,7 @@ describe("Footer displays", () => {
   it("todays financials", () => {
     cy.route({
       method: "GET",
-      url: `https://api.worldtradingdata.com/api/v1/forex`,
+      url: `https://api.worldtradingdata.com/api/v1/**`,
       response: "fixture:wtd.json"
     });
     cy.visit("/");
