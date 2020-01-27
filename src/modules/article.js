@@ -18,7 +18,7 @@ const getArticles = async () => {
   return response.data;
 };
 
-const createArticle = async (title, body) => {
+const createArticle = async (title, body, image) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   try {
     const response = await axios.post(
@@ -27,7 +27,8 @@ const createArticle = async (title, body) => {
         article: 
         {
           title: title,
-          body: body
+          body: body,
+          image: image
         }
       },
       {

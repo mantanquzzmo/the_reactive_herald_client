@@ -4,15 +4,14 @@ import { Header, Input, Button, TextArea, Form } from "semantic-ui-react";
 
 const CreateArticle = () => {
   const [submitArticleMessage, setSubmitArticleMessage] = useState("");
-  const [imagePreview, setImagePreview] = useState(false);
-  let image64
+  const [imageBase64, setImageBase64] = useState("");
 
   const submitArticleHandler = async e => {
     e.preventDefault();
     const response = await createArticle(
       e.target.title.value,
       e.target.body.value,
-      image64
+      imageBase64
     );
     
     if (response.status === 200) {
@@ -25,11 +24,10 @@ const CreateArticle = () => {
   };
 
   const imageUploadHandler = async e => {
-    let image = e.target.files[0]
+    const image = e.target.files[0]
     let reader = new FileReader()
     reader.onloadend = () => {
-      image64 = reader.result
-      setImagePreview(image64)
+      setImageBase64(reader.result)
     };
     reader.readAsDataURL(image)
   }
@@ -40,7 +38,7 @@ const CreateArticle = () => {
       <Form id="article-form" onSubmit={submitArticleHandler}>
         <Form.Field control={Input} label="Title" id="title" />
         <div id="image-preview">
-          {imagePreview ? <img src={imagePreview} style={{maxWidth: "256px"}}></img> : null }
+          {imageBase64 ? <img src={imageBase64} style={{maxWidth: "256px"}}></img> : null }
         </div>
         <Form.Field className="ui button" as="label" htmlFor="image-upload">
           Add image
