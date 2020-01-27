@@ -37,7 +37,7 @@ const Login = props => {
   switch (true) {
     case props.displayLoginButton && !props.authenticated && props.displaySignupButton:
       loginFunction = (
-        <button id="loginButton" onClick={() => props.changeLoginButton(false)}>
+        <button id="login-button" onClick={() => props.changeLoginButton(false)}>
           Login
         </button>
       );
@@ -66,7 +66,7 @@ const Login = props => {
       loginFunction = (
         <>
         {props.authMessage}<Link id="profile-link" to="/profile">Profile</Link>
-        <Link id="logoutb" to="/" onClick={onLogout}>Logout</Link>
+          <Link id="logout-link" to="/" onClick={onLogout}>Logout</Link>
         </>
       );
       break;

@@ -5,7 +5,7 @@ const getCurrentArticle = async id => {
     const response = await axios.get(`/articles/${id}`);
     return response.data.article;
   } catch (error) {
-    if (error === "Network Error") {
+    if (error.message === "Network Error") {
       return { error: error.message };
     } else {
       return error.response.data;
@@ -57,14 +57,14 @@ const publishArticle = async id => {
     let response = await axios({
       url: `/admin/articles/${id}`,
       headers: headers,
-      method: "put",
+      method: "PUT",
       params: {
-          published: true
+        "[article][published]": true
       }
     });
-    return response.data
+    return response.statusText
   } catch (error) {
-    return error.response.data.errors;
+    return error.message;
   }
 };
 
@@ -74,14 +74,14 @@ const undoPublishArticle = async id => {
     let response = await axios({
       url: `/admin/articles/${id}`,
       headers: headers,
-      method: "put",
+      method: "PUT",
       params: {
-          published: false
+          "[article][published]": false,
       }
     });
-    return response.data
+    return response.statusText
   } catch (error) {
-    return error.response.data.errors;
+    return error.message;
   }
 };
 

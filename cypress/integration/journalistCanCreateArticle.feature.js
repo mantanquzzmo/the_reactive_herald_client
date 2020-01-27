@@ -25,7 +25,7 @@ describe("Journalist attempts to create an article", () => {
     });
 
     cy.visit("/admin");
-    cy.get("#loginButton").click();
+    cy.get("#login-button").click();
     cy.get("#login").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");

@@ -20,19 +20,20 @@ describe("Editor can", () => {
       method: "GET",
       url: "http://localhost:3000/api/v1/auth/**",
       response: "fixture:login_publisher.json"
-    })
+    });
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/v1/admin/articles",
-      response: "fixture:publisher_articles.json"
+      response: "fixture:publish_article_flow/articleslist_before_publish.json"
     });
     cy.route({
-      method: "put",
-      url: "http://localhost:3000/api/v1/admin/articles/1?published=true",
-      response: "fixture:published_response.json"
+      method: "PUT",
+      url:
+        "http://localhost:3000/api/v1/admin/articles/1?[article][published]=true",
+      response: "fixture:publish_article_flow/articleslist_before_publish.json"
     });
     cy.visit("/admin");
-    cy.get("#loginButton").click();
+    cy.get("#login-button").click();
     cy.get("#login").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
@@ -49,33 +50,37 @@ describe("Editor can", () => {
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/v1/admin/articles",
-      response: "fixture:publisher_articles_after_publish.json"
+      response: "fixture:publish_article_flow/articleslist_after_publish.json"
     });
     cy.get("#review-article-1").within(() => {
       cy.get("button")
-      .contains("Publish")
-      .click();
-    })
-    cy.get("#publish-header").should("contain", "You published article 1:");
+        .contains("Publish")
+        .click();
+    });
+    cy.get("#publish-header").should("contain", "You published article 1");
     cy.get("#unpublished-articles").not("contain", "Article 1");
   });
 
   it("can undo publishing article", () => {
     cy.route({
-      method: "put",
-      url: "http://localhost:3000/api/v1/admin/articles/1?published=false",
-      response: "fixture:published_response.json"
+      method: "PUT",
+      url:
+        "http://localhost:3000/api/v1/admin/articles/1?[article][published]=false",
+      response: "OK"
     });
     cy.get("#review-article-1").within(() => {
       cy.get("button")
-      .contains("Publish")
-      .click();
-    })
+        .contains("Publish")
+        .click();
+    });
     cy.get("#publish-header").within(() => {
       cy.get("button")
-      .contains("Undo")
-      .click();
-    })
-    cy.get("#publish-header").should("contain", "Undid publishing of article 1:");
+        .contains("Undo")
+        .click();
+    });
+    cy.get("#publish-header").should(
+      "contain",
+      "Undid publishing of article 1"
+    );
   });
 });

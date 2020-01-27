@@ -19,15 +19,24 @@ const ReviewArticles = () => {
 
   const onPublishHandler = async id => {
     let response = await publishArticle(id);
-    let message = `You published article ${response.id}: ${response.title}`;
-    setPublishMessage(message);
-    setLastPublishedArticle(response.id);
+    if (response === "OK") {
+      let message = `You published article ${id}`;
+      setPublishMessage(message);
+      setLastPublishedArticle(id);
+    } else {
+      setPublishMessage(response);
+    }
   };
 
   const onUndoPublishHandler = async id => {
     let response = await undoPublishArticle(id);
-    let message = `Undid publishing of article ${response.id}: ${response.title}`;
-    setPublishMessage(message);
+    if (response === "OK") {
+      let message = `Undid publishing of article ${id}`;
+      setPublishMessage(message);
+      setLastPublishedArticle("")
+    } else {
+      setPublishMessage(response);
+    }
   };
 
   useEffect(() => {
