@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import auth from "../modules/auth";
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
 const Login = props => {
 
@@ -24,7 +24,7 @@ const Login = props => {
       .signOut()
       .then(() => {
         props.changeAuth(false);
-        props.changeLoginButton(true)
+        props.changeLoginButton(true);
         props.changeSignupButton(true);
       })
       .catch(error => {
@@ -66,9 +66,7 @@ const Login = props => {
       loginFunction = (
         <>
         {props.authMessage}<Link id="profile-link" to="/profile">Profile</Link>
-          <button id="logoutButton" onClick={onLogout}>
-            Logout
-          </button>
+        <Link id="logoutb" to="/" onClick={onLogout}>Logout</Link>
         </>
       );
       break;
