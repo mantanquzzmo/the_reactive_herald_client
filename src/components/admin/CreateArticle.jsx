@@ -26,7 +26,7 @@ const CreateArticle = () => {
   const imageUploadHandler = async e => {
     const image = e.target.files[0]
     let reader = new FileReader()
-    reader.onloadend = () => {
+    reader.onload = () => {
       setImageBase64(reader.result)
     };
     reader.readAsDataURL(image)
@@ -38,7 +38,7 @@ const CreateArticle = () => {
       <Form id="article-form" onSubmit={submitArticleHandler}>
         <Form.Field control={Input} label="Title" id="title" />
         <div id="image-preview">
-          {imageBase64 ? <img src={imageBase64} style={{maxWidth: "256px"}}></img> : null }
+          {imageBase64 ? <img src={imageBase64} style={{maxWidth: "256px"}} alt="preview"></img> : null }
         </div>
         <Form.Field className="ui button" as="label" htmlFor="image-upload">
           Add image
