@@ -25,3 +25,14 @@ code {
 h1, h2, .ui.header.aligned.center, .ui {
   font-family: 'Courier';
 }
+
+#footer {
+  border-top: 3px solid rgba(166, 168, 172, 0.15);
+  padding-top: 10px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-left: 8%;
+  display: relative;
+  margin-right: 8%;
+}
