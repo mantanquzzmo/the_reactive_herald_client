@@ -6,6 +6,7 @@ import DisplayNews from "./components/DisplayNews"
 import DisplayProfile from "./components/DisplayProfile"
 import AdminDashboard from "./components/admin/AdminDashboard";
 import Signup from "./components/Signup"
+import Footer from "./components/Footer"
 
 
 const App = () => {
@@ -21,8 +22,9 @@ const App = () => {
             <Route exact path="/admin" component={AdminDashboard} />
             <Route exact path="/profile" component={DisplayProfile} />
           </Switch>
+          <Footer />
         </BrowserRouter>
-
+        
     </Container>
   );
 };
