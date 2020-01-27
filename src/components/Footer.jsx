@@ -16,7 +16,6 @@ const Footer = () => {
   const loadForexData = async () => {
     let forexData = await getForexData();
     if (forexData) {
-      debugger;
       let forexSpecificData = [
         parseFloat(forexData.data.EUR).toFixed(2),
         Math.round(1 / forexData.data.BTC)
