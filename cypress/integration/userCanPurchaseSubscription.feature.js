@@ -24,7 +24,7 @@ describe('Registered user can purchase a subscription', () => {
     });
     cy.visit('/')
     cy.get('#main-article-div').should('not.contain', 'Subscribe!')
-    cy.get("#loginButton").click();
+    cy.get("#login-button").click();
     cy.get("#login").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");

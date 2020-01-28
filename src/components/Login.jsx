@@ -37,7 +37,7 @@ const Login = props => {
   switch (true) {
     case props.displayLoginButton && !props.authenticated && props.displaySignupButton:
       loginFunction = (
-        <button id="loginButton" onClick={() => props.changeLoginButton(false)}>
+        <button id="login-button" onClick={() => props.changeLoginButton(false)}>
           Login
         </button>
       );
