@@ -1,31 +1,11 @@
 /// <reference types="Cypress" />
 
-describe("Journalist can log in", () => {
+describe("Profile page", () => {
   beforeEach(() => {
-    cy.server();
-    cy.route({
-      method: "GET",
-      url: "http://localhost:3000/api/v1/articles",
-      response: "fixture:side_articles_shown.json"
-    });
-    cy.route({
-      method: "GET",
-      url: "http://localhost:3000/api/v1/articles/**",
-      response: "fixture:article_show.json"
-    });
-    cy.route({
-      method: "POST",
-      url: "http://localhost:3000/api/v1/auth/sign_in",
-      response: "fixture:login.json"
-    });
-    cy.route({
-      method: "GET",
-      url: "http://localhost:3000/api/v1/auth/**",
-      response: "fixture:login.json"
-    });
+    cy.journalistLogin();
   });
 
-  it("successfully with valid credentials", () => {
+  it("successfully shown with valid credentials", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/admin/users/**",
@@ -36,20 +16,12 @@ describe("Journalist can log in", () => {
       url: "http://localhost:3000/api/v1/admin/users/**",
       response: "fixture:profile_show.json"
     });
-    cy.visit("/");
-    cy.get("#login-button").click();
-    cy.get("#login").within(() => {
-      cy.get("#email").type("user@mail.com");
-      cy.get("#password").type("password");
-      cy.get("button")
-        .contains("Submit")
-        .click();
-    });
+    cy.login();
     cy.get("#login").within(() => {
       cy.get("#profile-link")
         .contains("Profile")
         .click();
-    })
+    });
     cy.get("#profile").should("contain", "user@mail.com");
   });
 });

@@ -1,16 +1,7 @@
+import "../support/commands.js";
+
 describe("Editor can", () => {
   beforeEach(() => {
-    cy.server();
-    cy.route({
-      method: "GET",
-      url: "http://localhost:3000/api/v1/articles",
-      response: "fixture:side_articles_shown.json"
-    });
-    cy.route({
-      method: "GET",
-      url: "http://localhost:3000/api/v1/articles/**",
-      response: "fixture:article_show.json"
-    });
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/auth/sign_in",
@@ -32,15 +23,7 @@ describe("Editor can", () => {
         "http://localhost:3000/api/v1/admin/articles/1?[article][published]=true",
       response: "fixture:publish_article_flow/articleslist_before_publish.json"
     });
-    cy.visit("/admin");
-    cy.get("#login-button").click();
-    cy.get("#login").within(() => {
-      cy.get("#email").type("user@mail.com");
-      cy.get("#password").type("password");
-      cy.get("button")
-        .contains("Submit")
-        .click();
-    });
+    cy.adminLogin();
   });
   it("see a list of unpublished articles", () => {
     cy.get("#review-article-1").should("contain", "TestBody1");

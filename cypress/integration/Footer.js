@@ -1,20 +1,6 @@
 /// <reference types="Cypress" />
 
 describe("Footer displays", () => {
-  beforeEach(() => {
-    cy.server();
-    cy.route({
-      method: "GET",
-      url: "http://localhost:3000/api/v1/articles",
-      response: "fixture:side_articles_shown.json"
-    });
-    cy.route({
-      method: "GET",
-      url: "http://localhost:3000/api/v1/articles/**",
-      response: "fixture:article_show.json"
-    });
-  });
-
   it("an event from the past", () => {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, "0");
