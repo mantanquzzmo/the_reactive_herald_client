@@ -15,11 +15,9 @@ describe("User is shown current article", () => {
 
   it("successfully", () => {
     cy.visit("/");
-    cy.get('#side-article-3').within(() => {
-      cy.get('a').click()
-    })
+    cy.get("#side-article-3").within(() => {
+      cy.get("a").click();
+    });
     cy.get("#main-article-div").should("contain", "Body 3");
   });
-
-  
 });

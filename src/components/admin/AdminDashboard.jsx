@@ -12,12 +12,12 @@ const AdminDashboard = props => {
         <p>You need to log in to access employee features.</p>
       );
       break;
-    case props.authenticated && props.userAttrs && props.userAttrs.role === 'journalist':
+    case props.userAttrs && props.userAttrs.role === 'journalist':
       renderDashboard = (
         <CreateArticle />
       )
       break;
-    case props.authenticated && props.userAttrs && props.userAttrs.role === 'publisher':
+    case props.userAttrs && props.userAttrs.role === 'publisher':
       renderDashboard = (
         <ReviewArticles />
       )
