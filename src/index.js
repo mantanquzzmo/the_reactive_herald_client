@@ -11,13 +11,11 @@ import "./i18n"
 
 axios.defaults.baseURL = process.env.REACT_APP_BASEURL
 
-
-
 const store = configureStore()
 
 ReactDOM.render(
 <Provider store={store}>
-  <App />
+    <App />
 </Provider>, document.getElementById('root'));
 
 serviceWorker.unregister();
