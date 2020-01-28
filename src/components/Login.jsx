@@ -1,21 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import auth from "../modules/auth";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const Login = props => {
-
   const onLogin = event => {
     event.preventDefault();
     auth
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
         props.changeAuth(true);
-        props.setUserAttrs(userDatas.data)
+        props.setUserAttrs(userDatas.data);
         props.changeAuthMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
-        props.changeAuthMessage(error.response.data.errors)
+        props.changeAuthMessage(error.response.data.errors);
       });
   };
 
@@ -24,7 +23,7 @@ const Login = props => {
       .signOut()
       .then(() => {
         props.changeAuth(false);
-        props.changeLoginButton(true)
+        props.changeLoginButton(true);
         props.changeSignupButton(true);
       })
       .catch(error => {
@@ -35,9 +34,14 @@ const Login = props => {
   let loginFunction;
 
   switch (true) {
-    case props.displayLoginButton && !props.authenticated && props.displaySignupButton:
+    case props.displayLoginButton &&
+      !props.authenticated &&
+      props.displaySignupButton:
       loginFunction = (
-        <button id="loginButton" onClick={() => props.changeLoginButton(false)}>
+        <button
+          id="login-button"
+          onClick={() => props.changeLoginButton(false)}
+        >
           Login
         </button>
       );
@@ -45,34 +49,41 @@ const Login = props => {
     case !props.displayLoginButton && !props.authenticated:
       loginFunction = (
         <>
-        <p>Login:</p>
-        <form id="login-form" onSubmit={onLogin}>
-          <label>Email:</label>
-          <input name="email" type="email" id="email"></input>
+          <p>Login:</p>
+          <form id="login-form" onSubmit={onLogin}>
+            <label>Email:</label>
+            <input name="email" type="email" id="email"></input>
 
-          <label>Password:</label>
-          <input name="password" type="password" id="password"></input>
+            <label>Password:</label>
+            <input name="password" type="password" id="password"></input>
 
-          <button id="submit">Submit</button>
-        </form>
-        <button id="back-button" onClick={() => props.changeLoginButton(true)}>
-          Cancel
-        </button>
-        {props.authMessage}
+            <button id="submit">Submit</button>
+          </form>
+          <button
+            id="back-button"
+            onClick={() => props.changeLoginButton(true)}
+          >
+            Cancel
+          </button>
+          {props.authMessage}
         </>
       );
       break;
     case props.authenticated:
       loginFunction = (
         <>
-        {props.authMessage}<Link id="profile-link" to="/profile">Profile</Link>
-          <button id="logoutButton" onClick={onLogout}>
+          {props.authMessage}
+          <Link id="profile-link" to="/profile">
+            Profile
+          </Link>
+          <Link id="logout-link" to="/" onClick={onLogout}>
             Logout
-          </button>
+          </Link>
         </>
       );
       break;
-    default: loginFunction = null
+    default:
+      loginFunction = null;
   }
 
   return <div id="login">{loginFunction}</div>;
@@ -103,7 +114,7 @@ const mapDispatchToProps = dispatch => {
     setUserAttrs: userAttrs => {
       dispatch({ type: "CHANGE_USER_ATTRIBUTES", payload: userAttrs });
     }
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

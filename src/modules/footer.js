@@ -31,6 +31,7 @@ const getForexData = async () => {
     let response = await axios.get(
       `https://api.worldtradingdata.com/api/v1/forex?base=USD&api_token=${token}`
     );
+    debugger
     return response.data;
   } catch (error) {
     return error;
