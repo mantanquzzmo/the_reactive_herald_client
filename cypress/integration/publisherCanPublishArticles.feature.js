@@ -63,7 +63,7 @@ describe("Editor can", () => {
     });
     cy.get("#publish-header").should(
       "contain",
-      "Undid publishing of article 1"
+      "Undid the publishing of article 1"
     );
   });
 });

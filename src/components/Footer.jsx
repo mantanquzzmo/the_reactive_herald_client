@@ -15,20 +15,22 @@ const Footer = () => {
     );
   };
 
-  // const loadForexData = async () => {
-  //   let forexData = await getForexData();
-  //   if (forexData) {
-  //     let forexSpecificData = [
-  //       parseFloat(forexData.data.EUR).toFixed(2),
-  //       Math.round(1 / forexData.data.BTC)
-  //     ];
-  //     setForexDisplay(forexSpecificData);
-  //   }
-  // };
+  const loadForexData = async () => {
+    let forexData = await getForexData();
+    if (!forexData.isAxiosError) {
+      let forexSpecificData = [
+        parseFloat(forexData.data.EUR).toFixed(2),
+        Math.round(1 / forexData.data.BTC)
+      ];
+      setForexDisplay(forexSpecificData);
+    } else {
+      setForexDisplay("")
+    }
+  };
 
   useEffect(() => {
     loadOnThisDayEvent();
-    // loadForexData();
+    loadForexData();
   }, []);
 
   return (
@@ -52,12 +54,12 @@ const Footer = () => {
                 <div> {thisDayEvent.description}</div>
               </>
             ) : (
-              <p>Loading...</p>
+              <p>{t('dsa.loading')}</p>
             )}
           </div>
         </Grid.Column>
         <Grid.Column width={5}>
-          {/* <div id="footer-financials">
+          <div id="footer-financials">
             {forexDisplay ? (
               <>
                 <h5>Financials:</h5>
@@ -65,9 +67,9 @@ const Footer = () => {
                 <p>Bitcoin: {forexDisplay[1]} $</p>
               </>
             ) : (
-              <p>Loading...</p>
+              <p>{t('dsa.loading')}</p>
             )}
-          </div> */}
+          </div>
         </Grid.Column>
       </Grid>
     </div>

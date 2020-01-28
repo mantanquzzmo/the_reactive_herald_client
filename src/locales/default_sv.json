@@ -38,13 +38,14 @@
       "sports": "Sport"
     },
     "admin": {
-      "alertlogin": "Logga in för nå den här sidan",
+      "alertLogin": "Logga in för nå den här sidan",
       "createArticle": "Skapa en ny artikel",
       "addImage": "Lägg till bild",
       "article": "Artikel",
-      "publicera": "Publicera",
+      "publish": "Publicera",
       "reviewArticles": "Granska artiklar",
-      "undo": "Ångra"
+      "undo": "Ångra",
+      "undidMess": "Ångrad publicering"
     }
   }
 }
