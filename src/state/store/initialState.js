@@ -9,6 +9,7 @@ const initialState = {
   displayLoginButton: true,
   displaySignupButton: true,
   userAttrs: null,
-  userShowData: null
+  userShowData: null,
+  paymentMessage: null
 }
 export default initialState

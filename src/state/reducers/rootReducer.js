@@ -48,19 +48,24 @@ const rootReducer = (state = initialState, action) => {
         displaySignupButton: action.payload
       };
     case "CHANGE_USER_ATTRIBUTES":
-    return {
-      ...state,
-      userAttrs: action.payload
-    };
+      return {
+        ...state,
+        userAttrs: action.payload
+      };
     case "SET_SHOWDATA":
       return {
         ...state,
         userShowData: action.payload
       };
+    case "CHANGE_PAYMENTMESSAGE":
+      return {
+        ...state,
+        paymentMessage: action.payload
+      };
     default:
       return {
         ...state
-      }
+      };
   }
 };
 
