@@ -26,7 +26,7 @@ describe("Journalist can log in", () => {
       }
     });
     cy.visit("/");
-    cy.get("#loginButton").click();
+    cy.get("#login-button").click();
     cy.get("#login").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("wrongpassword");
@@ -49,7 +49,7 @@ describe("Journalist can log in", () => {
       response: "fixture:login.json"
     });
     cy.visit("/");
-    cy.get("#loginButton").click();
+    cy.get("#login-button").click();
     cy.get("#login").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
