@@ -5,7 +5,8 @@
       "email": "E-post",
       "role": "Roll",
       "backToHerald": "Tillbaka till the Reactive Herald",
-      "loginProfile": "Var vänlig logga in för att se din profil"
+      "loginProfile": "Var vänlig logga in för att se din profil",
+      "subscription": "Prenumerera"
     },
     "dsa": {
       "Loading": "Laddar...",

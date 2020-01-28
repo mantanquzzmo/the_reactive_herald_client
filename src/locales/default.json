@@ -5,7 +5,8 @@
       "email": "Email",
       "role": "Role",
       "backToHerald": "Back to the Herald",
-      "loginProfile": "Please log in to view your profile"
+      "loginProfile": "Please log in to view your profile",
+      "subscription": "Subscription"
     },
     "dsa": {
       "loading": "Loading...",
