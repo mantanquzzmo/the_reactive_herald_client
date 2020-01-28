@@ -35,7 +35,7 @@ describe("Journalist attempts to create an article", () => {
     });
   });
 
-  it("successfully with title and body", () => {
+  it("successfully with title, body and image", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/admin/articles",
@@ -46,11 +46,18 @@ describe("Journalist attempts to create an article", () => {
       cy.get("#title").type("This is a news article");
       cy.get("#body").type("Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
                             "gangway swing the lead bilged on her anchor.");
+      cy.fixture('ca_basic_logo_320x40.png', 'base64').then(fileContent => {
+        cy.get('#image-upload').upload(
+          { fileContent, fileName: 'ca_basic_logo_320x40.png', mimeType: 'image/png' },
+          { subjectType: 'input' },
+        );
+      });
       cy.get("button")
         .contains("Submit")
         .click();
     });
     cy.get("#create-article-message").should("contain", "Your article was successfully submitted for review.");
+    cy.get("#image-preview").find("img").should("have.attr", "src").should("include", "VBORw0KGgoAAAANSUhE")
   });
 
   it("unsuccessfully without title", () => {
