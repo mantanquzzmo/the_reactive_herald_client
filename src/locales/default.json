@@ -1,0 +1,14 @@
+{
+  "en": {
+    "dp": {
+      "yourProfile": "Your Profile:",
+      "email": "Email:",
+      "backToHerald": "Back to the Herald",
+      "logInProfile": "Please log in to view your profile"
+    },
+    "dsa": {
+      "Loading": "Loading...",
+      "error": "No articles found"
+    }
+  }
+}

@@ -2,8 +2,12 @@ import React, { useEffect } from "react";
 import { getUserData } from "../modules/getUserData";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next'
 
 const DisplayProfile = props => {
+
+  const { t, i18n } = useTranslation('common')
+  
   const userDataGrab = async () => {
     if (props.userAttrs) {
       props.changeUserShowData(await getUserData(props.userAttrs.id));

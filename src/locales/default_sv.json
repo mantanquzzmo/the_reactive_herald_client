@@ -1,0 +1,14 @@
+{
+  "sv": {
+    "dp": {
+      "yourProfile": "Din profil:",
+      "email": "E-post:",
+      "backToHerald": "Tillbaka till the Reactive Herald",
+      "logInProfile": "Var vänlig logga in för att se din profil"
+    },
+    "dsa": {
+      "Loading": "Laddar...",
+      "error": "Inga artiklar"
+    }
+  }
+}
