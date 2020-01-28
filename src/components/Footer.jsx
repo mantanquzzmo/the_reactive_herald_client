@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 const Footer = () => {
   let [thisDayEvent, setOnThisDayEvent] = useState("");
   let [forexDisplay, setForexDisplay] = useState("");
-  const { t, i18n } = useTranslation('common')
+  const { t } = useTranslation('common')
 
   let loadOnThisDayEvent = async () => {
     const onThisDayData = await getOnThisDay();

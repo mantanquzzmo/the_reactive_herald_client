@@ -23,7 +23,28 @@
       "submit": "Logga in",
       "cancel": "Avbryt",
       "profile": "Profil",
-      "logout": "Logga ut"
+      "logout": "Logga ut",
+      "signup": "Bli medlem"
+    },
+    "nav": {
+      "global": "Globalt",
+      "local": "Lokalt",
+      "english": "Engelska",
+      "swedish": "Svenska",
+      "news": "Nyheter",
+      "food": "Mat",
+      "tech": "Tech",
+      "culture": "Kultur",
+      "sports": "Sport"
+    },
+    "admin": {
+      "alertlogin": "Logga in för nå den här sidan",
+      "createArticle": "Skapa en ny artikel",
+      "addImage": "Lägg till bild",
+      "article": "Artikel",
+      "publicera": "Publicera",
+      "reviewArticles": "Granska artiklar",
+      "undo": "Ångra"
     }
   }
 }

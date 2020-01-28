@@ -8,7 +8,7 @@
       "loginProfile": "Please log in to view your profile"
     },
     "dsa": {
-      "Loading": "Loading...",
+      "loading": "Loading...",
       "error": "No articles found"
     },
     "footer": {
@@ -23,7 +23,28 @@
       "submit": "Submit",
       "cancel": "Cancel",
       "profile": "Profile",
-      "logout": "Logout"
+      "logout": "Logout",
+      "signup": "Sign Up"
+    },
+    "nav": {
+      "global": "Global",
+      "local": "Local",
+      "english": "English",
+      "swedish": "Swedish",
+      "news": "News",
+      "food": "Food",
+      "tech": "Tech",
+      "culture": "Culture",
+      "sports": "Sports"
+    },
+    "admin": {
+      "alertlogin": "You need to log in to access employee features.",
+      "createArticle": "Create a new article",
+      "addImage": "Add image",
+      "article": "Article",
+      "publicera": "Publish",
+      "reviewArticles": "Review articles",
+      "undo": "Undo"
     }
   }
 }

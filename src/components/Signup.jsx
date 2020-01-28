@@ -1,8 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import auth from "../modules/auth";
+import { useTranslation } from 'react-i18next'
 
 const Signup = props => {
+
+  const { t } = useTranslation()
+
   const onSignup = event => {
     event.preventDefault();
     auth
@@ -30,28 +34,28 @@ const Signup = props => {
           id="signup-button"
           onClick={() => props.changeSignupButton(false)}
         >
-          Sign Up
+          {t('login.signup')}
         </button>
       );
       break;
     case !props.displaySignupButton && !props.authenticated:
       signupFunction = (
         <>
-          <p>Sign Up</p>
+          <p>{t('login.signup')}</p>
           <form id="signup-form" onSubmit={onSignup}>
-            <label>Email:</label>
+            <label>{t('login.email')}:</label>
             <input name="email" type="email" id="email"></input>
 
-            <label>Password:</label>
+            <label>{t('login.password')}:</label>
             <input name="password" type="password" id="password"></input>
 
-            <button id="submit">Sign Up</button>
+            <button id="submit">{t('login.signup')}</button>
           </form>
           <button
             id="back-button"
             onClick={() => props.changeSignupButton(true)}
           >
-            Cancel
+            {t('login.cancel')}
           </button>
           {props.authMessage}
         </>
