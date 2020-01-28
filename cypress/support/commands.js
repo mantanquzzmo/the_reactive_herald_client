@@ -1,3 +1,5 @@
+import 'cypress-file-upload';
+
 Cypress.Commands.add("adminLogin", () => {
   cy.visit("/admin");
   cy.get("#login-button").click();
@@ -55,3 +57,4 @@ Cypress.Commands.add("signup", () => {
       .click();
   });
 });
+

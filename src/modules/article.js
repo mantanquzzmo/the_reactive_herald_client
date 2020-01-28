@@ -5,8 +5,8 @@ const getCurrentArticle = async id => {
     const response = await axios.get(`/articles/${id}`);
     return response.data.article;
   } catch (error) {
-    if (error.message === "Network Error") {
-      return { error: error.message };
+    if (error.message === 'Network Error') {
+      return { error: error.message }
     } else {
       return error.response.data;
     }
@@ -18,7 +18,7 @@ const getArticles = async () => {
   return response.data;
 };
 
-const createArticle = async (title, body) => {
+const createArticle = async (title, body, image) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   try {
     const response = await axios.post(
@@ -26,7 +26,8 @@ const createArticle = async (title, body) => {
       {
         article: {
           title: title,
-          body: body
+          body: body,
+          image: image
         }
       },
       {
