@@ -1,14 +1,29 @@
 {
   "sv": {
     "dp": {
-      "yourProfile": "Din profil:",
-      "email": "E-post:",
+      "yourProfile": "Din profil",
+      "email": "E-post",
+      "role": "Roll",
       "backToHerald": "Tillbaka till the Reactive Herald",
-      "logInProfile": "Var vänlig logga in för att se din profil"
+      "loginProfile": "Var vänlig logga in för att se din profil"
     },
     "dsa": {
       "Loading": "Laddar...",
       "error": "Inga artiklar"
+    },
+    "footer": {
+      "info1": "VD och chefredaktör:",
+      "info2": "Utgivare:",
+      "info3": "Besöksadress:"
+    },
+    "login": {
+      "login": "Logga in",
+      "email": "E-post:",
+      "pword": "Lösenord:",
+      "submit": "Logga in",
+      "cancel": "Avbryt",
+      "profile": "Profil",
+      "logout": "Logga ut"
     }
   }
 }

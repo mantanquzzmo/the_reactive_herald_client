@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "semantic-ui-react";
 import { getOnThisDay, getForexData } from "../modules/footer";
+import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
   let [thisDayEvent, setOnThisDayEvent] = useState("");
   let [forexDisplay, setForexDisplay] = useState("");
+  const { t, i18n } = useTranslation('common')
 
   let loadOnThisDayEvent = async () => {
     const onThisDayData = await getOnThisDay();
@@ -35,11 +37,11 @@ const Footer = () => {
         <Grid.Column width={5}>
           <div id="footer-info">
             <h5>Information: </h5>
-            CEO and Editor in chief: Placeholder
+            {t('footer.info1')}
             <br />
-            Publishers: Placeholder
+            {t('footer.info2')}
             <br />
-            Visiting Address: Placeholder
+            {t('footer.info3')}
           </div>
         </Grid.Column>
         <Grid.Column width={5}>
