@@ -5,12 +5,14 @@ import {
   undoPublishArticle
 } from "../../modules/article";
 import { Header, Grid } from "semantic-ui-react";
+import { useTranslation } from "react-i18next";
 
 const ReviewArticles = () => {
   let [articles, setArticles] = useState([]);
   let [publishMessage, setPublishMessage] = useState("");
   let [lastPublishedArticle, setLastPublishedArticle] = useState("");
   let articlesList;
+  const { t } = useTranslation();
 
   const loadArticles = async () => {
     let response = await getUnpublishedArticles();
@@ -31,9 +33,9 @@ const ReviewArticles = () => {
   const onUndoPublishHandler = async id => {
     let response = await undoPublishArticle(id);
     if (response === "OK") {
-      let message = `Undid publishing of article ${id}`;
+      let message = `Undid the publishing of article ${id}`;
       setPublishMessage(message);
-      setLastPublishedArticle("")
+      setLastPublishedArticle("");
     } else {
       setPublishMessage(response);
     }
@@ -53,11 +55,11 @@ const ReviewArticles = () => {
         <Grid.Column key={article.id}>
           <div id={`review-article-${article.id}`}>
             <h5>
-              Article {article.id}: {article.title}
+              {t("admin.article")} {article.id}: {article.title}
             </h5>
             <p>{article.body}</p>
             <button onClick={() => onPublishHandler(article.id)}>
-              Publish
+              {t("admin.publish")}
             </button>
           </div>
         </Grid.Column>
@@ -69,10 +71,10 @@ const ReviewArticles = () => {
     <>
       <Header>
         <div id="publish-header">
-          Review articles: {publishMessage}
+          {t("admin.reviewArticles")}: {publishMessage}
           {lastPublishedArticle && (
             <button onClick={() => onUndoPublishHandler(lastPublishedArticle)}>
-              Undo
+              {t("admin.undo")}
             </button>
           )}
         </div>

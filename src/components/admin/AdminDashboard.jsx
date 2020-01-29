@@ -1,36 +1,30 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import CreateArticle from './CreateArticle'
-import ReviewArticles from './ReviewArticles'
+import React from "react";
+import { connect } from "react-redux";
+import CreateArticle from "./CreateArticle";
+import ReviewArticles from "./ReviewArticles";
+import { useTranslation } from "react-i18next";
 
 const AdminDashboard = props => {
-  let renderDashboard
+  const { t } = useTranslation();
+
+  let renderDashboard;
 
   switch (true) {
     case !props.authenticated:
-      renderDashboard = (
-        <p>You need to log in to access employee features.</p>
-      );
+      renderDashboard = <p>{t("admin.alertLogin")}</p>;
       break;
-    case props.userAttrs && props.userAttrs.role === 'journalist':
-      renderDashboard = (
-        <CreateArticle />
-      )
+    case props.userAttrs && props.userAttrs.role === "journalist":
+      renderDashboard = <CreateArticle />;
       break;
-    case props.userAttrs && props.userAttrs.role === 'publisher':
-      renderDashboard = (
-        <ReviewArticles />
-      )
+    case props.userAttrs && props.userAttrs.role === "publisher":
+      renderDashboard = <ReviewArticles />;
       break;
-    default: renderDashboard = null
+    default:
+      renderDashboard = null;
   }
 
-  return (
-    <>
-      {renderDashboard}
-    </>
-  )
-}
+  return <>{renderDashboard}</>;
+};
 
 const mapStateToProps = state => {
   return {
@@ -39,4 +33,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(AdminDashboard)
+export default connect(mapStateToProps)(AdminDashboard);

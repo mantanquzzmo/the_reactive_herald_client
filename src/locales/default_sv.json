@@ -1,0 +1,52 @@
+{
+  "sv": {
+    "dp": {
+      "yourProfile": "Din profil",
+      "email": "E-post",
+      "role": "Roll",
+      "backToHerald": "Tillbaka till the Reactive Herald",
+      "loginProfile": "Var vänlig logga in för att se din profil",
+      "subscription": "Prenumerera"
+    },
+    "dsa": {
+      "Loading": "Laddar...",
+      "error": "Inga artiklar"
+    },
+    "footer": {
+      "info1": "VD och chefredaktör:",
+      "info2": "Utgivare:",
+      "info3": "Besöksadress:"
+    },
+    "login": {
+      "login": "Logga in",
+      "email": "E-post:",
+      "pword": "Lösenord:",
+      "submit": "Logga in",
+      "cancel": "Avbryt",
+      "profile": "Profil",
+      "logout": "Logga ut",
+      "signup": "Bli medlem"
+    },
+    "nav": {
+      "global": "Globalt",
+      "local": "Lokalt",
+      "english": "Engelska",
+      "swedish": "Svenska",
+      "news": "Nyheter",
+      "food": "Mat",
+      "tech": "Tech",
+      "culture": "Kultur",
+      "sports": "Sport"
+    },
+    "admin": {
+      "alertLogin": "Logga in för nå den här sidan",
+      "createArticle": "Skapa en ny artikel",
+      "addImage": "Lägg till bild",
+      "article": "Artikel",
+      "publish": "Publicera",
+      "reviewArticles": "Granska artiklar",
+      "undo": "Ångra",
+      "undidMess": "Ångrad publicering"
+    }
+  }
+}

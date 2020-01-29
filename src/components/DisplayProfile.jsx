@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { getUserData } from "../modules/getUserData";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next'
 import StripeForm from "./StripeForm";
 import { Elements } from "react-stripe-elements";
 import { Button } from "semantic-ui-react";
 
 const DisplayProfile = props => {
+
+  const { t } = useTranslation('common')
+  
   const userDataGrab = async () => {
     if (props.userAttrs) {
       props.changeUserShowData(await getUserData(props.userAttrs.id));
@@ -53,24 +57,25 @@ const DisplayProfile = props => {
       {props.userShowData ? (
         props.userShowData.email ? (
           <>
-            <h1>Your Profile:</h1>
-            <h4>Email:</h4> <p>{props.userShowData.email}</p>
-            <h4>Subscription:</h4> <div>{renderSubscription()}</div>
-            <Link to="/">Back to the Herald</Link>
+            <h1>{t('dp.yourProfile')}:</h1>
+            <h4>{t('dp.email')}:</h4> <p>{props.userShowData.email}</p>
+            <h4>{t('dp.role')}:</h4> <p>{props.userShowData.role}</p>
+            <h4>{t('dp.subscription')}:</h4> <div>{renderSubscription()}</div>
+            <Link to="/">{t('dp.backToHerald')}</Link>
           </>
         ) : (
           <>
-            <h1>Your Profile:</h1>
+            <h1>{t('dp.yourProfile')}:</h1>
             <h4>{props.userShowData}</h4>
 
-            <Link to="/">Back to the Herald</Link>
+            <Link to="/">{t('dp.backToHerald')}</Link>
           </>
         )
       ) : (
         <>
-          <p>Please log in to see your profile</p>
+          <p>{t('dp.loginProfile')}</p>
 
-          <Link to="/">Back to the Herald</Link>
+          <Link to="/">{t('dp.backToHerald')}</Link>
         </>
       )}
     </div>

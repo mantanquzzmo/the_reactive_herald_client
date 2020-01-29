@@ -2,8 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import auth from "../modules/auth";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next'
 
 const Login = props => {
+
+  const { t } = useTranslation()
+
   const onLogin = event => {
     event.preventDefault();
     auth
@@ -42,28 +46,28 @@ const Login = props => {
           id="login-button"
           onClick={() => props.changeLoginButton(false)}
         >
-          Login
+          {t('login.login')}
         </button>
       );
       break;
     case !props.displayLoginButton && !props.authenticated:
       loginFunction = (
         <>
-          <p>Login:</p>
+          <p>{t('login.login')}:</p>
           <form id="login-form" onSubmit={onLogin}>
-            <label>Email:</label>
+            <label>{t('login.email')}:</label>
             <input name="email" type="email" id="email"></input>
 
-            <label>Password:</label>
+            <label>{t('login.password')}:</label>
             <input name="password" type="password" id="password"></input>
 
-            <button id="submit">Submit</button>
+            <button id="submit">{t('login.submit')}</button>
           </form>
           <button
             id="back-button"
             onClick={() => props.changeLoginButton(true)}
           >
-            Cancel
+            {t('login.cancel')}
           </button>
           {props.authMessage}
         </>

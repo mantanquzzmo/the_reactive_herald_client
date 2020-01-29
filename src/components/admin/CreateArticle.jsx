@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { createArticle } from "../../modules/article";
 import { Header, Input, Button, TextArea, Form } from "semantic-ui-react";
+import { useTranslation } from "react-i18next";
 
 const CreateArticle = () => {
   const [submitArticleMessage, setSubmitArticleMessage] = useState("");
   const [imageBase64, setImageBase64] = useState("");
+  const { t } = useTranslation();
 
   const submitArticleHandler = async e => {
     e.preventDefault();
@@ -13,7 +15,7 @@ const CreateArticle = () => {
       e.target.body.value,
       imageBase64
     );
-    
+
     if (response.status === 200) {
       setSubmitArticleMessage(
         "Your article was successfully submitted for review."
@@ -24,24 +26,30 @@ const CreateArticle = () => {
   };
 
   const imageUploadHandler = async e => {
-    const image = e.target.files[0]
-    let reader = new FileReader()
+    const image = e.target.files[0];
+    let reader = new FileReader();
     reader.onload = () => {
-      setImageBase64(reader.result)
+      setImageBase64(reader.result);
     };
-    reader.readAsDataURL(image)
-  }
+    reader.readAsDataURL(image);
+  };
 
   return (
     <>
-      <Header>Create a new article</Header>
+      <Header>{t("admin.createArticle")}</Header>
       <Form id="article-form" onSubmit={submitArticleHandler}>
         <Form.Field control={Input} label="Title" id="title" />
         <div id="image-preview">
-          {imageBase64 ? <img src={imageBase64} style={{maxWidth: "256px"}} alt="preview"></img> : null }
+          {imageBase64 ? (
+            <img
+              src={imageBase64}
+              style={{ maxWidth: "256px" }}
+              alt="preview"
+            ></img>
+          ) : null}
         </div>
         <Form.Field className="ui button" as="label" htmlFor="image-upload">
-          Add image
+          {t("admin.addImage")}
         </Form.Field>
         <input
           type="file"
@@ -51,7 +59,7 @@ const CreateArticle = () => {
         />
         <Form.Field control={TextArea} label="Body" id="body" />
         <Form.Field control={Button} type="submit" id="submit">
-          Submit
+          {t("login.submit")}
         </Form.Field>
       </Form>
       <p id="create-article-message">{submitArticleMessage}</p>
