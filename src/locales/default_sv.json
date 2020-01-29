@@ -36,7 +36,8 @@
       "food": "Mat",
       "tech": "Tech",
       "culture": "Kultur",
-      "sports": "Sport"
+      "sports": "Sport",
+      "misc": "Övrigt"
     },
     "admin": {
       "alertLogin": "Logga in för nå den här sidan",
