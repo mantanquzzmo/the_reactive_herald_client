@@ -52,10 +52,6 @@ const CreateArticle = () => {
     { key: "mi", value: "misc", text: "Misc" }
   ];
 
-  const selectHandler = (e, data) => {
-    setCategory(data.value)
-  }
-
   return (
     <>
       <Header>{t("admin.createArticle")}</Header>
@@ -80,7 +76,12 @@ const CreateArticle = () => {
           onChange={e => imageUploadHandler(e)}
         />
         <Form.Field control={TextArea} label="Body" id="body" />
-        <Select id="selector" placeholder='Select category' onChange={selectHandler} options={categories} />
+        <Select
+          id="selector"
+          placeholder="Select category"
+          onChange={(e, data) => setCategory(data.value)}
+          options={categories}
+        />
         <Form.Field control={Button} type="submit" id="submit">
           {t("login.submit")}
         </Form.Field>
