@@ -36,7 +36,9 @@
       "food": "Food",
       "tech": "Tech",
       "culture": "Culture",
-      "sports": "Sports"
+      "sports": "Sports",
+      "misc": "Misc",
+      "all": "The Herald"
     },
     "admin": {
       "alertLogin": "You need to log in to access employee features.",

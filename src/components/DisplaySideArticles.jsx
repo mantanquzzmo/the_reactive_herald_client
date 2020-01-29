@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getArticles } from "../modules/article";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from "react-i18next";
 
 const DisplaySideArticles = props => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const getArticleShowData = async () => {
     const articlesData = await getArticles();
@@ -12,7 +12,10 @@ const DisplaySideArticles = props => {
     props.changeCurrentPage(articlesData.meta.current_page);
   };
 
-  if (!props.sideArticles) {
+  if (
+    !props.sideArticles &&
+    props.message != "No articles in that category yet"
+  ) {
     getArticleShowData();
   }
 
@@ -45,11 +48,11 @@ const DisplaySideArticles = props => {
   return (
     <div id="side-articles">
       {!props.sideArticles ? (
-        <p id="message">{t('dsa.loading')}</p>
+        <p id="message">{t("dsa.loading")}</p>
       ) : props.sideArticles.articles.length > 0 ? (
         articlesList
       ) : (
-        <p id="error-message">{t('dsa.error')}</p>
+        <p id="error-message">{t("dsa.error")}</p>
       )}
     </div>
   );
@@ -59,7 +62,8 @@ const mapStateToProps = state => {
   return {
     sideArticles: state.sideArticles,
     currentArticleId: state.currentArticleId,
-    currentPage: state.currentPage
+    currentPage: state.currentPage,
+    message: state.message
   };
 };
 

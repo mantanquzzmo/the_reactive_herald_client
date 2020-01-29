@@ -36,3 +36,7 @@ h1, h2, .ui.header.aligned.center, .ui {
   display: relative;
   margin-right: 8%;
 }
+
+img {
+  max-width: 400px;
+}
