@@ -8,7 +8,7 @@ describe("Visitor succesfully", () => {
     });
 
     cy.visit("/");
-    cy.get("#4.item")
+    cy.get("#culture.item")
       .contains("Culture")
       .click();
 
@@ -18,13 +18,13 @@ describe("Visitor succesfully", () => {
   it("shown side articles categorized", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=4",
+      url: "http://localhost:3000/api/v1/articles?category=culture",
       response: "fixture:categorized_response.json",
       status: 200
     });
 
     cy.visit("/");
-    cy.get("#4.item")
+    cy.get("#culture.item")
       .contains("Culture")
       .click();
 
@@ -40,12 +40,12 @@ describe("Visitor succesfully", () => {
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=4",
+      url: "http://localhost:3000/api/v1/articles?category=culture",
       response: "fixture:categorized_response.json",
       status: 200
     });
     cy.visit("/");
-    cy.get("#4.item")
+    cy.get("#culture.item")
       .contains("Culture")
       .click();
 

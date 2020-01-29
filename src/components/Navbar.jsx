@@ -54,12 +54,12 @@ const Navbar = props => {
       </Menu>
       <Menu secondary pointing fluid widths={7}>
         <Menu.Item name={t("nav.all")} id="return" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.news")} id="1" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.food")} id="2" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.tech")} id="3" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.culture")} id="4" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.sports")} id="5" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.misc")} id="6" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.news")} id="news" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.food")} id="food" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.tech")} id="tech" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.culture")} id="culture" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.sports")} id="sports" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.misc")} id="misc" onClick={toggleCategory} />
       </Menu>
     </>
   );
