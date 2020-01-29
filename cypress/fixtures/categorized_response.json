@@ -2,25 +2,25 @@
   "articles": [
     {
       "id": 1,
-      "title": "Test1",
+      "title": "Title cat 4:1",
       "body": "TestBody1",
-      "category": "1"
+      "category": "4"
     },
     {
       "id": 2,
-      "title": "Test2",
+      "title": "Title cat 4:2",
       "body": "TestBody2",
-      "category": "2"
+      "category": "4"
     },
     {
       "id": 3,
-      "title": "Test3",
+      "title": "Title cat 4:3",
       "body": "TestBody3",
-      "category": "3"
+      "category": "4"
     },
     {
       "id": 4,
-      "title": "Test4",
+      "title": "Title cat 4:4",
       "body": "TestBody4",
       "category": "4"
     }

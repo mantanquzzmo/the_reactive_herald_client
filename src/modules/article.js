@@ -5,17 +5,26 @@ const getCurrentArticle = async id => {
     const response = await axios.get(`/articles/${id}`);
     return response.data.article;
   } catch (error) {
-    if (error.message === 'Network Error') {
-      return { error: error.message }
+    if (error.message === "Network Error") {
+      return { error: error.message };
     } else {
       return error.response.data;
     }
   }
 };
 
-const getArticles = async () => {
-  const response = await axios.get("/articles");
-  return response.data;
+const getArticles = async event => {
+  if (event) {
+    const response = await axios({
+      url: "/articles", 
+      method: "GET",
+      params: { "category": event.target.id }
+      });
+    return response.data;
+  } else {
+    const response = await axios.get("/articles");
+    return response.data;
+  }
 };
 
 const createArticle = async (title, body, category, image) => {
