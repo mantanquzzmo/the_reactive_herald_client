@@ -37,7 +37,8 @@
       "tech": "Tech",
       "culture": "Kultur",
       "sports": "Sport",
-      "misc": "Övrigt"
+      "misc": "Övrigt",
+      "all": "The Herald"
     },
     "admin": {
       "alertLogin": "Logga in för nå den här sidan",

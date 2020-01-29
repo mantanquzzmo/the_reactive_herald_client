@@ -11,8 +11,21 @@ const Navbar = props => {
     i18n.changeLanguage(event.target.id);
   };
 
+  const toggleCategory = async event => {
+    if (event.target.id == "return") {
+      await changeCategory();
+    } else {
+      await changeCategory(event);
+    }
+  };
+
   const changeCategory = async event => {
-    const articlesData = await getArticles(event);
+    let articlesData;
+    if (event) {
+      articlesData = await getArticles(event);
+    } else {
+      articlesData = await getArticles();
+    }
     props.changeSideArticlesData(articlesData);
     props.changeCurrentPage(articlesData.meta.current_page);
     const article = await getCurrentArticle(articlesData.articles[0].id);
@@ -31,17 +44,14 @@ const Navbar = props => {
         <Menu.Item name={t("nav.english")} id="en" onClick={changeLanguage} />
         <Menu.Item name={t("nav.swedish")} id="sv" onClick={changeLanguage} />
       </Menu>
-      <Menu secondary pointing fluid widths={6}>
-        <Menu.Item name={t("nav.news")} id="0" onClick={changeCategory} />
-        <Menu.Item name={t("nav.food")} id="1" onClick={changeCategory} />
-        <Menu.Item name={t("nav.tech")} id="2" onClick={changeCategory} />
-        <Menu.Item
-          name={t("nav.culture")}
-          id="3"
-          onClick={changeCategory}
-        />
-        <Menu.Item name={t("nav.sports")} id="4" onClick={changeCategory} />
-        <Menu.Item name={t("nav.misc")} id="5" onClick={changeCategory} />
+      <Menu secondary pointing fluid widths={7}>
+        <Menu.Item name={t("nav.all")} id="return" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.news")} id="0" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.food")} id="1" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.tech")} id="2" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.culture")} id="3" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.sports")} id="4" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.misc")} id="5" onClick={toggleCategory} />
       </Menu>
     </>
   );
