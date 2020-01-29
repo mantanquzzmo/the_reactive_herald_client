@@ -13,12 +13,13 @@ const getCurrentArticle = async id => {
   }
 };
 
-const getArticles = async (event) => {
+const getArticles = async event => {
   if (event) {
-    const response = await axios.get("/articles", {
-      params: `"category": "${event.target.id}"`
-    });
-    debugger
+    const response = await axios({
+      url: "/articles", 
+      method: "GET",
+      params: { "category": event.target.id }
+      });
     return response.data;
   } else {
     const response = await axios.get("/articles");

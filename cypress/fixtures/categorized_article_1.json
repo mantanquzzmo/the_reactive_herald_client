@@ -1,0 +1,9 @@
+{
+  "article":
+    {
+      "id": 3,
+      "title": "Title cat 4:1",
+      "body": "TestBody1",
+      "category": "4"
+    }
+}

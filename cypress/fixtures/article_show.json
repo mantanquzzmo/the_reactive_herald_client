@@ -3,6 +3,7 @@
     {
       "id": 1,
       "title": "Article 1",
-      "body": "Body 1"
+      "body": "Body 1",
+      "category": "1"
     }
 }
