@@ -8,7 +8,7 @@ describe("Visitor succesfully", () => {
     });
 
     cy.visit("/");
-    cy.get("#3.item")
+    cy.get("#4.item")
       .contains("Culture")
       .click();
 
@@ -18,13 +18,13 @@ describe("Visitor succesfully", () => {
   it("shown side articles categorized", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=3",
+      url: "http://localhost:3000/api/v1/articles?category=4",
       response: "fixture:categorized_response.json",
       status: 200
     });
 
     cy.visit("/");
-    cy.get("#3.item")
+    cy.get("#4.item")
       .contains("Culture")
       .click();
 
@@ -34,18 +34,18 @@ describe("Visitor succesfully", () => {
   it("can click and get new categorized show page", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles/3",
+      url: "http://localhost:3000/api/v1/articles/**",
       response: "fixture:categorized_article_3.json",
       status: 200
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=3",
+      url: "http://localhost:3000/api/v1/articles?category=4",
       response: "fixture:categorized_response.json",
       status: 200
     });
     cy.visit("/");
-    cy.get("#3.item")
+    cy.get("#4.item")
       .contains("Culture")
       .click();
 
@@ -76,5 +76,25 @@ describe("Visitor succesfully", () => {
 
     cy.get("#article-title").should("contain", "Article 1");
     cy.get("#side-article-4").should("contain", "Test4");
+  });
+  it("gets error message is no articles in that cat exist", () => {
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/v1/articles",
+      response: "fixture:side_articles_empty.json",
+      status: 200
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/v1/articles/1",
+      response: "fixture:article_empty.json",
+      status: 200
+    });
+    cy.visit("/");
+    cy.get("#return")
+      .contains("The Herald")
+      .click();
+
+    cy.get("#message").should("contain", "No articles in that category yet");
   });
 });

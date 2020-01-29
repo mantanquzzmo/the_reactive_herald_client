@@ -26,13 +26,21 @@ const Navbar = props => {
     } else {
       articlesData = await getArticles();
     }
-    props.changeSideArticlesData(articlesData);
-    props.changeCurrentPage(articlesData.meta.current_page);
-    const article = await getCurrentArticle(articlesData.articles[0].id);
-    if (article.error) {
-      props.changeMessage(article.error);
+    if (articlesData.articles.length > 0) {
+      props.changeSideArticlesData(articlesData);
+      props.changeCurrentPage(articlesData.meta.current_page);
+      const article = await getCurrentArticle(articlesData.articles[0].id);
+      if (article.error) {
+        props.changeMessage(article.error);
+      } else {
+        props.changeCurrentArticle(article);
+      }
     } else {
-      props.changeCurrentArticle(article);
+      props.changeCurrentArticle("");
+      props.changeMessage("No articles in that category yet");
+      props.changeSideArticlesData("");
+      props.changeCurrentPage("")
+
     }
   };
 
@@ -46,12 +54,12 @@ const Navbar = props => {
       </Menu>
       <Menu secondary pointing fluid widths={7}>
         <Menu.Item name={t("nav.all")} id="return" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.news")} id="0" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.food")} id="1" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.tech")} id="2" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.culture")} id="3" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.sports")} id="4" onClick={toggleCategory} />
-        <Menu.Item name={t("nav.misc")} id="5" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.news")} id="1" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.food")} id="2" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.tech")} id="3" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.culture")} id="4" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.sports")} id="5" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.misc")} id="6" onClick={toggleCategory} />
       </Menu>
     </>
   );
@@ -76,6 +84,12 @@ const mapDispatchToProps = dispatch => {
     },
     changeCurrentArticle: article => {
       dispatch({ type: "CHANGE_ARTICLE", payload: article });
+    },
+      changeMessage: message => {
+      dispatch({ type: "CHANGE_MESSAGE", payload: message });
+    },
+    changeSideArticlesData: articlesData => {
+      dispatch({ type: "CHANGE_ARTICLES_DATA", payload: articlesData });
     }
   };
 };
