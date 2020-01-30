@@ -50,7 +50,7 @@ const Signup = props => {
             <label>{t('login.password')}</label>
             <input name="password" type="password" id="password"></input>
 
-            <Link id="submit">{t('login.signup')}</Link>
+            <button id="submit">{t('login.signup')}</button>
           </form>
           <Link
             id="back-button"
