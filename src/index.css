@@ -40,3 +40,12 @@ h1, h2, .ui.header.aligned.center, .ui {
 img {
   max-width: 400px;
 }
+
+#main-header {
+  font-family: 'ChomskyRegular';
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  margin-top: 14px;
+  font-size: 23px;
+}
