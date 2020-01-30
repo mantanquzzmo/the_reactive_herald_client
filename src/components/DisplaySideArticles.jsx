@@ -7,7 +7,7 @@ const DisplaySideArticles = props => {
   const { t } = useTranslation()
 
   const getArticleShowData = async () => {
-    const articlesData = await getArticles();
+    const articlesData = await getArticles(props.language);
     props.changeSideArticlesData(articlesData);
     props.changeCurrentPage(articlesData.meta.current_page);
   };
@@ -21,6 +21,10 @@ const DisplaySideArticles = props => {
       props.changeCurrentArticleId(props.sideArticles.articles[0].id);
     }
   }, [props.currentPage]);
+
+  useEffect(() => {
+    getArticleShowData();
+  }, [props.language]);
 
   let articlesList;
 
@@ -59,7 +63,8 @@ const mapStateToProps = state => {
   return {
     sideArticles: state.sideArticles,
     currentArticleId: state.currentArticleId,
-    currentPage: state.currentPage
+    currentPage: state.currentPage,
+    language: state.language
   };
 };
 

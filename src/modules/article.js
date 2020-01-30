@@ -1,20 +1,24 @@
 import axios from "axios";
 
-const getCurrentArticle = async id => {
+const getCurrentArticle = async (id, language) => {
   try {
-    const response = await axios.get(`/articles/${id}`);
+    const response = await axios.get(`/articles/${id}`, {
+      params: { locale: language }
+    });
     return response.data.article;
   } catch (error) {
-    if (error.message === 'Network Error') {
-      return { error: error.message }
+    if (error.message === "Network Error") {
+      return { error: error.message };
     } else {
       return error.response.data;
     }
   }
 };
 
-const getArticles = async () => {
-  const response = await axios.get("/articles");
+const getArticles = async language => {
+  const response = await axios.get("/articles", {
+    params: { locale: language }
+  });
   return response.data;
 };
 

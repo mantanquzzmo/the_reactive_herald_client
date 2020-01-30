@@ -1,13 +1,16 @@
 import React from "react";
 import { Menu } from "semantic-ui-react";
 import { useTranslation } from 'react-i18next';
+import axios from "axios"
+import { connect } from "react-redux";
 
-const Navbar = () => {
+const Navbar = props => {
 
   const { t, i18n } = useTranslation('common')
   
   const changeLanguage = (event) => {
     i18n.changeLanguage(event.target.id)
+    props.changeLanguage(event.target.id)
   }
   
   return (
@@ -29,4 +32,12 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapDispatchToProps = dispatch => {
+  return {
+    changeLanguage: language => {
+      dispatch({ type: "CHANGE_LANGUAGE", payload: language });
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Navbar);

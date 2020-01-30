@@ -7,7 +7,7 @@ import { Button } from "semantic-ui-react";
 
 const DisplayCurrentArticle = props => {
   const getArticleShowData = async id => {
-    const article = await getCurrentArticle(id);
+    const article = await getCurrentArticle(id, props.language);
     if (article.error) {
       props.changeMessage(article.error);
     } else {
@@ -20,6 +20,10 @@ const DisplayCurrentArticle = props => {
   useEffect(() => {
     getArticleShowData(props.currentArticleId);
   }, [props.currentArticleId]);
+
+  useEffect(() => {
+    getArticleShowData(props.currentArticleId);
+  }, [props.language]);
 
   const limitedDisplayUI = () => {
     switch (true) {
@@ -71,7 +75,8 @@ const mapStateToProps = state => {
     currentArticleId: state.currentArticleId,
     message: state.message,
     authenticated: state.authenticated,
-    userAttrs: state.userAttrs
+    userAttrs: state.userAttrs,
+    language: state.language
   };
 };
 
