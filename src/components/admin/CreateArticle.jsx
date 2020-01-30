@@ -19,8 +19,10 @@ const CreateArticle = () => {
   const submitArticleHandler = async e => {
     e.preventDefault();
     const response = await createArticle(
-      e.target.title.value,
-      e.target.body.value,
+      e.target.title_en.value,
+      e.target.title_sv.value,
+      e.target.body_en.value,
+      e.target.body_sv.value,
       category,
       imageBase64
     );
@@ -56,7 +58,8 @@ const CreateArticle = () => {
     <>
       <Header>{t("admin.createArticle")}</Header>
       <Form id="article-form" onSubmit={submitArticleHandler}>
-        <Form.Field control={Input} label="Title" id="title" />
+        <Form.Field control={Input} label="Title - English" id="title_en" />
+        <Form.Field control={Input} label="Titel - Svenska" id="title_sv" />
         <div id="image-preview">
           {imageBase64 ? (
             <img
@@ -75,7 +78,8 @@ const CreateArticle = () => {
           style={{ display: "none" }}
           onChange={e => imageUploadHandler(e)}
         />
-        <Form.Field control={TextArea} label="Body" id="body" />
+        <Form.Field control={TextArea} label="Body - English" id="body_en" />
+        <Form.Field control={TextArea} label="Innehåll - Svenska" id="body_sv" />
         <Select
           id="selector"
           placeholder="Select category"

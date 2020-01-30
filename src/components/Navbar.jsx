@@ -30,7 +30,7 @@ const Navbar = props => {
     if (articlesData.articles.length > 0) {
       props.changeSideArticlesData(articlesData);
       props.changeCurrentPage(articlesData.meta.current_page);
-      const article = await getCurrentArticle(articlesData.articles[0].id);
+      const article = await getCurrentArticle(articlesData.articles[0].id, props.language);
       if (article.error) {
         props.changeMessage(article.error);
       } else {
