@@ -13,9 +13,11 @@ describe("Journalist attempts to create an article", () => {
       status: 200
     });
     cy.get("#article-form").within(() => {
-      cy.get("#title").type("This is a news article");
-      cy.get("#body").type("Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
+      cy.get("#title_en").type("This is a news article");
+      cy.get("#title_sv").type("Detta är en nyhetsartikel");
+      cy.get("#body_en").type("Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
                             "gangway swing the lead bilged on her anchor.");
+      cy.get("#body_sv").type("En inte riktigt lika konstig pirattext.");
       cy.get("#selector").first().click();
       cy.get("#selector > .visible > :nth-child(2)").click()
 
@@ -43,7 +45,7 @@ describe("Journalist attempts to create an article", () => {
       }
     });
     cy.get("#article-form").within(() => {
-      cy.get("#body").type(
+      cy.get("#body_en").type(
         "Scourge of the seven seas rutters Pieces of Eight"
       );
       cy.get("button")
@@ -66,7 +68,7 @@ describe("Journalist attempts to create an article", () => {
       }
     });
     cy.get("#article-form").within(() => {
-      cy.get("#title").type("This is a news article");
+      cy.get("#title_en").type("This is a news article");
       cy.get("button")
         .contains("Submit")
         .click();
