@@ -15,7 +15,8 @@ const getCurrentArticle = async (id, language) => {
   }
 };
 
-const getArticles = async (event, language) => {
+const getArticles = async (language, event) => {
+  debugger
   if (event) {
     const response = await axios({
       url: "/articles",

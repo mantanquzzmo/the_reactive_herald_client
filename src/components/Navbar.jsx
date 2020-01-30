@@ -23,9 +23,9 @@ const Navbar = props => {
   const changeCategory = async event => {
     let articlesData;
     if (event) {
-      articlesData = await getArticles(event);
+      articlesData = await getArticles(props.language, event);
     } else {
-      articlesData = await getArticles();
+      articlesData = await getArticles(props.language);
     }
     if (articlesData.articles.length > 0) {
       props.changeSideArticlesData(articlesData);
@@ -67,7 +67,8 @@ const Navbar = props => {
     
 const mapStateToProps = state => {
   return {
-    currentArticleId: state.currentArticleId
+    currentArticleId: state.currentArticleId,
+    language: state.language
   };
 };
 

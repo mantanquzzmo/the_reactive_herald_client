@@ -18,7 +18,7 @@ describe("Visitor succesfully", () => {
   it("shown side articles categorized", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=culture",
+      url: "http://localhost:3000/api/v1/articles?category=culture**",
       response: "fixture:categorized_response.json",
       status: 200
     });
@@ -40,7 +40,7 @@ describe("Visitor succesfully", () => {
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=culture",
+      url: "http://localhost:3000/api/v1/articles?category=culture**",
       response: "fixture:categorized_response.json",
       status: 200
     });
