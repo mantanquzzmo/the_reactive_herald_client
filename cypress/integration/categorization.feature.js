@@ -59,7 +59,7 @@ describe("Visitor succesfully", () => {
   it("can click and get new categorized show page", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles",
+      url: "http://localhost:3000/api/v1/articles**",
       response: "fixture:side_articles_shown.json",
       status: 200
     });
@@ -80,7 +80,7 @@ describe("Visitor succesfully", () => {
   it("gets error message is no articles in that cat exist", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles",
+      url: "http://localhost:3000/api/v1/articles**",
       response: "fixture:side_articles_empty.json",
       status: 200
     });

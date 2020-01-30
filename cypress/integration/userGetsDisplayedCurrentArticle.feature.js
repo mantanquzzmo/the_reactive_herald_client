@@ -7,7 +7,7 @@ describe("User is shown current article", () => {
   it("unsuccessfully, specific article not found", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles",
+      url: "http://localhost:3000/api/v1/articles**",
       response: "fixture:side_articles_empty.json"
     });
     cy.route({
