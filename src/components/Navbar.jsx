@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Menu } from "semantic-ui-react";
 import { useTranslation } from 'react-i18next';
 import { connect } from "react-redux";
@@ -11,6 +11,21 @@ const Navbar = props => {
     i18n.changeLanguage(event.target.id);
     props.changeLanguage(event.target.id)
   };
+
+  useEffect(() => {
+    const browserLanguages = navigator.languages
+    for (let i = 0; i < browserLanguages.length; i++) {
+      if (browserLanguages[i].substring(0, 2) == "sv") {
+        i18n.changeLanguage("sv");
+        props.changeLanguage("sv")
+        break;
+      } else if (browserLanguages[i].substring(0, 2) == "en") {
+        i18n.changeLanguage("en");
+        props.changeLanguage("en")
+        break;
+      }
+    }
+  }, []);
 
   const toggleCategory = async event => {
     if (event.target.id == "return") {
