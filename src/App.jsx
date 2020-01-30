@@ -7,6 +7,7 @@ import DisplayProfile from "./components/DisplayProfile"
 import AdminDashboard from "./components/admin/AdminDashboard";
 import Signup from "./components/Signup"
 import Footer from "./components/Footer"
+import Weather from "./components/Weather";
 
 
 const App = () => {
@@ -16,14 +17,17 @@ const App = () => {
       <BrowserRouter>
         <Login />
         <Signup />
-        <Header id="main-header" as={Link} to="/">The Reactive Herald</Header>
-          <Switch>
-            <Route exact path="/" component={DisplayNews} />
-            <Route exact path="/admin" component={AdminDashboard} />
-            <Route exact path="/profile" component={DisplayProfile} />
-          </Switch>
-          <Footer />
-        </BrowserRouter>
+        <Header id="main-header" as={Link} to="/">
+          The Reactive Herald
+          <Weather />
+        </Header>
+        <Switch>
+          <Route exact path="/" component={DisplayNews} />
+          <Route exact path="/admin" component={AdminDashboard} />
+          <Route exact path="/profile" component={DisplayProfile} />
+        </Switch>
+        <Footer />
+      </BrowserRouter>
         
     </Container>
   );
