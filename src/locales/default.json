@@ -47,6 +47,10 @@
       "reviewArticles": "Review articles",
       "undo": "Undo",
       "undidMess": "Undid publishing of article"
+    },
+    "weather": {
+      "currently": "Currently",
+      "feelsLike": "Feels like"
     }
   }
 }

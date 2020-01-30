@@ -47,6 +47,10 @@
       "reviewArticles": "Granska artiklar",
       "undo": "Ångra",
       "undidMess": "Ångrad publicering"
+    },
+    "weather": {
+      "currently": "Nu",
+      "feelsLike": "Känns som"
     }
   }
 }

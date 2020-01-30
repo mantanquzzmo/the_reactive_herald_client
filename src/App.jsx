@@ -16,10 +16,10 @@ const App = () => {
 
       <BrowserRouter>
         <Login />
+        <Weather />
         <Signup />
         <Header id="main-header" as={Link} to="/">
           The Reactive Herald
-          <Weather />
         </Header>
         <Switch>
           <Route exact path="/" component={DisplayNews} />

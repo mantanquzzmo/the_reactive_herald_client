@@ -36,3 +36,11 @@ h1, h2, .ui.header.aligned.center, .ui {
   display: relative;
   margin-right: 8%;
 }
+
+.weatherMain {
+  width: 200px;
+  height: 60px;
+  font-size: 15px;
+  float: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
