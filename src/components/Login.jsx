@@ -42,12 +42,12 @@ const Login = props => {
       !props.authenticated &&
       props.displaySignupButton:
       loginFunction = (
-        <button
+        <Link
           id="login-button"
           onClick={() => props.changeLoginButton(false)}
         >
           {t('login.login')}
-        </button>
+        </Link>
       );
       break;
     case !props.displayLoginButton && !props.authenticated:
@@ -63,12 +63,12 @@ const Login = props => {
 
             <button id="submit">{t('login.submit')}</button>
           </form>
-          <button
+          <Link
             id="back-button"
             onClick={() => props.changeLoginButton(true)}
           >
             {t('login.cancel')}
-          </button>
+          </Link>
           {props.authMessage}
         </>
       );

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import auth from "../modules/auth";
 import { useTranslation } from 'react-i18next'
+import { Link } from "react-router-dom";
 
 const Signup = props => {
 
@@ -30,12 +31,12 @@ const Signup = props => {
       !props.authenticated &&
       props.displayLoginButton:
       signupFunction = (
-        <button
+        <Link
           id="signup-button"
           onClick={() => props.changeSignupButton(false)}
         >
           {t('login.signup')}
-        </button>
+        </Link>
       );
       break;
     case !props.displaySignupButton && !props.authenticated:
@@ -49,14 +50,14 @@ const Signup = props => {
             <label>{t('login.password')}</label>
             <input name="password" type="password" id="password"></input>
 
-            <button id="submit">{t('login.signup')}</button>
+            <Link id="submit">{t('login.signup')}</Link>
           </form>
-          <button
+          <Link
             id="back-button"
             onClick={() => props.changeSignupButton(true)}
           >
             {t('login.cancel')}
-          </button>
+          </Link>
           {props.authMessage}
         </>
       );
