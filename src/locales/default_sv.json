@@ -15,12 +15,13 @@
     "footer": {
       "info1": "VD och chefredaktör:",
       "info2": "Utgivare:",
-      "info3": "Besöksadress:"
+      "info3": "Besöksadress:",
+      "financeHeader": "Finans:"
     },
     "login": {
       "login": "Logga in",
       "email": "E-post:",
-      "pword": "Lösenord:",
+      "password": "Lösenord:",
       "submit": "Logga in",
       "cancel": "Avbryt",
       "profile": "Profil",

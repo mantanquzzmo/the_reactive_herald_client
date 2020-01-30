@@ -15,12 +15,13 @@
     "footer": {
       "info1": "CEO and Editor in chief:",
       "info2": "Publishers:",
-      "info3": "Visiting Address:"
+      "info3": "Visiting Address:",
+      "financeHeader": "Financials:"
     },
     "login": {
       "login": "Login",
       "email": "Email:",
-      "pword": "Password:",
+      "password": "Password:",
       "submit": "Submit",
       "cancel": "Cancel",
       "profile": "Profile",

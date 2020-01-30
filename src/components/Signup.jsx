@@ -43,10 +43,10 @@ const Signup = props => {
         <>
           <p>{t('login.signup')}</p>
           <form id="signup-form" onSubmit={onSignup}>
-            <label>{t('login.email')}:</label>
+            <label>{t('login.email')}</label>
             <input name="email" type="email" id="email"></input>
 
-            <label>{t('login.password')}:</label>
+            <label>{t('login.password')}</label>
             <input name="password" type="password" id="password"></input>
 
             <button id="submit">{t('login.signup')}</button>

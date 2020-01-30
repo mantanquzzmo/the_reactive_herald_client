@@ -53,12 +53,12 @@ const Login = props => {
     case !props.displayLoginButton && !props.authenticated:
       loginFunction = (
         <>
-          <p>{t('login.login')}:</p>
+          <p>{t('login.login')}</p>
           <form id="login-form" onSubmit={onLogin}>
-            <label>{t('login.email')}:</label>
+            <label>{t('login.email')}</label>
             <input name="email" type="email" id="email"></input>
 
-            <label>{t('login.password')}:</label>
+            <label>{t('login.password')}</label>
             <input name="password" type="password" id="password"></input>
 
             <button id="submit">{t('login.submit')}</button>
