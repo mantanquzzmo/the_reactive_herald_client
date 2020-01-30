@@ -8,8 +8,10 @@ import {
 import { Button } from "semantic-ui-react";
 import axios from "axios";
 import { connect } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const StripeForm = props => {
+  const { t } = useTranslation("common");
 
   const payWithStripe = async (event, props) => {
     event.preventDefault();
@@ -22,9 +24,7 @@ const StripeForm = props => {
           { headers: headers }
         );
         if (paymentResponse.status === 200) {
-          props.changePaymentMessage(
-            "Thank you for subscribing to The Reactive Herald!"
-          );
+          props.changePaymentMessage(`${t("stripe.paySuccessMess")}`);
         }
       } catch (error) {
         props.changePaymentMessage(response.error.message);
@@ -34,13 +34,13 @@ const StripeForm = props => {
   return (
     <>
       <form id="payment" onSubmit={event => payWithStripe(event, props)}>
-        <label>Card number </label>
+        <label>{t("stripe.cardNumber")}</label>
         <CardNumberElement />
-        <label> Expiration date</label>
+        <label>{t("stripe.cardExpDate")}</label>
         <CardExpiryElement />
         <label>CVC</label>
         <CardCVCElement />
-        <Button>Submit</Button>
+        <Button>{t("stripe.submit")}</Button>
       </form>
       <p id="message">{props.paymentMessage}</p>
     </>

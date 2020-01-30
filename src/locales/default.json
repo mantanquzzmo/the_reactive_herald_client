@@ -26,7 +26,8 @@
       "cancel": "Cancel",
       "profile": "Profile",
       "logout": "Logout",
-      "signup": "Sign Up"
+      "signup": "Sign Up",
+      "loggedInMess": "Logged in as:"
     },
     "nav": {
       "global": "Global",
@@ -50,6 +51,12 @@
       "reviewArticles": "Review articles",
       "undo": "Undo",
       "undidMess": "Undid publishing of article"
+    },
+    "stripe": {
+      "cardNumber": "Card number",
+      "cardExpDate": "Expiration date",
+      "submit": "Submit",
+      "paySuccessMess": "Thank you for subscribing to The Reactive Herald!"
     }
   }
 }

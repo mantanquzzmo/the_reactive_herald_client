@@ -65,7 +65,7 @@ describe("Visitor succesfully", () => {
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles/1",
+      url: "http://localhost:3000/api/v1/articles/1**",
       response: "fixture:article_show.json",
       status: 200
     });
@@ -86,7 +86,7 @@ describe("Visitor succesfully", () => {
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles/1",
+      url: "http://localhost:3000/api/v1/articles/1**",
       response: "fixture:article_empty.json",
       status: 200
     });

@@ -26,7 +26,8 @@
       "cancel": "Avbryt",
       "profile": "Profil",
       "logout": "Logga ut",
-      "signup": "Bli medlem"
+      "signup": "Bli medlem",
+      "loggedInMess": "Inloggad som:"
     },
     "nav": {
       "global": "Globalt",
@@ -50,6 +51,12 @@
       "reviewArticles": "Granska artiklar",
       "undo": "Ångra",
       "undidMess": "Ångrad publicering"
+    },
+    "stripe": {
+      "cardNumber": "Kortnummer",
+      "cardExpDate": "Giltighetstid",
+      "submit": "Skicka",
+      "paySuccessMess": "Tack för att du prenumererar på The Reactive Herald!"
     }
   }
 }
