@@ -15,14 +15,21 @@ const getCurrentArticle = async (id, language) => {
   }
 };
 
-const getArticles = async language => {
-  const response = await axios.get("/articles", {
-    params: { locale: language }
-  });
-  return response.data;
+const getArticles = async (event, language) => {
+  if (event) {
+    const response = await axios({
+      url: "/articles",
+      method: "GET",
+      params: { category: event.target.id, locale: language }
+    });
+    return response.data;
+  } else {
+    const response = await axios.get("/articles");
+    return response.data;
+  }
 };
 
-const createArticle = async (title, body, image) => {
+const createArticle = async (title, body, category, image) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   try {
     const response = await axios.post(
@@ -31,6 +38,7 @@ const createArticle = async (title, body, image) => {
         article: {
           title: title,
           body: body,
+          category: category,
           image: image
         }
       },

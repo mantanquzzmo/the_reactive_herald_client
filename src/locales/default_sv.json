@@ -36,7 +36,9 @@
       "food": "Mat",
       "tech": "Tech",
       "culture": "Kultur",
-      "sports": "Sport"
+      "sports": "Sport",
+      "misc": "Övrigt",
+      "all": "The Herald"
     },
     "admin": {
       "alertLogin": "Logga in för nå den här sidan",

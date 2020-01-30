@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { createArticle } from "../../modules/article";
-import { Header, Input, Button, TextArea, Form } from "semantic-ui-react";
+import {
+  Header,
+  Input,
+  Button,
+  TextArea,
+  Form,
+  Select
+} from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 
 const CreateArticle = () => {
   const [submitArticleMessage, setSubmitArticleMessage] = useState("");
   const [imageBase64, setImageBase64] = useState("");
+  const [category, setCategory] = useState("");
   const { t } = useTranslation();
 
   const submitArticleHandler = async e => {
@@ -13,6 +21,7 @@ const CreateArticle = () => {
     const response = await createArticle(
       e.target.title.value,
       e.target.body.value,
+      category,
       imageBase64
     );
 
@@ -33,6 +42,15 @@ const CreateArticle = () => {
     };
     reader.readAsDataURL(image);
   };
+
+  const categories = [
+    { key: "nw", value: "news", text: "News" },
+    { key: "fd", value: "food", text: "Food" },
+    { key: "th", value: "tech", text: "Tech" },
+    { key: "cu", value: "culture", text: "Culture" },
+    { key: "sp", value: "sports", text: "Sports" },
+    { key: "mi", value: "misc", text: "Misc" }
+  ];
 
   return (
     <>
@@ -58,6 +76,12 @@ const CreateArticle = () => {
           onChange={e => imageUploadHandler(e)}
         />
         <Form.Field control={TextArea} label="Body" id="body" />
+        <Select
+          id="selector"
+          placeholder="Select category"
+          onChange={(e, data) => setCategory(data.value)}
+          options={categories}
+        />
         <Form.Field control={Button} type="submit" id="submit">
           {t("login.submit")}
         </Form.Field>

@@ -29,10 +29,18 @@ h1, h2, .ui.header.aligned.center, .ui {
 #footer {
   border-top: 3px solid rgba(166, 168, 172, 0.15);
   padding-top: 10px;
-  position: fixed;
+  position: relative;
   bottom: 0;
   right: 0;
   margin-left: 8%;
   display: relative;
   margin-right: 8%;
+}
+
+#selector {
+  margin-bottom: 10px;
+}
+
+img {
+  max-width: 400px;
 }

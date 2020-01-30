@@ -5,7 +5,7 @@ describe("Journalist attempts to create an article", () => {
     cy.journalistLogin("admin");
   });
 
-  it("successfully with title, body and image", () => {
+  it("successfully with title, body, category and image", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/admin/articles",
@@ -16,6 +16,9 @@ describe("Journalist attempts to create an article", () => {
       cy.get("#title").type("This is a news article");
       cy.get("#body").type("Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
                             "gangway swing the lead bilged on her anchor.");
+      cy.get("#selector").first().click();
+      cy.get("#selector > .visible > :nth-child(2)").click()
+
       cy.fixture('ca_basic_logo_320x40.png', 'base64').then(fileContent => {
         cy.get('#image-upload').upload(
           { fileContent, fileName: 'ca_basic_logo_320x40.png', mimeType: 'image/png' },
@@ -41,8 +44,7 @@ describe("Journalist attempts to create an article", () => {
     });
     cy.get("#article-form").within(() => {
       cy.get("#body").type(
-        "Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
-          "gangway swing the lead bilged on her anchor."
+        "Scourge of the seven seas rutters Pieces of Eight"
       );
       cy.get("button")
         .contains("Submit")
