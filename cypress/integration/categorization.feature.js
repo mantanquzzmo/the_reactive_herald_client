@@ -18,7 +18,7 @@ describe("Visitor succesfully", () => {
   it("shown side articles categorized", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=culture",
+      url: "http://localhost:3000/api/v1/articles?category=culture**",
       response: "fixture:categorized_response.json",
       status: 200
     });
@@ -40,7 +40,7 @@ describe("Visitor succesfully", () => {
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=culture",
+      url: "http://localhost:3000/api/v1/articles?category=culture**",
       response: "fixture:categorized_response.json",
       status: 200
     });
@@ -59,13 +59,13 @@ describe("Visitor succesfully", () => {
   it("can click and get new categorized show page", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles",
+      url: "http://localhost:3000/api/v1/articles**",
       response: "fixture:side_articles_shown.json",
       status: 200
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles/1",
+      url: "http://localhost:3000/api/v1/articles/1**",
       response: "fixture:article_show.json",
       status: 200
     });
@@ -80,13 +80,13 @@ describe("Visitor succesfully", () => {
   it("gets error message is no articles in that cat exist", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles",
+      url: "http://localhost:3000/api/v1/articles**",
       response: "fixture:side_articles_empty.json",
       status: 200
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles/1",
+      url: "http://localhost:3000/api/v1/articles/1**",
       response: "fixture:article_empty.json",
       status: 200
     });

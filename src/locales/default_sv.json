@@ -15,17 +15,19 @@
     "footer": {
       "info1": "VD och chefredaktör:",
       "info2": "Utgivare:",
-      "info3": "Besöksadress:"
+      "info3": "Besöksadress:",
+      "financeHeader": "Finans:"
     },
     "login": {
       "login": "Logga in",
       "email": "E-post:",
-      "pword": "Lösenord:",
+      "password": "Lösenord:",
       "submit": "Logga in",
       "cancel": "Avbryt",
       "profile": "Profil",
       "logout": "Logga ut",
-      "signup": "Bli medlem"
+      "signup": "Bli medlem",
+      "loggedInMess": "Inloggad som:"
     },
     "nav": {
       "global": "Globalt",
@@ -49,6 +51,12 @@
       "reviewArticles": "Granska artiklar",
       "undo": "Ångra",
       "undidMess": "Ångrad publicering"
+    },
+    "stripe": {
+      "cardNumber": "Kortnummer",
+      "cardExpDate": "Giltighetstid",
+      "submit": "Skicka",
+      "paySuccessMess": "Tack för att du prenumererar på The Reactive Herald!"
     }
   }
 }

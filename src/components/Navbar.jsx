@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Menu } from "semantic-ui-react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { connect } from "react-redux";
 import { getArticles, getCurrentArticle } from "../modules/article";
 
@@ -9,7 +9,23 @@ const Navbar = props => {
 
   const changeLanguage = event => {
     i18n.changeLanguage(event.target.id);
+    props.changeLanguage(event.target.id)
   };
+
+  useEffect(() => {
+    const browserLanguages = navigator.languages
+    for (let i = 0; i < browserLanguages.length; i++) {
+      if (browserLanguages[i].substring(0, 2) == "sv") {
+        i18n.changeLanguage("sv");
+        props.changeLanguage("sv")
+        break;
+      } else if (browserLanguages[i].substring(0, 2) == "en") {
+        i18n.changeLanguage("en");
+        props.changeLanguage("en")
+        break;
+      }
+    }
+  }, []);
 
   const toggleCategory = async event => {
     if (event.target.id == "return") {
@@ -22,14 +38,14 @@ const Navbar = props => {
   const changeCategory = async event => {
     let articlesData;
     if (event) {
-      articlesData = await getArticles(event);
+      articlesData = await getArticles(props.language, event);
     } else {
-      articlesData = await getArticles();
+      articlesData = await getArticles(props.language);
     }
     if (articlesData.articles.length > 0) {
       props.changeSideArticlesData(articlesData);
       props.changeCurrentPage(articlesData.meta.current_page);
-      const article = await getCurrentArticle(articlesData.articles[0].id);
+      const article = await getCurrentArticle(articlesData.articles[0].id, props.language);
       if (article.error) {
         props.changeMessage(article.error);
       } else {
@@ -40,7 +56,6 @@ const Navbar = props => {
       props.changeMessage("No articles in that category yet");
       props.changeSideArticlesData("");
       props.changeCurrentPage("")
-
     }
   };
 
@@ -64,10 +79,11 @@ const Navbar = props => {
     </>
   );
 };
-
+    
 const mapStateToProps = state => {
   return {
-    currentArticleId: state.currentArticleId
+    currentArticleId: state.currentArticleId,
+    language: state.language
   };
 };
 
@@ -90,6 +106,9 @@ const mapDispatchToProps = dispatch => {
     },
     changeSideArticlesData: articlesData => {
       dispatch({ type: "CHANGE_ARTICLES_DATA", payload: articlesData });
+    },
+    changeLanguage: language => {
+      dispatch({ type: "CHANGE_LANGUAGE", payload: language });
     }
   };
 };
