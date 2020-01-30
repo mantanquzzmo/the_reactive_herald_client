@@ -10,6 +10,7 @@ const initialState = {
   displaySignupButton: true,
   userAttrs: null,
   userShowData: null,
-  paymentMessage: null
+  paymentMessage: null,
+  language: "en",
 }
 export default initialState
