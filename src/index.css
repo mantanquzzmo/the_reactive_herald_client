@@ -39,7 +39,7 @@ h1, h2, .ui.header.aligned.center, .ui {
 
 .weatherMain {
   width: 200px;
-  height: 60px;
+  max-height: 50px;
   font-size: 15px;
   float: right;
   font-family: Arial, Helvetica, sans-serif;
