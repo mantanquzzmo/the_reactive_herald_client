@@ -1,3 +1,7 @@
+
+#root { height: 100%;
+  background-color: brown; }
+
 body {
   margin: 0;
   font-family: 'Courier', -apple-system, BlinkMacSystemFont,  'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,17 +9,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fbfbf8
+  background-color: #fbfbf8;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-#main-header {
-  font-size: 50px;
-  text-align: center;
 }
 
 [id^='side-article-'] {
@@ -26,15 +26,13 @@ h1, h2, .ui.header.aligned.center, .ui {
   font-family: 'Courier';
 }
 
-#footer {
-  border-top: 3px solid rgba(166, 168, 172, 0.15);
+.footer {
+  border-top: 4px solid rgba(113, 114, 116, 0.15);
   padding-top: 10px;
   position: relative;
   bottom: 0;
   right: 0;
-  margin-left: 8%;
   display: relative;
-  margin-right: 8%;
 }
 
 #selector {
@@ -44,3 +42,35 @@ h1, h2, .ui.header.aligned.center, .ui {
 img {
   max-width: 400px;
 }
+
+a.ui.header {
+  font-family: 'ChomskyRegular';
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  font-size: 55px;
+  margin-left: 26%;
+  margin-right: 26%;
+}
+
+.ui.container {
+  background-image: url(http://www.circozoe.com/suitenew/wp-content/uploads/2017/01/simple-old-paper-3-bw-w-1024x675.jpg); 
+  background-size: 100%;
+  background-position: center;
+  height: 100%;
+  padding: 2%;
+}
+
+#main-article-div {
+  padding-left: 2%;
+}
+
+@font-face {
+  font-family: 'chomskyregular';
+  src: url('./fonts/chomsky-webfont.woff2') format('woff2'),
+       url('./fonts/chomsky-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
