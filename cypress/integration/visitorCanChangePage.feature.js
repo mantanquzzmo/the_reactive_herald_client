@@ -29,6 +29,8 @@ describe("Visitor can change page and another set of articles", () => {
     });
     cy.visit("/");
     cy.get("#next-button").click()
+    cy.get("#side-article-6")
+      .should("contain", "Test6");
     cy.get("#prev-button").click()
     cy.get("#side-article-3")
       .should("contain", "Test3");
