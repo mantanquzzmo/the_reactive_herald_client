@@ -62,6 +62,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         paymentMessage: action.payload
       };
+    case "CHANGE_LANGUAGE":
+      return {
+        ...state,
+        language: action.payload
+      };
     default:
       return {
         ...state

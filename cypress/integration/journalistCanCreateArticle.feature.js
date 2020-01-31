@@ -5,7 +5,7 @@ describe("Journalist attempts to create an article", () => {
     cy.journalistLogin("admin");
   });
 
-  it("successfully with title, body and image", () => {
+  it("successfully with title, body, category and image", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/admin/articles",
@@ -13,9 +13,14 @@ describe("Journalist attempts to create an article", () => {
       status: 200
     });
     cy.get("#article-form").within(() => {
-      cy.get("#title").type("This is a news article");
-      cy.get("#body").type("Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
+      cy.get("#title_en").type("This is a news article");
+      cy.get("#title_sv").type("Detta är en nyhetsartikel");
+      cy.get("#body_en").type("Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
                             "gangway swing the lead bilged on her anchor.");
+      cy.get("#body_sv").type("En inte riktigt lika konstig pirattext.");
+      cy.get("#selector").first().click();
+      cy.get("#selector > .visible > :nth-child(2)").click()
+
       cy.fixture('ca_basic_logo_320x40.png', 'base64').then(fileContent => {
         cy.get('#image-upload').upload(
           { fileContent, fileName: 'ca_basic_logo_320x40.png', mimeType: 'image/png' },
@@ -40,9 +45,8 @@ describe("Journalist attempts to create an article", () => {
       }
     });
     cy.get("#article-form").within(() => {
-      cy.get("#body").type(
-        "Scourge of the seven seas rutters Pieces of Eight sutler spyglass swab strike colors" +
-          "gangway swing the lead bilged on her anchor."
+      cy.get("#body_en").type(
+        "Scourge of the seven seas rutters Pieces of Eight"
       );
       cy.get("button")
         .contains("Submit")
@@ -64,7 +68,7 @@ describe("Journalist attempts to create an article", () => {
       }
     });
     cy.get("#article-form").within(() => {
-      cy.get("#title").type("This is a news article");
+      cy.get("#title_en").type("This is a news article");
       cy.get("button")
         .contains("Submit")
         .click();

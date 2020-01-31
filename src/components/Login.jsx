@@ -15,7 +15,7 @@ const Login = props => {
       .then(userDatas => {
         props.changeAuth(true);
         props.setUserAttrs(userDatas.data);
-        props.changeAuthMessage(`Logged in as: ${userDatas.data.email}`);
+        props.changeAuthMessage(`${t('login.loggedInMess')} ${userDatas.data.email}`);
       })
       .catch(error => {
         props.changeAuthMessage(error.response.data.errors);
@@ -42,33 +42,33 @@ const Login = props => {
       !props.authenticated &&
       props.displaySignupButton:
       loginFunction = (
-        <button
+        <Link
           id="login-button"
           onClick={() => props.changeLoginButton(false)}
         >
           {t('login.login')}
-        </button>
+        </Link>
       );
       break;
     case !props.displayLoginButton && !props.authenticated:
       loginFunction = (
         <>
-          <p>{t('login.login')}:</p>
+          <p>{t('login.login')}</p>
           <form id="login-form" onSubmit={onLogin}>
-            <label>{t('login.email')}:</label>
+            <label>{t('login.email')}</label>
             <input name="email" type="email" id="email"></input>
 
-            <label>{t('login.password')}:</label>
+            <label>{t('login.password')}</label>
             <input name="password" type="password" id="password"></input>
 
             <button id="submit">{t('login.submit')}</button>
           </form>
-          <button
+          <Link
             id="back-button"
             onClick={() => props.changeLoginButton(true)}
           >
             {t('login.cancel')}
-          </button>
+          </Link>
           {props.authMessage}
         </>
       );

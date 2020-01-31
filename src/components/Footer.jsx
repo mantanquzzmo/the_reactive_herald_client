@@ -34,7 +34,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div id="footer">
+    <div class="footer">
       <Grid celled="internally">
         <Grid.Column width={5}>
           <div id="footer-info">
@@ -62,7 +62,7 @@ const Footer = () => {
           <div id="footer-financials">
             {forexDisplay ? (
               <>
-                <h5>Financials:</h5>
+                <h5>{t('footer.financeHeader')}</h5>
                 <p>Dollar / Euro: {forexDisplay[0]}</p>
                 <p>Bitcoin: {forexDisplay[1]} $</p>
               </>

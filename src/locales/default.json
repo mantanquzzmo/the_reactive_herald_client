@@ -15,17 +15,19 @@
     "footer": {
       "info1": "CEO and Editor in chief:",
       "info2": "Publishers:",
-      "info3": "Visiting Address:"
+      "info3": "Visiting Address:",
+      "financeHeader": "Financials:"
     },
     "login": {
       "login": "Login",
       "email": "Email:",
-      "pword": "Password:",
+      "password": "Password:",
       "submit": "Submit",
       "cancel": "Cancel",
       "profile": "Profile",
       "logout": "Logout",
-      "signup": "Sign Up"
+      "signup": "Sign Up",
+      "loggedInMess": "Logged in as:"
     },
     "nav": {
       "global": "Global",
@@ -36,7 +38,9 @@
       "food": "Food",
       "tech": "Tech",
       "culture": "Culture",
-      "sports": "Sports"
+      "sports": "Sports",
+      "misc": "Misc",
+      "all": "The Herald"
     },
     "admin": {
       "alertLogin": "You need to log in to access employee features.",
@@ -51,6 +55,12 @@
     "weather": {
       "currently": "Currently",
       "feelsLike": "Feels like"
+    },
+    "stripe": {
+      "cardNumber": "Card number",
+      "cardExpDate": "Expiration date",
+      "submit": "Submit",
+      "paySuccessMess": "Thank you for subscribing to The Reactive Herald!"
     }
   }
 }
