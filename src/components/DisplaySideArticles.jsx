@@ -32,7 +32,6 @@ const DisplaySideArticles = props => {
   }, [props.currentPage]);
 
   useEffect(() => {
-    debugger
     if (props.sideArticles && props.sideArticles.articles.length > 0) {
       props.changeCurrentArticleId(props.sideArticles.articles[0].id);
     } else if (props.sideArticles && props.sideArticles.articles.length == 0 && props.category ) {
@@ -85,18 +84,22 @@ const DisplaySideArticles = props => {
         )}
       </div>
       <div>
-        <Button
+        {(props.sideArticles && props.sideArticles.meta.prev_page != null) ? (
+          <Button
           id="prev-button"
           onClick={() => pageButtonHandler(props.currentPage - 1)}
         >
           {t("dsa.prevPageButton")}
         </Button>
+        ) : null}
+        {(props.sideArticles && props.sideArticles.meta.next_page != null) ? (
         <Button
           id="next-button"
           onClick={() => pageButtonHandler(props.currentPage + 1)}
         >
           {t("dsa.nextPageButton")}
         </Button>
+        ) : null }
       </div>
     </>
   );
