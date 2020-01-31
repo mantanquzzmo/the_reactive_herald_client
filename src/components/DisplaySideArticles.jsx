@@ -37,8 +37,8 @@ const DisplaySideArticles = props => {
     getArticleShowData();
   }, [props.language]);
 
-  const nextPageHandler = () => {
-    props.changeCurrentPage(props.currentPage + 1)
+  const pageButtonHandler = newPageNumber => {
+    props.changeCurrentPage(newPageNumber)
   }
 
   let articlesList;
@@ -70,8 +70,8 @@ const DisplaySideArticles = props => {
       ) : (
         <p id="error-message">{t("dsa.error")}</p>
       )}
-      <Button>Previous page</Button>
-      <Button id="next-button" onClick={nextPageHandler}>Next page</Button>
+      <Button id="prev-button" onClick={() => pageButtonHandler(props.currentPage - 1)}>Previous page</Button>
+      <Button id="next-button" onClick={() => pageButtonHandler(props.currentPage + 1)}>Next page</Button>
     </div>
   );
 };
