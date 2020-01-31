@@ -12,5 +12,6 @@ const initialState = {
   userShowData: null,
   paymentMessage: null,
   language: "en",
+  category: null,
 }
 export default initialState
