@@ -1,9 +1,12 @@
 import axios from "axios";
 
 const getCurrentArticle = async (id, language) => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   try {
-    const response = await axios.get(`/articles/${id}`, {
-      params: { locale: language }
+    const response = await axios({
+      url: `/articles/${id}`,
+      params: { locale: language },
+      headers: headers
     });
     return response.data.article;
   } catch (error) {
