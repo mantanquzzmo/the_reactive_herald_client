@@ -8,7 +8,11 @@ const DisplaySideArticles = props => {
   const { t } = useTranslation();
 
   const getArticleShowData = async () => {
-    const articlesData = await getArticles(props.language, props.currentPage, props.category);
+    const articlesData = await getArticles(
+      props.language,
+      props.currentPage,
+      props.category
+    );
     props.changeSideArticlesData(articlesData);
     props.changeCurrentPage(articlesData.meta.current_page);
   };
@@ -28,8 +32,16 @@ const DisplaySideArticles = props => {
   }, [props.currentPage]);
 
   useEffect(() => {
+    debugger
     if (props.sideArticles && props.sideArticles.articles.length > 0) {
       props.changeCurrentArticleId(props.sideArticles.articles[0].id);
+    } else if (props.sideArticles && props.sideArticles.articles.length == 0 && props.category ) {
+      props.changeSideMessage(`${t("dsa.categoryEmpty")}`);
+      props.changeMessage(`${t("dsa.categoryEmpty")}`);
+      props.changeCurrentArticle("");
+    } else if (props.sideArticles && props.sideArticles.articles.length == 0) {
+      props.changeSideMessage(`${t("dsa.error")}`);
+      props.changeCurrentArticleId("");
     }
   }, [props.sideArticles]);
 
@@ -62,27 +74,31 @@ const DisplaySideArticles = props => {
   }
 
   return (
-    <div id="side-articles">
-      {!props.sideArticles ? (
-        <p id="message">{t("dsa.loading")}</p>
-      ) : props.sideArticles.articles.length > 0 ? (
-        articlesList
-      ) : (
-        <p id="error-message">{t("dsa.error")}</p>
-      )}
-      <Button
-        id="prev-button"
-        onClick={() => pageButtonHandler(props.currentPage - 1)}
-      >
-        Previous page
-      </Button>
-      <Button
-        id="next-button"
-        onClick={() => pageButtonHandler(props.currentPage + 1)}
-      >
-        Next page
-      </Button>
-    </div>
+    <>
+      <div id="side-articles">
+        {!props.sideArticles ? (
+          <p id="message">{t("dsa.loading")}</p>
+        ) : props.sideArticles.articles.length > 0 ? (
+          articlesList
+        ) : (
+          <p id="error-message">{props.sideMessage}</p>
+        )}
+      </div>
+      <div>
+        <Button
+          id="prev-button"
+          onClick={() => pageButtonHandler(props.currentPage - 1)}
+        >
+          {t("dsa.prevPageButton")}
+        </Button>
+        <Button
+          id="next-button"
+          onClick={() => pageButtonHandler(props.currentPage + 1)}
+        >
+          {t("dsa.nextPageButton")}
+        </Button>
+      </div>
+    </>
   );
 };
 
@@ -93,7 +109,7 @@ const mapStateToProps = state => {
     currentPage: state.currentPage,
     language: state.language,
     category: state.category,
-    message: state.message
+    sideMessage: state.sideMessage
   };
 };
 
@@ -107,6 +123,15 @@ const mapDispatchToProps = dispatch => {
     },
     changeCurrentArticleId: id => {
       dispatch({ type: "CHANGE_ARTICLE_ID", payload: id });
+    },
+    changeSideMessage: message => {
+      dispatch({ type: "CHANGE_SIDEMESSAGE", payload: message });
+    },
+    changeMessage: message => {
+      dispatch({ type: "CHANGE_SIDEMESSAGE", payload: message });
+    },
+    changeCurrentArticle: article => {
+      dispatch({ type: "CHANGE_ARTICLE", payload: article });
     }
   };
 };

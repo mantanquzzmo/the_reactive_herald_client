@@ -12,6 +12,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         message: action.payload
       };
+    case "CHANGE_SIDEMESSAGE":
+      return {
+        ...state,
+        sideMessage: action.payload
+      };
     case "CHANGE_ARTICLES_DATA":
       return {
         ...state,

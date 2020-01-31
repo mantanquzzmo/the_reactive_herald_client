@@ -10,7 +10,10 @@
     },
     "dsa": {
       "Loading": "Laddar...",
-      "error": "Inga artiklar"
+      "error": "Inga artiklar",
+      "categoryEmpty": "Inga artiklar i denna kategori ännu",
+      "nextPageButton": "Nästa sida",
+      "prevPageButton": "Föregående sida"
     },
     "footer": {
       "info1": "VD och chefredaktör:",

@@ -18,7 +18,7 @@ describe("Visitor succesfully", () => {
   it("shown side articles categorized", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=culture**",
+      url: "http://localhost:3000/api/v1/articles?**category=culture**",
       response: "fixture:categorized_response.json",
       status: 200
     });
@@ -40,7 +40,7 @@ describe("Visitor succesfully", () => {
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles?category=culture**",
+      url: "http://localhost:3000/api/v1/articles?**category=culture",
       response: "fixture:categorized_response.json",
       status: 200
     });
@@ -80,7 +80,7 @@ describe("Visitor succesfully", () => {
   it("gets error message is no articles in that cat exist", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/articles**",
+      url: "http://localhost:3000/api/v1/articles?**",
       response: "fixture:side_articles_empty.json",
       status: 200
     });
@@ -91,10 +91,9 @@ describe("Visitor succesfully", () => {
       status: 200
     });
     cy.visit("/");
-    cy.get("#return")
-      .contains("The Herald")
+    cy.get("#culture")
       .click();
 
-    cy.get("#message").should("contain", "No articles in that category yet");
+    cy.get("#error-message").should("contain", "No articles in that category yet");
   });
 });

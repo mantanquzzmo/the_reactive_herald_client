@@ -4,6 +4,7 @@ const initialState = {
   sideArticles: null,
   currentPage: null,
   message: "Loading...",
+  sideMessage: "Loading...",
   authenticated: false,
   authMessage: null,
   displayLoginButton: true,
