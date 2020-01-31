@@ -66,7 +66,7 @@ a.ui.header {
 }
 
 @font-face {
-  font-family: 'bonk_offsetregular';
+  font-family: 'chomskyregular';
   src: url('./fonts/chomsky-webfont.woff2') format('woff2'),
        url('./fonts/chomsky-webfont.woff') format('woff');
   font-weight: normal;
