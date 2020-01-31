@@ -18,19 +18,19 @@ const getCurrentArticle = async (id, language) => {
   }
 };
 
-const getArticles = async (language, event) => {
+const getArticles = async (language, page, event) => {
   if (event) {
     const response = await axios({
       url: "/articles",
       method: "GET",
-      params: { category: event.target.id, locale: language }
+      params: { category: event.target.id, locale: language, page: page }
     });
     return response.data;
   } else {
     const response = await axios({
       url: "/articles",
       method: "GET",
-      params: { locale: language }
+      params: { locale: language, page: page }
     });
     return response.data;
   }

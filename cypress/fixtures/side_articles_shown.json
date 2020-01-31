@@ -23,18 +23,6 @@
       "title": "Test4",
       "body": "TestBody4",
       "category": "4"
-    },
-    {
-      "id": 5,
-      "title": "Test5",
-      "body": "TestBody5",
-      "category": "4"
-    },
-    {
-      "id": 6,
-      "title": "Test6",
-      "body": "TestBody6",
-      "category": "4"
     }
   ],
   "meta": {

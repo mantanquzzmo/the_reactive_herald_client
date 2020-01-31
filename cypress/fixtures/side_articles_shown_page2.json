@@ -1,0 +1,23 @@
+{
+  "articles": [
+    {
+      "id": 5,
+      "title": "Test5",
+      "body": "TestBody5",
+      "category": "4"
+    },
+    {
+      "id": 6,
+      "title": "Test6",
+      "body": "TestBody6",
+      "category": "4"
+    }
+  ],
+  "meta": {
+    "current_page": 2,
+    "next_page": null,
+    "prev_page": 1,
+    "total_pages": 2,
+    "total_count": 6
+  }
+}

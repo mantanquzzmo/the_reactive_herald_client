@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getArticles } from "../modules/article";
 import { useTranslation } from "react-i18next";
+import { Button } from "semantic-ui-react"
 
 const DisplaySideArticles = props => {
   const { t } = useTranslation();
 
   const getArticleShowData = async () => {
-    const articlesData = await getArticles(props.language);
+    const articlesData = await getArticles(props.language, props.currentPage);
     props.changeSideArticlesData(articlesData);
     props.changeCurrentPage(articlesData.meta.current_page);
   };
@@ -20,14 +21,25 @@ const DisplaySideArticles = props => {
   }
 
   useEffect(() => {
+    getArticleShowData();
     if (props.sideArticles && props.sideArticles.articles.length > 0) {
       props.changeCurrentArticleId(props.sideArticles.articles[0].id);
     }
   }, [props.currentPage]);
 
   useEffect(() => {
+    if (props.sideArticles && props.sideArticles.articles.length > 0) {
+      props.changeCurrentArticleId(props.sideArticles.articles[0].id);
+    }
+  }, [props.sideArticles]);
+
+  useEffect(() => {
     getArticleShowData();
   }, [props.language]);
+
+  const nextPageHandler = () => {
+    props.changeCurrentPage(props.currentPage + 1)
+  }
 
   let articlesList;
 
@@ -58,6 +70,8 @@ const DisplaySideArticles = props => {
       ) : (
         <p id="error-message">{t("dsa.error")}</p>
       )}
+      <Button>Previous page</Button>
+      <Button id="next-button" onClick={nextPageHandler}>Next page</Button>
     </div>
   );
 };
@@ -78,6 +92,7 @@ const mapDispatchToProps = dispatch => {
       dispatch({ type: "CHANGE_ARTICLES_DATA", payload: articlesData });
     },
     changeCurrentPage: currentPage => {
+      debugger
       dispatch({ type: "CHANGE_CURRENT_PAGE", payload: currentPage });
     },
     changeCurrentArticleId: id => {
