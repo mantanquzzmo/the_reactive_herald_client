@@ -65,4 +65,12 @@ a.ui.header {
   padding-left: 2%;
 }
 
+@font-face {
+  font-family: 'bonk_offsetregular';
+  src: url('./fonts/chomsky-webfont.woff2') format('woff2'),
+       url('./fonts/chomsky-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
