@@ -34,7 +34,7 @@ const Weather = () => {
   }, []);
 
   useEffect(() => {
-  loadWeatherData()
+    loadWeatherData()
   }, [coords]);
   
   return (
