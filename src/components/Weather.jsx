@@ -3,8 +3,8 @@ import { getWeatherData } from "../modules/weather";
 import { useTranslation } from 'react-i18next'
 
 const Weather = () => {
-  let [weatherDisplay, setWeatherDisplay] = useState("")
-  let [gotWeather, setGotDisplay] = useState(false)
+  let [weatherError, setWeatherError] = useState("")
+  let [gotWeather, setGotWeather] = useState(false)
   let [coords, setCoords] = useState("")
   let [temp, setTemp] = useState("")
   let [place, setPlace] = useState("")
@@ -17,9 +17,9 @@ const Weather = () => {
       setPlace(weatherData.name)
       setTemp(parseFloat(weatherData.main.temp - 273.15).toFixed(1))
       setDescription(weatherData.weather[0].description)
-      setGotDisplay(true)
+      setGotWeather(true)
     } else {
-      setWeatherDisplay("Loading...")
+      setWeatherError("Loading...")
     }
   }
 
@@ -49,7 +49,7 @@ const Weather = () => {
             {description}
           </p>
         ) : (
-          <p>{weatherDisplay}</p>
+          <p>{weatherError}</p>
         )}
       </div>
   );
