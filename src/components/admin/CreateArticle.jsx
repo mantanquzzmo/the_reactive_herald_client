@@ -1,41 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createArticle } from "../../modules/article";
 import {
   Header,
   Input,
-  Button,
+  Grid,
   TextArea,
   Form,
   Select,
-  Tab
+  Tab,
+  Menu,
+  Icon,
+  Image
 } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 
 const CreateArticle = () => {
-  const [submitArticleMessage, setSubmitArticleMessage] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState(null);
   const [imageBase64, setImageBase64] = useState("");
   const [category, setCategory] = useState("");
+  const [titleEn, setTitleEn] = useState("");
+  const [bodyEn, setBodyEn] = useState("");
+  const [titleSv, setTitleSv] = useState("");
+  const [bodySv, setBodySv] = useState("");
+  const [engFormFilled, setEngFormFilled] = useState(false);
+  const [sweFormFilled, setSweFormFilled] = useState(false);
+
   const { t } = useTranslation();
+  let submitMessage;
 
   const submitArticleHandler = async e => {
     e.preventDefault();
     const response = await createArticle(
-      e.target.title_en.value,
-      e.target.title_sv.value,
-      e.target.body_en.value,
-      e.target.body_sv.value,
+      titleEn,
+      bodyEn,
+      titleSv,
+      bodySv,
       category,
       imageBase64
     );
 
     if (response.status === 200) {
-      setSubmitArticleMessage(
-        "Your article was successfully submitted for review."
-      );
+      setSubmitSuccess(true);
     } else if (response.status === 422) {
-      setSubmitArticleMessage("Your article must have a title and content.");
+      setSubmitSuccess(false);
     }
   };
+
+  if (submitSuccess) {
+    submitMessage = (
+      <div id="create-article-message" style={{ color: "green" }}>
+        Your article was successfully submitted for review.
+      </div>
+    );
+  } else if (submitSuccess == false) {
+    submitMessage = (
+      <div id="create-article-message" style={{ color: "red" }}>
+        Your article must have title, content, category and image.
+      </div>
+    );
+  }
 
   const imageUploadHandler = async e => {
     const image = e.target.files[0];
@@ -55,57 +78,133 @@ const CreateArticle = () => {
     { key: "mi", value: "misc", text: "Misc" }
   ];
 
+  useEffect(() => {
+    titleEn != "" && bodyEn != ""
+      ? setEngFormFilled(true)
+      : setEngFormFilled(false);
+  }, [titleEn, bodyEn]);
+
+  useEffect(() => {
+    titleSv != "" && bodySv != ""
+      ? setSweFormFilled(true)
+      : setSweFormFilled(false);
+  }, [titleSv, bodySv]);
+
   const panes = [
-    { menuItem: 'English', render: () => 
-      <Tab.Pane>
-        <Form.Field control={Input} label="Title" id="title_en" />
-        <Form.Field control={TextArea} label="Body" id="body_en" />
-      </Tab.Pane> 
-      
+    {
+      menuItem: (
+        <Menu.Item key="english">
+          English&nbsp;
+          {engFormFilled ? (
+            <Icon name="circle" size="tiny" color="green" />
+          ) : (
+            <Icon name="circle" size="tiny" color="red" />
+          )}
+        </Menu.Item>
+      ),
+      render: () => (
+        <Tab.Pane>
+          <Form.Field
+            key="title_en"
+            control={Input}
+            label="Title"
+            id="title_en"
+            value={titleEn}
+            onChange={e => setTitleEn(e.target.value)}
+          />
+          <Form.Field
+            key="body_en"
+            control={TextArea}
+            label="Body"
+            id="body_en"
+            value={bodyEn}
+            onChange={e => setBodyEn(e.target.value)}
+          />
+        </Tab.Pane>
+      )
     },
-    { menuItem: 'Svenska', render: () => 
-      <Tab.Pane>
-        <Form.Field control={Input} label="Titel" id="title_sv" />
-        <Form.Field control={TextArea} label="Innehåll" id="body_sv" />
-      </Tab.Pane> 
-      
-    },
-  ]
+    {
+      menuItem: (
+        <Menu.Item key="swedish">
+          Svenska&nbsp;
+          {sweFormFilled ? (
+            <Icon name="circle" size="tiny" color="green" />
+          ) : (
+            <Icon name="circle" size="tiny" color="red" />
+          )}
+        </Menu.Item>
+      ),
+      render: () => (
+        <Tab.Pane>
+          <Form.Field
+            key="title_sv"
+            control={Input}
+            label="Titel"
+            id="title_sv"
+            value={titleSv}
+            onChange={e => setTitleSv(e.target.value)}
+          />
+          <Form.Field
+            key="body_sv"
+            control={TextArea}
+            label="Innehåll"
+            id="body_sv"
+            value={bodySv}
+            onChange={e => setBodySv(e.target.value)}
+          />
+        </Tab.Pane>
+      )
+    }
+  ];
 
   return (
     <>
-      <Header>{t("admin.createArticle")}</Header>
-      <Form id="article-form" onSubmit={submitArticleHandler}>
-        <Tab panes={panes} style={{paddingBottom: "20px" }}/>
-        <div id="image-preview">
-          {imageBase64 ? (
-            <img
-              src={imageBase64}
-              style={{ maxWidth: "256px" }}
-              alt="preview"
-            ></img>
-          ) : null}
-        </div>
-        <Select
-          id="selector"
-          placeholder="Select category"
-          onChange={(e, data) => setCategory(data.value)}
-          options={categories}
-        />
-        <Form.Field className="ui button" as="label" htmlFor="image-upload">
-          {t("admin.addImage")}
-        </Form.Field>
-        <input
-          type="file"
-          id="image-upload"
-          style={{ display: "none" }}
-          onChange={e => imageUploadHandler(e)}
-        />
-        <Form.Field control={Button} type="submit" id="submit">
-          {t("login.submit")}
-        </Form.Field>
-      </Form>
-      <p id="create-article-message">{submitArticleMessage}</p>
+      <Grid padded>
+        <Grid.Column style={{ background: "white" }}>
+          <Header as="h1">{t("admin.createArticle")}</Header>
+          {submitMessage}
+          <Form id="article-form" onSubmit={submitArticleHandler}>
+            <Tab panes={panes} style={{ paddingBottom: "10px" }} />
+            <Form.Field
+              required
+              control={Select}
+              id="selector"
+              label="Category"
+              placeholder="Select category"
+              onChange={(e, data) => setCategory(data.value)}
+              options={categories}
+              width={4}
+            />
+            <div id="image-preview">
+              {imageBase64 ? (
+                <Image
+                  bordered
+                  src={imageBase64}
+                  style={{ maxWidth: "384px" }}
+                  alt="preview"
+                ></Image>
+              ) : null}
+            </div>
+            <Form.Field
+              className="ui icon right labeled button"
+              as="label"
+              htmlFor="image-upload"
+            >
+              {t("admin.addImage")}&nbsp;
+              <Icon name="image outline" />
+            </Form.Field>
+            <input
+              type="file"
+              id="image-upload"
+              style={{ display: "none" }}
+              onChange={e => imageUploadHandler(e)}
+            />
+            <Form.Button positive type="submit" id="submit">
+              {t("login.submit")}
+            </Form.Button>
+          </Form>
+        </Grid.Column>
+      </Grid>
     </>
   );
 };
