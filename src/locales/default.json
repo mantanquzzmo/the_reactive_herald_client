@@ -55,10 +55,6 @@
       "undo": "Undo",
       "undidMess": "Undid publishing of article"
     },
-    "weather": {
-      "currently": "Currently",
-      "feelsLike": "Feels like"
-    },
     "stripe": {
       "cardNumber": "Card number",
       "cardExpDate": "Expiration date",

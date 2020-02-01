@@ -38,12 +38,11 @@ const Weather = () => {
   }, [coords]);
   
   return (
-      <div className="weatherMain">
+      <div className="weather-main">
         {gotWeather ? (
           <p>
             {place}
             <br/>
-            {t('weather.currently')}:
             {temp}&#8451;
             <br/>
             {description}

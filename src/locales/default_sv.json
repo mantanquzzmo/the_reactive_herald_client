@@ -55,10 +55,6 @@
       "undo": "Ångra",
       "undidMess": "Ångrad publicering"
     },
-    "weather": {
-      "currently": "Nu",
-      "feelsLike": "Känns som"
-    },
     "stripe": {
       "cardNumber": "Kortnummer",
       "cardExpDate": "Giltighetstid",

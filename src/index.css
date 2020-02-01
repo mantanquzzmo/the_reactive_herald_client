@@ -35,7 +35,7 @@ h1, h2, .ui.header.aligned.center, .ui {
   display: relative;
 }
 
-.weatherMain {
+.weather-main {
   width: 150px;
   max-height: 50px;
   font-size: 15px;
