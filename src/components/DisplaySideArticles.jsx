@@ -2,12 +2,17 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getArticles } from "../modules/article";
 import { useTranslation } from "react-i18next";
+import { Button } from "semantic-ui-react";
 
 const DisplaySideArticles = props => {
   const { t } = useTranslation();
 
   const getArticleShowData = async () => {
-    const articlesData = await getArticles(props.language);
+    const articlesData = await getArticles(
+      props.language,
+      props.currentPage,
+      props.category
+    );
     props.changeSideArticlesData(articlesData);
     props.changeCurrentPage(articlesData.meta.current_page);
   };
@@ -20,14 +25,32 @@ const DisplaySideArticles = props => {
   }
 
   useEffect(() => {
+    getArticleShowData();
     if (props.sideArticles && props.sideArticles.articles.length > 0) {
       props.changeCurrentArticleId(props.sideArticles.articles[0].id);
     }
   }, [props.currentPage]);
 
   useEffect(() => {
+    if (props.sideArticles && props.sideArticles.articles.length > 0) {
+      props.changeCurrentArticleId(props.sideArticles.articles[0].id);
+    } else if (props.sideArticles && props.sideArticles.articles.length == 0 && props.category ) {
+      props.changeSideMessage(`${t("dsa.categoryEmpty")}`);
+      props.changeMessage(`${t("dsa.categoryEmpty")}`);
+      props.changeCurrentArticle("");
+    } else if (props.sideArticles && props.sideArticles.articles.length == 0) {
+      props.changeSideMessage(`${t("dsa.error")}`);
+      props.changeCurrentArticleId("");
+    }
+  }, [props.sideArticles]);
+
+  useEffect(() => {
     getArticleShowData();
-  }, [props.language]);
+  }, [props.language, props.category]);
+
+  const pageButtonHandler = newPageNumber => {
+    props.changeCurrentPage(newPageNumber);
+  };
 
   let articlesList;
 
@@ -50,15 +73,37 @@ const DisplaySideArticles = props => {
   }
 
   return (
-    <div id="side-articles">
-      {!props.sideArticles ? (
-        <p id="message">{t("dsa.loading")}</p>
-      ) : props.sideArticles.articles.length > 0 ? (
-        articlesList
-      ) : (
-        <p id="error-message">{t("dsa.error")}</p>
-      )}
-    </div>
+    <>
+      <div id="side-articles">
+        {!props.sideArticles ? (
+          <p id="message">{t("dsa.loading")}</p>
+        ) : props.sideArticles.articles.length > 0 ? (
+          articlesList
+        ) : (
+          <p id="error-message">{props.sideMessage}</p>
+        )}
+      </div>
+      <div>
+        {(props.sideArticles && props.sideArticles.meta.prev_page != null) ? (
+          <Button basic color="black"
+          id="prev-button"
+          onClick={() => pageButtonHandler(props.currentPage - 1)}
+        >
+          <i aria-hidden="true" class="left chevron icon"></i>
+          {t("dsa.prevPageButton")}
+        </Button>
+        ) : null}
+        {(props.sideArticles && props.sideArticles.meta.next_page != null) ? (
+        <Button basic color="black"
+          id="next-button"
+          onClick={() => pageButtonHandler(props.currentPage + 1)}
+        >
+          {t("dsa.nextPageButton")}
+          <i aria-hidden="true" class="right chevron icon"></i>
+        </Button>
+        ) : null }
+      </div>
+    </>
   );
 };
 
@@ -68,7 +113,8 @@ const mapStateToProps = state => {
     currentArticleId: state.currentArticleId,
     currentPage: state.currentPage,
     language: state.language,
-    message: state.message
+    category: state.category,
+    sideMessage: state.sideMessage
   };
 };
 
@@ -82,6 +128,15 @@ const mapDispatchToProps = dispatch => {
     },
     changeCurrentArticleId: id => {
       dispatch({ type: "CHANGE_ARTICLE_ID", payload: id });
+    },
+    changeSideMessage: message => {
+      dispatch({ type: "CHANGE_SIDEMESSAGE", payload: message });
+    },
+    changeMessage: message => {
+      dispatch({ type: "CHANGE_SIDEMESSAGE", payload: message });
+    },
+    changeCurrentArticle: article => {
+      dispatch({ type: "CHANGE_ARTICLE", payload: article });
     }
   };
 };

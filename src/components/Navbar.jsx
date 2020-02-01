@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Menu } from "semantic-ui-react";
 import { useTranslation } from 'react-i18next';
 import { connect } from "react-redux";
-import { getArticles, getCurrentArticle } from "../modules/article";
 
 const Navbar = props => {
   const { t, i18n } = useTranslation("common");
@@ -27,35 +26,11 @@ const Navbar = props => {
     }
   }, []);
 
-  const toggleCategory = async event => {
+  const toggleCategory = event => {
     if (event.target.id == "return") {
-      await changeCategory();
+      props.changeCategory(null)
     } else {
-      await changeCategory(event);
-    }
-  };
-
-  const changeCategory = async event => {
-    let articlesData;
-    if (event) {
-      articlesData = await getArticles(props.language, event);
-    } else {
-      articlesData = await getArticles(props.language);
-    }
-    if (articlesData.articles.length > 0) {
-      props.changeSideArticlesData(articlesData);
-      props.changeCurrentPage(articlesData.meta.current_page);
-      const article = await getCurrentArticle(articlesData.articles[0].id, props.language);
-      if (article.error) {
-        props.changeMessage(article.error);
-      } else {
-        props.changeCurrentArticle(article);
-      }
-    } else {
-      props.changeCurrentArticle("");
-      props.changeMessage("No articles in that category yet");
-      props.changeSideArticlesData("");
-      props.changeCurrentPage("")
+      props.changeCategory(event.target.id)
     }
   };
 
@@ -83,29 +58,15 @@ const Navbar = props => {
 const mapStateToProps = state => {
   return {
     currentArticleId: state.currentArticleId,
-    language: state.language
+    language: state.language,
+    currentPage: state.currentPage
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeSideArticlesData: articlesData => {
-      dispatch({ type: "CHANGE_ARTICLES_DATA", payload: articlesData });
-    },
-    changeCurrentPage: currentPage => {
-      dispatch({ type: "CHANGE_CURRENT_PAGE", payload: currentPage });
-    },
-    changeCurrentArticleId: id => {
-      dispatch({ type: "CHANGE_ARTICLE_ID", payload: id });
-    },
-    changeCurrentArticle: article => {
-      dispatch({ type: "CHANGE_ARTICLE", payload: article });
-    },
-      changeMessage: message => {
-      dispatch({ type: "CHANGE_MESSAGE", payload: message });
-    },
-    changeSideArticlesData: articlesData => {
-      dispatch({ type: "CHANGE_ARTICLES_DATA", payload: articlesData });
+    changeCategory: category => {
+      dispatch({ type: "CHANGE_CATEGORY", payload: category });
     },
     changeLanguage: language => {
       dispatch({ type: "CHANGE_LANGUAGE", payload: language });

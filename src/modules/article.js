@@ -18,22 +18,13 @@ const getCurrentArticle = async (id, language) => {
   }
 };
 
-const getArticles = async (language, event) => {
-  if (event) {
-    const response = await axios({
-      url: "/articles",
-      method: "GET",
-      params: { category: event.target.id, locale: language }
-    });
-    return response.data;
-  } else {
-    const response = await axios({
-      url: "/articles",
-      method: "GET",
-      params: { locale: language }
-    });
-    return response.data;
-  }
+const getArticles = async (language, page, category) => {
+  const response = await axios({
+    url: "/articles",
+    method: "GET",
+    params: { locale: language, page: page, category: category }
+  });
+  return response.data;
 };
 
 const createArticle = async (title_en, title_sv, body_en, body_sv, category, image) => {
