@@ -4,13 +4,20 @@ import { useTranslation } from 'react-i18next'
 
 const Weather = () => {
   let [weatherDisplay, setWeatherDisplay] = useState("")
+  let [gotWeather, setGotDisplay] = useState(false)
   let [coords, setCoords] = useState("")
+  let [temp, setTemp] = useState("")
+  let [place, setPlace] = useState("")
+  let [description, setDescription] = useState("")
   const { t } = useTranslation('common')
 
   const loadWeatherData = async () => {
     let weatherData = await getWeatherData(coords);
     if (!weatherData.isAxiosError) {
-      setWeatherDisplay(weatherData)
+      setPlace(weatherData.name)
+      setTemp(parseFloat(weatherData.main.temp - 273.15).toFixed(1))
+      setDescription(weatherData.weather[0].description)
+      setGotDisplay(true)
     } else {
       setWeatherDisplay("Loading...")
     }
@@ -29,10 +36,21 @@ const Weather = () => {
   useEffect(() => {
   loadWeatherData()
   }, [coords]);
-
+  
   return (
       <div className="weatherMain">
-        {weatherDisplay.name}
+        {gotWeather ? (
+          <p>
+            {place}
+            <br/>
+            {t('weather.currently')}:
+            {temp}&#8451;
+            <br/>
+            {description}
+          </p>
+        ) : (
+          <p>{weatherDisplay}</p>
+        )}
       </div>
   );
 };
