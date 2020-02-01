@@ -4,6 +4,7 @@ const initialState = {
   sideArticles: null,
   currentPage: null,
   message: "Loading...",
+  sideMessage: "Loading...",
   authenticated: false,
   authMessage: null,
   displayLoginButton: true,
@@ -12,5 +13,6 @@ const initialState = {
   userShowData: null,
   paymentMessage: null,
   language: "en",
+  category: null,
 }
 export default initialState

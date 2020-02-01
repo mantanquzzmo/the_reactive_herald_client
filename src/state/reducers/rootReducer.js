@@ -12,6 +12,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         message: action.payload
       };
+    case "CHANGE_SIDEMESSAGE":
+      return {
+        ...state,
+        sideMessage: action.payload
+      };
     case "CHANGE_ARTICLES_DATA":
       return {
         ...state,
@@ -66,6 +71,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         language: action.payload
+      };
+    case "CHANGE_CATEGORY":
+      return {
+        ...state,
+        category: action.payload
       };
     default:
       return {
