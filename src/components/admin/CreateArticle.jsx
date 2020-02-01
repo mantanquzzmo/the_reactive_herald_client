@@ -6,7 +6,8 @@ import {
   Button,
   TextArea,
   Form,
-  Select
+  Select,
+  Tab
 } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 
@@ -54,12 +55,28 @@ const CreateArticle = () => {
     { key: "mi", value: "misc", text: "Misc" }
   ];
 
+  const panes = [
+    { menuItem: 'English', render: () => 
+      <Tab.Pane>
+        <Form.Field control={Input} label="Title" id="title_en" />
+        <Form.Field control={TextArea} label="Body" id="body_en" />
+      </Tab.Pane> 
+      
+    },
+    { menuItem: 'Svenska', render: () => 
+      <Tab.Pane>
+        <Form.Field control={Input} label="Titel" id="title_sv" />
+        <Form.Field control={TextArea} label="Innehåll" id="body_sv" />
+      </Tab.Pane> 
+      
+    },
+  ]
+
   return (
     <>
       <Header>{t("admin.createArticle")}</Header>
       <Form id="article-form" onSubmit={submitArticleHandler}>
-        <Form.Field control={Input} label="Title - English" id="title_en" />
-        <Form.Field control={Input} label="Titel - Svenska" id="title_sv" />
+        <Tab panes={panes} style={{paddingBottom: "20px" }}/>
         <div id="image-preview">
           {imageBase64 ? (
             <img
@@ -69,6 +86,12 @@ const CreateArticle = () => {
             ></img>
           ) : null}
         </div>
+        <Select
+          id="selector"
+          placeholder="Select category"
+          onChange={(e, data) => setCategory(data.value)}
+          options={categories}
+        />
         <Form.Field className="ui button" as="label" htmlFor="image-upload">
           {t("admin.addImage")}
         </Form.Field>
@@ -77,14 +100,6 @@ const CreateArticle = () => {
           id="image-upload"
           style={{ display: "none" }}
           onChange={e => imageUploadHandler(e)}
-        />
-        <Form.Field control={TextArea} label="Body - English" id="body_en" />
-        <Form.Field control={TextArea} label="Innehåll - Svenska" id="body_sv" />
-        <Select
-          id="selector"
-          placeholder="Select category"
-          onChange={(e, data) => setCategory(data.value)}
-          options={categories}
         />
         <Form.Field control={Button} type="submit" id="submit">
           {t("login.submit")}
