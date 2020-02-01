@@ -1,0 +1,11 @@
+{
+  "name": "Kista",
+  "main": {
+    "temp": 275
+  },
+  "weather": [
+    {
+      "description": "clouds"
+    }
+  ]
+}
