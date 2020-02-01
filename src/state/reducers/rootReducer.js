@@ -73,10 +73,10 @@ const rootReducer = (state = initialState, action) => {
         language: action.payload
       };
     case "CHANGE_CATEGORY":
-    return {
-      ...state,
-      category: action.payload
-    };
+      return {
+        ...state,
+        category: action.payload
+      };
     default:
       return {
         ...state

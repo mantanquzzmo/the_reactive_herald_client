@@ -12,8 +12,8 @@
       "loading": "Loading...",
       "error": "No articles found",
       "categoryEmpty": "No articles in that category yet",
-      "nextPageButton": "Next page",
-      "prevPageButton": "Previous page"
+      "nextPageButton": "Next",
+      "prevPageButton": "Previous"
     },
     "footer": {
       "info1": "CEO and Editor in chief:",

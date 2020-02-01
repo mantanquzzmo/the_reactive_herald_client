@@ -12,8 +12,8 @@
       "Loading": "Laddar...",
       "error": "Inga artiklar",
       "categoryEmpty": "Inga artiklar i denna kategori ännu",
-      "nextPageButton": "Nästa sida",
-      "prevPageButton": "Föregående sida"
+      "nextPageButton": "Nästa",
+      "prevPageButton": "Föregående"
     },
     "footer": {
       "info1": "VD och chefredaktör:",

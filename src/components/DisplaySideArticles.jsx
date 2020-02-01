@@ -85,19 +85,21 @@ const DisplaySideArticles = props => {
       </div>
       <div>
         {(props.sideArticles && props.sideArticles.meta.prev_page != null) ? (
-          <Button
+          <Button basic color="black"
           id="prev-button"
           onClick={() => pageButtonHandler(props.currentPage - 1)}
         >
+          <i aria-hidden="true" class="left chevron icon"></i>
           {t("dsa.prevPageButton")}
         </Button>
         ) : null}
         {(props.sideArticles && props.sideArticles.meta.next_page != null) ? (
-        <Button
+        <Button basic color="black"
           id="next-button"
           onClick={() => pageButtonHandler(props.currentPage + 1)}
         >
           {t("dsa.nextPageButton")}
+          <i aria-hidden="true" class="right chevron icon"></i>
         </Button>
         ) : null }
       </div>
