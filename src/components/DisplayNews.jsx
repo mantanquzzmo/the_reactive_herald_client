@@ -3,6 +3,8 @@ import Navbar from "./Navbar"
 import DisplayCurrentArticle from "./DisplayCurrentArticle"
 import DisplaySideArticles from "./DisplaySideArticles"
 import { Grid } from "semantic-ui-react";
+import Footer from "./Footer";
+
 
 const DisplayNews = () => {
   return (
@@ -16,6 +18,7 @@ const DisplayNews = () => {
           <DisplaySideArticles />
         </Grid.Column>
       </Grid>
+      <Footer />
     </>
   );
 };

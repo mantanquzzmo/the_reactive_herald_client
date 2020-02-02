@@ -6,7 +6,9 @@
       "role": "Roll",
       "backToHerald": "Tillbaka till the Reactive Herald",
       "loginProfile": "Var vänlig logga in för att se din profil",
-      "subscription": "Prenumerera"
+      "subscription": "Prenumeration",
+      "nosub": "Ingen prenumeration",
+      "subscribe": "Prenumerera!"
     },
     "dsa": {
       "Loading": "Laddar...",

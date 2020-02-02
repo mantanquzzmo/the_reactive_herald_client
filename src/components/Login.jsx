@@ -55,12 +55,11 @@ const Login = props => {
         <>
           <p>{t('login.login')}</p>
           <form id="login-form" onSubmit={onLogin}>
-            <label>{t('login.email')}</label>
+            <label>{t('login.email')} </label>
             <input name="email" type="email" id="email"></input>
 
-            <label>{t('login.password')}</label>
-            <input name="password" type="password" id="password"></input>
-
+            <label>{t('login.password')} </label>
+            <input name="password" type="password" id="password"></input>&nbsp;
             <button id="submit">{t('login.submit')}</button>
           </form>
           <Link
@@ -76,12 +75,12 @@ const Login = props => {
     case props.authenticated:
       loginFunction = (
         <>
-          {props.authMessage}
+          <span>{props.authMessage}</span><br></br>
           <Link id="profile-link" to="/profile">
-            Profile
-          </Link>
+          {t('login.profile')}
+          </Link><br></br>
           <Link id="logout-link" to="/" onClick={onLogout}>
-            Logout
+          {t('login.logout')}
           </Link>
         </>
       );

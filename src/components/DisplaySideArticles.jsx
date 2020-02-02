@@ -19,7 +19,7 @@ const DisplaySideArticles = props => {
 
   if (
     !props.sideArticles &&
-    props.message != "No articles in that category yet"
+    props.message != `${t("dsa.categoryEmpty")}`
   ) {
     getArticleShowData();
   }
@@ -38,9 +38,11 @@ const DisplaySideArticles = props => {
       props.changeSideMessage(`${t("dsa.categoryEmpty")}`);
       props.changeMessage(`${t("dsa.categoryEmpty")}`);
       props.changeCurrentArticle("");
+      props.changeCurrentArticleId(null);
     } else if (props.sideArticles && props.sideArticles.articles.length == 0) {
       props.changeSideMessage(`${t("dsa.error")}`);
       props.changeCurrentArticleId("");
+      props.changeCurrentArticleId(null);
     }
   }, [props.sideArticles]);
 
@@ -133,7 +135,7 @@ const mapDispatchToProps = dispatch => {
       dispatch({ type: "CHANGE_SIDEMESSAGE", payload: message });
     },
     changeMessage: message => {
-      dispatch({ type: "CHANGE_SIDEMESSAGE", payload: message });
+      dispatch({ type: "CHANGE_MESSAGE", payload: message });
     },
     changeCurrentArticle: article => {
       dispatch({ type: "CHANGE_ARTICLE", payload: article });

@@ -4,8 +4,11 @@ import { getCurrentArticle } from "../modules/article";
 import StripeForm from "./StripeForm";
 import { Elements } from "react-stripe-elements";
 import { Button } from "semantic-ui-react";
+import { useTranslation } from 'react-i18next'
 
 const DisplayCurrentArticle = props => {
+  const { t } = useTranslation('common')
+
   const getArticleShowData = async id => {
     const article = await getCurrentArticle(id, props.language);
     if (article.error) {
@@ -19,11 +22,7 @@ const DisplayCurrentArticle = props => {
 
   useEffect(() => {
     getArticleShowData(props.currentArticleId);
-  }, [props.currentArticleId]);
-
-  useEffect(() => {
-    getArticleShowData(props.currentArticleId);
-  }, [props.language]);
+  }, [props.currentArticleId, props.language]);
 
   const limitedDisplayUI = () => {
     switch (true) {
@@ -37,7 +36,7 @@ const DisplayCurrentArticle = props => {
               setShowSubscriptionForm(true);
             }}
           >
-            Subscribe!
+            {t('dp.subscribe')}
           </Button>
         );
       }

@@ -1,29 +1,32 @@
-
-#root { height: 100%;
-  background-color: brown; }
+#root {
+  height: 100%;
+  background-color: brown;
+}
 
 body {
   margin: 0;
-  font-family: 'Courier', -apple-system, BlinkMacSystemFont,  'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Courier", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fbfbf8;
 }
 
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-[id^='side-article-'] {
+[id^="side-article-"] {
   padding: 10px;
 }
 
-h1, h2, .ui.header.aligned.center, .ui {
-  font-family: 'Courier';
+h1,
+h2,
+.ui.header.aligned.center,
+.ui {
+  font-family: "Courier";
 }
 
 .footer {
@@ -51,7 +54,7 @@ img {
 }
 
 a.ui.header {
-  font-family: 'ChomskyRegular';
+  font-family: "ChomskyRegular";
   font-weight: normal;
   font-style: normal;
   text-align: center;
@@ -61,7 +64,7 @@ a.ui.header {
 }
 
 .ui.container {
-  background-image: url(http://www.circozoe.com/suitenew/wp-content/uploads/2017/01/simple-old-paper-3-bw-w-1024x675.jpg); 
+  background-image: url(http://www.circozoe.com/suitenew/wp-content/uploads/2017/01/simple-old-paper-3-bw-w-1024x675.jpg);
   background-size: 100%;
   background-position: center;
   height: 100%;
@@ -72,10 +75,16 @@ a.ui.header {
   padding-left: 2%;
 }
 
+#create-article-message {
+  font-size: larger;
+  font-weight: bold;
+  padding-bottom: 14px;
+}
+
 @font-face {
-  font-family: 'chomskyregular';
-  src: url('./fonts/chomsky-webfont.woff2') format('woff2'),
-       url('./fonts/chomsky-webfont.woff') format('woff');
+  font-family: "chomskyregular";
+  src: url("./fonts/chomsky-webfont.woff2") format("woff2"),
+    url("./fonts/chomsky-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
