@@ -44,8 +44,6 @@ const Weather = () => {
             {place}
             <br/>
             {temp}&#8451;
-            <br/>
-            {description}
           </p>
         ) : (
           <p>{weatherError}</p>
