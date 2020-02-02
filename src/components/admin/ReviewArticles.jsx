@@ -14,6 +14,7 @@ const ReviewArticles = () => {
   let [publishedArticles, setPublishedArticles] = useState([]);
   let [publishMessage, setPublishMessage] = useState("");
   let [lastPublishedArticle, setLastPublishedArticle] = useState("");
+  let [deleteMessage, setDeleteMessage] = useState("");
   let articlesList;
   let publishedArticlesList
   const { t } = useTranslation();
@@ -40,13 +41,13 @@ const ReviewArticles = () => {
   };
 
   const onDeleteHandler = async id => {
-    debugger
     let response = await deleteArticle(id);
-    // if (response === "OK") {
-    //   let message = `Article ${id} was deleted`;
-    // } else {
-    //   setPublishMessage(response);
-    // }
+    if (response === "OK") {
+      let message = `Article ${id} was deleted`;
+      setDeleteMessage(message)
+    } else {
+      setDeleteMessage(response);
+    }
   };
   
 
@@ -69,7 +70,7 @@ const ReviewArticles = () => {
   useEffect(() => {
     loadArticles();
     loadPublishedArticles();
-  }, [publishMessage]);
+  }, [publishMessage, deleteMessage]);
 
   if (articles.length > 0) {
     articlesList = articles.map(article => {
@@ -99,6 +100,7 @@ const ReviewArticles = () => {
         </Header>
         <div>
           {publishMessage}
+          <p style={{ color: "red" }}>{deleteMessage}</p>
           {lastPublishedArticle && (
             <button onClick={() => onUndoPublishHandler(lastPublishedArticle)}>
               {t("admin.undo")}
