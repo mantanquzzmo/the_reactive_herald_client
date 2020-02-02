@@ -7,8 +7,13 @@ const Navbar = props => {
   const { t, i18n } = useTranslation("common");
 
   const changeLanguage = event => {
+    let languageButtons = document.getElementsByClassName("lng-button");
+    Array.from(languageButtons).forEach(
+      button => (document.getElementById(button.id).style.fontWeight = "300")
+    );
     i18n.changeLanguage(event.target.id);
     props.changeLanguage(event.target.id);
+    document.getElementById(event.target.id).style.fontWeight = "900";
   };
 
   useEffect(() => {
@@ -17,10 +22,12 @@ const Navbar = props => {
       if (browserLanguages[i].substring(0, 2) == "sv") {
         i18n.changeLanguage("sv");
         props.changeLanguage("sv");
+        document.getElementById("sv").style.fontWeight = "900";
         break;
       } else if (browserLanguages[i].substring(0, 2) == "en") {
         i18n.changeLanguage("en");
         props.changeLanguage("en");
+        document.getElementById("en").style.fontWeight = "900";
         break;
       }
     }
@@ -45,11 +52,11 @@ const Navbar = props => {
       <Menu secondary pointing>
         <Menu.Item name={t("nav.global")} />
         <Menu.Item name={t("nav.local")} />
-        <Menu.Item name={t("nav.english")} id="en" onClick={changeLanguage} />
-        <Menu.Item name={t("nav.swedish")} id="sv" onClick={changeLanguage} />
+        <Menu.Item name={t("nav.english")} id="en" className="lng-button" onClick={changeLanguage} />
+        <Menu.Item name={t("nav.swedish")} id="sv" className="lng-button" onClick={changeLanguage} />
       </Menu>
       <Menu secondary pointing fluid widths={7}>
-        <Menu.Item name={t("nav.all")} id="return" onClick={toggleCategory} />
+        <Menu.Item name={t("nav.all")} style={{fontWeight: "900"}} id="return" onClick={toggleCategory} />
         <Menu.Item
           name={t("nav.news")}
           className="item-button"
