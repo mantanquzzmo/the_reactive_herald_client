@@ -6,6 +6,5 @@ describe("Weather div displays", () => {
     cy.get(".weather-main")
       .should("contain", 1.9)
       .and("contain", "Kista")
-      .and("contain", "clouds")
   });
 });
