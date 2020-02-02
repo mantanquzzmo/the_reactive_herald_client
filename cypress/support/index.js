@@ -14,7 +14,7 @@ beforeEach(() => {
   });
 
   let today = new Date();
-  let dd = String(today.getDate()).padStart(2);
+  let dd = String(today.getDate()).padStart(1);
   let mm = String(today.getMonth() + 1).padStart(1);
   cy.route({
     method: "GET",
