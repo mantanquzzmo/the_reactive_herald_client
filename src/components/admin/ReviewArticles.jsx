@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import {
-  getUnpublishedArticles,
+  getAdminArticles,
   publishArticle,
-  undoPublishArticle
+  undoPublishArticle,
+  deleteArticle
 } from "../../modules/article";
-import { Header, Grid } from "semantic-ui-react";
+import { Header, Table, Checkbox } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
+import ArticleRow from "./ArticleRow"
 
 const ReviewArticles = () => {
   let [articles, setArticles] = useState([]);
+  let [publishedArticles, setPublishedArticles] = useState([]);
   let [publishMessage, setPublishMessage] = useState("");
   let [lastPublishedArticle, setLastPublishedArticle] = useState("");
   let articlesList;
+  let publishedArticlesList
   const { t } = useTranslation();
 
   const loadArticles = async () => {
-    let response = await getUnpublishedArticles();
+    let response = await getAdminArticles(false);
     setArticles(response);
+  };
+
+  const loadPublishedArticles = async () => {
+    let response = await getAdminArticles(true);
+    setPublishedArticles(response);
   };
 
   const onPublishHandler = async id => {
@@ -29,6 +38,17 @@ const ReviewArticles = () => {
       setPublishMessage(response);
     }
   };
+
+  const onDeleteHandler = async id => {
+    debugger
+    let response = await deleteArticle(id);
+    // if (response === "OK") {
+    //   let message = `Article ${id} was deleted`;
+    // } else {
+    //   setPublishMessage(response);
+    // }
+  };
+  
 
   const onUndoPublishHandler = async id => {
     let response = await undoPublishArticle(id);
@@ -43,26 +63,30 @@ const ReviewArticles = () => {
 
   useEffect(() => {
     loadArticles();
+    loadPublishedArticles();
   }, []);
 
   useEffect(() => {
     loadArticles();
+    loadPublishedArticles();
   }, [publishMessage]);
 
   if (articles.length > 0) {
     articlesList = articles.map(article => {
       return (
-        <Grid.Column key={article.id}>
-          <div id={`review-article-${article.id}`}>
-            <h5>
-              {t("admin.article")} {article.id}: {article.title}
-            </h5>
-            <p>{article.body}</p>
-            <button onClick={() => onPublishHandler(article.id)}>
-              {t("admin.publish")}
-            </button>
-          </div>
-        </Grid.Column>
+        <Table.Row>
+          <ArticleRow article={article} publishHandler={onPublishHandler} deleteHandler={onDeleteHandler} />
+        </Table.Row>
+      );
+    });
+  }
+
+  if (publishedArticles.length > 0) {
+    publishedArticlesList = publishedArticles.map(article => {
+      return (
+        <Table.Row>
+          <ArticleRow article={article} deleteHandler={onDeleteHandler} />
+        </Table.Row>
       );
     });
   }
@@ -70,8 +94,11 @@ const ReviewArticles = () => {
   return (
     <>
       <Header>
-        <div id="publish-header">
-          {t("admin.reviewArticles")}: {publishMessage}
+        <Header as="h1" id="publish-header">
+          {t("admin.reviewArticles")}
+        </Header>
+        <div>
+          {publishMessage}
           {lastPublishedArticle && (
             <button onClick={() => onUndoPublishHandler(lastPublishedArticle)}>
               {t("admin.undo")}
@@ -80,9 +107,37 @@ const ReviewArticles = () => {
         </div>
       </Header>
       <div id="unpublished-articles">
-        <Grid container columns={2}>
-          {articlesList && articlesList}
-        </Grid>
+        <Table>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Title</Table.HeaderCell>
+              <Table.HeaderCell>Category</Table.HeaderCell>
+              <Table.HeaderCell>Location</Table.HeaderCell>
+              <Table.HeaderCell>Author</Table.HeaderCell>
+              <Table.HeaderCell>Publish</Table.HeaderCell>
+              <Table.HeaderCell>Delete</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>{articlesList}</Table.Body>
+        </Table>
+      </div>
+      <Header as="h1" id="publish-header">
+          Published articles
+        </Header>
+      <div id="published-articles">
+        <Table>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Title</Table.HeaderCell>
+              <Table.HeaderCell>Category</Table.HeaderCell>
+              <Table.HeaderCell>Location</Table.HeaderCell>
+              <Table.HeaderCell>Author</Table.HeaderCell>
+              <Table.HeaderCell>Publish</Table.HeaderCell>
+              <Table.HeaderCell>Delete</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>{publishedArticlesList}</Table.Body>
+        </Table>
       </div>
     </>
   );

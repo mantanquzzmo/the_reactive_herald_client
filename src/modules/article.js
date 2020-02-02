@@ -52,10 +52,11 @@ const createArticle = async (title_en, title_sv, body_en, body_sv, category, ima
   }
 };
 
-const getUnpublishedArticles = async () => {
+const getAdminArticles = async (publishStatus) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   try {
     let response = await axios.get(`/admin/articles`, {
+      params: { published: publishStatus },
       headers: headers
     });
     return response.data.articles;
@@ -98,11 +99,26 @@ const undoPublishArticle = async id => {
   }
 };
 
+const deleteArticle = async id => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  try {
+    let response = await axios({
+      url: `/admin/articles/${id}`,
+      headers: headers,
+      method: "DELETE",
+    });
+    return response.statusText;
+  } catch (error) {
+    return error.message;
+  }
+};
+
 export {
   getCurrentArticle,
   getArticles,
   createArticle,
-  getUnpublishedArticles,
+  getAdminArticles,
   publishArticle,
-  undoPublishArticle
+  undoPublishArticle,
+  deleteArticle
 };
