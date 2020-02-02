@@ -6,7 +6,9 @@
       "role": "Role",
       "backToHerald": "Back to the Herald",
       "loginProfile": "Please log in to view your profile",
-      "subscription": "Subscription"
+      "subscription": "Subscription",
+      "nosub": "No subscription",
+      "subscribe": "Subscribe!"
     },
     "dsa": {
       "loading": "Loading...",
