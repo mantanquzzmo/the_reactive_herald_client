@@ -12,13 +12,13 @@ const ArticleRow = ({ article, publishHandler, deleteHandler }) => {
 
   return (
     <>
-      <Table.Cell>
+      <Table.Cell id={`review-article-${article.id}`}>
         <Link to={`/admin/${article.id}`}>{article.title}</Link>
       </Table.Cell>
       <Table.Cell>{article.category}</Table.Cell>
       <Table.Cell>{article.location}</Table.Cell>
       <Table.Cell>{article.journalist}</Table.Cell>
-      <Table.Cell>
+      <Table.Cell id={`publish-article-toggle-${article.id}`}>
         <Checkbox toggle onClick={() => publishHandler(article.id)} />
       </Table.Cell>
       <Table.Cell>

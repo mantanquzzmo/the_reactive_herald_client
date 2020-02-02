@@ -3,22 +3,26 @@
     {
       "id": 1,
       "title": "Test1",
-      "body": "TestBody1"
+      "body": "TestBody1",
+      "published": false
     },
     {
       "id": 2,
       "title": "Test2",
-      "body": "TestBody2"
+      "body": "TestBody2",
+      "published": false
     },
     {
       "id": 3,
       "title": "Test3",
-      "body": "TestBody3"
+      "body": "TestBody3",
+      "published": false
     },
     {
       "id": 4,
       "title": "Test4",
-      "body": "TestBody4"
+      "body": "TestBody4",
+      "published": false
     }
   ]
 }

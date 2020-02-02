@@ -98,7 +98,7 @@ const ReviewArticles = () => {
         <Header as="h1" id="publish-header">
           {t("admin.reviewArticles")}
         </Header>
-        <div>
+        <div id="message">
           {publishMessage}
           <p style={{ color: "red" }}>{deleteMessage}</p>
           {lastPublishedArticle && (
