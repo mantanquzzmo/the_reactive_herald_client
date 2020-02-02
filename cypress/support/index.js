@@ -27,4 +27,10 @@ beforeEach(() => {
     url: `/api/v1/forex?base=USD&api_token=x50DVsx9yOqZCBXGZGrqMbBUlJeITZM2pY2vxhyqubikgYB4Db2UNZ0BxAnq`,
     response: "fixture:wtd.json"
   });
+  
+  cy.route({
+    method: "GET",
+    url: `http://api.openweathermap.org/data/2.5/weather**`,
+    response: "fixture:weather.json"
+  });
 })
