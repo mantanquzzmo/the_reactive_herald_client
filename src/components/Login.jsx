@@ -76,6 +76,7 @@ const Login = props => {
       loginFunction = (
         <>
           <span>{props.authMessage}</span>&nbsp;
+          <br/>
           <Link id="profile-link" to="/profile">
           {t('login.profile')}
           </Link>&nbsp;
