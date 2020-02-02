@@ -5,7 +5,7 @@ import {
   undoPublishArticle,
   deleteArticle
 } from "../../modules/article";
-import { Header, Table, Checkbox } from "semantic-ui-react";
+import { Header, Table } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 import ArticleRow from "./ArticleRow";
 
