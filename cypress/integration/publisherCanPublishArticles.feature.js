@@ -14,7 +14,7 @@ describe("Editor can", () => {
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/admin/articles",
+      url: "http://localhost:3000/api/v1/admin/articles?**",
       response: "fixture:publish_article_flow/articleslist_before_publish.json"
     });
     cy.route({
@@ -26,21 +26,20 @@ describe("Editor can", () => {
     cy.adminLogin();
   });
   it("see a list of unpublished articles", () => {
-    cy.get("#review-article-1").should("contain", "TestBody1");
+    cy.get("#review-article-1").should("contain", "Test1");
   });
 
   it("can publish article", () => {
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/admin/articles",
+      url: "http://localhost:3000/api/v1/admin/articles?**",
       response: "fixture:publish_article_flow/articleslist_after_publish.json"
     });
-    cy.get("#review-article-1").within(() => {
-      cy.get("button")
-        .contains("Publish")
+    cy.get("#publish-article-toggle-1").within(() => {
+      cy.get(".ui.fitted.toggle.checkbox")
         .click();
     });
-    cy.get("#publish-header").should("contain", "You published article 1");
+    cy.get("#message").should("contain", "You published article 1");
     cy.get("#unpublished-articles").not("contain", "Article 1");
   });
 
@@ -51,17 +50,16 @@ describe("Editor can", () => {
         "http://localhost:3000/api/v1/admin/articles/1?[article][published]=false",
       response: "OK"
     });
-    cy.get("#review-article-1").within(() => {
-      cy.get("button")
-        .contains("Publish")
+    cy.get("#publish-article-toggle-1").within(() => {
+      cy.get(".ui.fitted.toggle.checkbox")
         .click();
     });
-    cy.get("#publish-header").within(() => {
+    cy.get("#message").within(() => {
       cy.get("button")
         .contains("Undo")
         .click();
     });
-    cy.get("#publish-header").should(
+    cy.get("#message").should(
       "contain",
       "Undid the publishing of article 1"
     );
