@@ -67,7 +67,8 @@ img {
   font-style: normal;
   text-align: center;
   font-size: 55px;
-  margin-left: 13%;
+  margin-left: 12%;
+  margin-top: -10px;
 }
 
 .ui.container {
