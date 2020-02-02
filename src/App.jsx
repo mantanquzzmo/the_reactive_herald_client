@@ -16,17 +16,18 @@ const App = () => {
         <Login />
         <Weather />
         <Signup />
-        <Header
+        <h1 id="header"
           style={{
             fontSize: "55px",
             fontWeight: "normal",
+            textAlign: "center",
           }}
           type="main-header"
           as={Link}
           to="/"
         >
           The Reactive Herald
-        </Header>
+        </h1>
         <Switch>
           <Route exact path="/" component={DisplayNews} />
           <Route exact path="/admin" component={AdminDashboard} />
