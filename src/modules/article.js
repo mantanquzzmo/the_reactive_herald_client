@@ -27,7 +27,7 @@ const getArticles = async (language, page, category) => {
   return response.data;
 };
 
-const createArticle = async (title_en, title_sv, body_en, body_sv, category, image) => {
+const createArticle = async (title_en, body_en, title_sv, body_sv, category, image) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   try {
     const response = await axios.post(
