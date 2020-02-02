@@ -7,7 +7,7 @@ import {
 } from "../../modules/article";
 import { Header, Table, Checkbox } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
-import ArticleRow from "./ArticleRow"
+import ArticleRow from "./ArticleRow";
 
 const ReviewArticles = () => {
   let [articles, setArticles] = useState([]);
@@ -16,7 +16,7 @@ const ReviewArticles = () => {
   let [lastPublishedArticle, setLastPublishedArticle] = useState("");
   let [deleteMessage, setDeleteMessage] = useState("");
   let articlesList;
-  let publishedArticlesList
+  let publishedArticlesList;
   const { t } = useTranslation();
 
   const loadArticles = async () => {
@@ -44,12 +44,11 @@ const ReviewArticles = () => {
     let response = await deleteArticle(id);
     if (response === "OK") {
       let message = `Article ${id} was deleted`;
-      setDeleteMessage(message)
+      setDeleteMessage(message);
     } else {
       setDeleteMessage(response);
     }
   };
-  
 
   const onUndoPublishHandler = async id => {
     let response = await undoPublishArticle(id);
@@ -75,9 +74,13 @@ const ReviewArticles = () => {
   if (articles.length > 0) {
     articlesList = articles.map(article => {
       return (
-        <Table.Row>
-          <ArticleRow article={article} publishHandler={onPublishHandler} deleteHandler={onDeleteHandler} />
-        </Table.Row>
+        <ArticleRow
+          key={article.id}
+          article={article}
+          publishHandler={onPublishHandler}
+          deleteHandler={onDeleteHandler}
+          pubStatus={false}
+        />
       );
     });
   }
@@ -85,9 +88,13 @@ const ReviewArticles = () => {
   if (publishedArticles.length > 0) {
     publishedArticlesList = publishedArticles.map(article => {
       return (
-        <Table.Row>
-          <ArticleRow article={article} deleteHandler={onDeleteHandler} />
-        </Table.Row>
+        <ArticleRow
+          key={article.id}
+          article={article}
+          publishHandler={onUndoPublishHandler}
+          deleteHandler={onDeleteHandler}
+          pubStatus={true}
+        />
       );
     });
   }
@@ -124,8 +131,8 @@ const ReviewArticles = () => {
         </Table>
       </div>
       <Header as="h1" id="publish-header">
-          Published articles
-        </Header>
+        Published articles
+      </Header>
       <div id="published-articles">
         <Table>
           <Table.Header>
