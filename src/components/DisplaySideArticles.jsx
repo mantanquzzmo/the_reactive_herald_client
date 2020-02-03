@@ -17,13 +17,6 @@ const DisplaySideArticles = props => {
     props.changeCurrentPage(articlesData.meta.current_page);
   };
 
-  if (
-    !props.sideArticles &&
-    props.message != `${t("dsa.categoryEmpty")}`
-  ) {
-    getArticleShowData();
-  }
-
   useEffect(() => {
     getArticleShowData();
     if (props.sideArticles && props.sideArticles.articles.length > 0) {
