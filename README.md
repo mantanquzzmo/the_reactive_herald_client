@@ -17,7 +17,7 @@ https://the-reactive-herald-ca.netlify.com/
 ## To run setup
 #### Clone repository
 ```
-$ git clone https://github.com/EevanR/the_reactive_herald_client.git
+$ git clone https://github.com/mantanquzzmo/the_reactive_herald_client.git
 $ cd the-reactive-herald-client
 ```
 
